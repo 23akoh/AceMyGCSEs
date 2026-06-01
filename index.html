@@ -3,186 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GCSE Companion Hub</title>
+    <title>AceMyGCSEs!!!</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        /* Base styles for dynamic theme switching */
         :root { --theme-color: #4f46e5; }
         .theme-bg { background-color: var(--theme-color); }
         .theme-text { color: var(--theme-color); }
         .theme-border { border-color: var(--theme-color); }
+        
+        /* Custom Checkbox Styling */
+        input[type="checkbox"].topic-check {
+            width: 14px;
+            height: 14px;
+            accent-color: var(--theme-color);
+            cursor: pointer;
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans min-h-screen">
+<body class="bg-slate-50 text-gray-800 font-sans min-h-screen">
 
     <nav class="bg-white shadow-sm p-4 flex justify-between items-center">
-        <h1 class="text-xl font-bold theme-text">🚀 GCSE Study Hub</h1>
+        <h1 class="text-2xl font-bold theme-text">🎓 AceMyGCSEs!!!</h1>
         <div id="user-nav-profile" class="hidden flex items-center space-x-3">
             <span id="nav-username" class="font-medium">Student</span>
-            <div id="nav-pfp" class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-white font-bold">S</div>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto p-6">
+    <main class="max-w-5xl mx-auto p-6">
         
         <section id="onboarding-section" class="bg-white p-8 rounded-xl shadow-md space-y-6">
             <div class="border-b pb-4">
-                <h2 class="text-2xl font-bold text-gray-900">Welcome! Let's set up your profile</h2>
-                <p class="text-gray-500 text-sm">This helps us customize your GCSE revision timetable.</p>
+                <h2 class="text-2xl font-bold text-gray-900">Set Up Your Profile</h2>
+                <p class="text-gray-500 text-sm">Select your subjects and exam boards to generate your custom syllabus.</p>
             </div>
 
-            <form id="setup-form" class="space-y-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form id="setup-form" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">Preferred Name</label>
-                        <input type="text" id="input-name" required class="mt-1 w-full p-2 border rounded-md focus:ring-2 focus:ring-indigo-500 outline-none">
+                        <label class="block text-sm font-medium text-gray-700">First Name</label>
+                        <input type="text" id="input-fname" required class="mt-1 w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Surname</label>
+                        <input type="text" id="input-sname" required class="mt-1 w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 outline-none">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700">School Year</label>
                         <select id="input-year" class="mt-1 w-full p-2 border rounded-md">
+                            <option value="7">Year 7</option>
+                            <option value="8">Year 8</option>
+                            <option value="9">Year 9</option>
                             <option value="10">Year 10</option>
                             <option value="11">Year 11</option>
+                            <option value="12">Year 12</option>
                         </select>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Target Grade (Average)</label>
-                        <input type="number" id="input-target" min="1" max="9" placeholder="e.g. 7" class="mt-1 w-full p-2 border rounded-md">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Theme Colour</label>
-                        <input type="color" id="input-theme" value="#4f46e5" class="mt-1 w-full h-10 p-1 border rounded-md cursor-pointer">
-                    </div>
-                </div>
-
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Select Your Subjects</label>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                        <label class="flex items-center space-x-2"><input type="checkbox" name="subjects" value="Maths" class="rounded text-indigo-600"> <span>Maths</span></label>
-                        <label class="flex items-center space-x-2"><input type="checkbox" name="subjects" value="English Lit" class="rounded text-indigo-600"> <span>English Lit</span></label>
-                        <label class="flex items-center space-x-2"><input type="checkbox" name="subjects" value="English Lang" class="rounded text-indigo-600"> <span>English Lang</span></label>
-                        <label class="flex items-center space-x-2"><input type="checkbox" name="subjects" value="Biology" class="rounded text-indigo-600"> <span>Biology</span></label>
-                        <label class="flex items-center space-x-2"><input type="checkbox" name="subjects" value="Chemistry" class="rounded text-indigo-600"> <span>Chemistry</span></label>
-                        <label class="flex items-center space-x-2"><input type="checkbox" name="subjects" value="Physics" class="rounded text-indigo-600"> <span>Physics</span></label>
-                        <label class="flex items-center space-x-2"><input type="checkbox" name="subjects" value="History" class="rounded text-indigo-600"> <span>History</span></label>
-                        <label class="flex items-center space-x-2"><input type="checkbox" name="subjects" value="Geography" class="rounded text-indigo-600"> <span>Geography</span></label>
-                    </div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Select Your Subjects & Exam Boards</label>
+                    <div class="space-y-3" id="subject-categories">
+                        </div>
                 </div>
 
-                <button type="submit" class="w-full theme-bg text-white font-medium py-2.5 px-4 rounded-md hover:opacity-90 transition-opacity">
-                    Generate My Dashboard
+                <button type="submit" class="w-full theme-bg text-white font-medium py-3 px-4 rounded-md hover:opacity-90 transition-opacity">
+                    Create My Dashboard
                 </button>
             </form>
         </section>
 
         <section id="dashboard-section" class="hidden space-y-6">
-            <div class="bg-white p-6 rounded-xl shadow-sm flex justify-between items-center">
+            <div class="bg-white p-6 rounded-xl shadow-sm flex justify-between items-center border-l-4 theme-border">
                 <div>
-                    <h2 class="text-2xl font-bold text-gray-900">Welcome Back, <span id="dash-greeting" class="theme-text">Student</span>!</h2>
-                    <p class="text-sm text-gray-500">Target Grade Focus: GCSE <span id="dash-target" class="font-bold">N/A</span></p>
+                    <h2 class="text-2xl font-bold text-gray-900">Let's revise, <span id="dash-greeting" class="theme-text"></span>!</h2>
+                    <p class="text-sm text-gray-500">Track your progress against the official specifications below.</p>
                 </div>
-                <button id="btn-reset" class="text-xs text-red-500 hover:underline">Reset Data</button>
+                <button id="btn-reset" class="text-sm px-4 py-2 bg-red-100 text-red-600 rounded-md hover:bg-red-200">Edit Profile</button>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="md:col-span-2 space-y-6">
-                    <div class="bg-white p-6 rounded-xl shadow-sm">
-                        <h3 class="font-bold text-lg mb-3">Your GCSE Checklist</h3>
-                        <div id="subjects-list" class="space-y-2 text-gray-600">
-                            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm">
+                <h3 class="font-bold text-lg mb-4 text-gray-800">Your Official Checklists</h3>
+                <div id="checklists-container" class="space-y-8">
                     </div>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm h-fit">
-                    <h3 class="font-bold text-lg mb-3">💡 Daily Study Tip</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        Try the <strong>Blurting Method</strong>: Read a section of your notes for 5 minutes, close the book, and write down absolutely everything you can remember in red pen. Check what you missed!
-                    </p>
-                </div>
             </div>
         </section>
 
     </main>
 
     <script>
-        const form = document.getElementById('setup-form');
-        const onboardingSection = document.getElementById('onboarding-section');
-        const dashboardSection = document.getElementById('dashboard-section');
-        const navProfile = document.getElementById('user-nav-profile');
+        // --- 1. DATA STRUCTURE FOR SUBJECTS & SPECIFICATIONS ---
+        
+        // Full list of subjects to generate the form dynamically
+        const subjectList = {
+            "Core Subjects": ["English Language", "English Literature", "Mathematics", "Biology", "Chemistry", "Physics", "Combined Science"],
+            "Humanities & Social Sciences": ["History", "Geography", "Religious Studies", "Citizenship Studies", "Economics", "Psychology", "Sociology", "Law", "Classical Civilisation", "Ancient History"],
+            "Modern & Ancient Languages": ["French", "Spanish", "German", "Mandarin / Chinese", "Arabic", "Bengali", "Gujarati", "Italian", "Japanese", "Persian", "Polish", "Portuguese", "Russian", "Turkish", "Urdu", "British Sign Language (BSL)", "Latin", "Classical Greek"],
+            "Arts & Media": ["Art and Design", "Drama", "Music", "Dance", "Media Studies", "Film Studies"],
+            "Computing, Business & Tech": ["Computer Science", "Business Studies", "Design and Technology (D&T)", "Food Preparation and Nutrition", "Engineering", "Electronics"],
+            "Other": ["Physical Education (PE)", "Statistics", "Astronomy", "Geology"]
+        };
 
-        // Check if user has already signed up in the past
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedData = localStorage.getItem('gcse_user_profile');
-            if (savedData) {
-                loadDashboard(JSON.parse(savedData));
+        const examBoards = ["AQA", "Edexcel", "OCR", "WJEC", "Eduqas", "CCEA"];
+
+        // The Specification Database (Using your provided AQA Biology data!)
+        const syllabusData = {
+            "Biology": {
+                "AQA": [
+                    {
+                        mainTopic: "4.1 Cell Biology",
+                        subtopics: [
+                            {
+                                title: "4.1.1 Cell structure",
+                                points: [
+                                    "4.1.1.1 Eukaryotes and prokaryotes",
+                                    "4.1.1.2 Animal and plant cells",
+                                    "4.1.1.3 Cell specialisation : savemyexams notes (pg12-16)",
+                                    "4.1.1.4 Cell differentiation",
+                                    "4.1.1.5 Microscopy",
+                                    "4.1.1.6 Culturing microorganisms (biology only)"
+                                ]
+                            },
+                            {
+                                title: "4.1.2 Cell division",
+                                points: [
+                                    "4.1.2.1 Chromosomes",
+                                    "4.1.2.2 Mitosis and the cell cycle",
+                                    "4.1.2.3 Stem cells"
+                                ]
+                            },
+                            {
+                                title: "4.1.3 Transport in cells",
+                                points: [
+                                    "4.1.3.1 Diffusion : savemyexams notes (pg9-13)",
+                                    "4.1.3.2 Osmosis",
+                                    "4.1.3.3 Active transport"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        mainTopic: "4.2 Organisation",
+                        subtopics: [
+                            {
+                                title: "4.2.1 Principles of organisation",
+                                points: []
+                            },
+                            {
+                                title: "4.2.2 Animal tissues, organs and organ systems",
+                                points: [
+                                    "4.2.2.1 The human digestive system",
+                                    "4.2.2.2 The heart and blood vessels",
+                                    "4.2.2.3 Blood",
+                                    "4.2.2.4 Coronary heart disease: a non-communicable disease",
+                                    "4.2.2.5 Health issues",
+                                    "4.2.2.6 The effect of lifestyle on some non-communicable diseases",
+                                    "4.2.2.7 Cancer"
+                                ]
+                            }
+                        ]
+                    }
+                    // You can continue adding 4.3 to 4.7 here using the exact same structure!
+                ]
             }
-        });
+        };
 
-        // Handle form submission
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            // Gather values
-            const name = document.getElementById('input-name').value;
-            const year = document.getElementById('input-year').value;
-            const target = document.getElementById('input-target').value;
-            const theme = document.getElementById('input-theme').value;
+        // --- 2. BUILD THE UI FORM DYNAMICALLY ---
+        const categoryContainer = document.getElementById('subject-categories');
+        
+        for (const [category, subjects] of Object.entries(subjectList)) {
+            let detailsHTML = `<details class="bg-gray-50 border rounded-md p-2 group cursor-pointer">
+                <summary class="font-medium text-gray-800 p-2 select-none">${category}</summary>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3 p-2 cursor-default">`;
             
-            const selectedSubjects = [];
-            document.querySelectorAll('input[name="subjects"]:checked').forEach(cb => {
-                selectedSubjects.push(cb.value);
+            subjects.forEach(sub => {
+                // Create board options
+                let boardOptions = examBoards.map(b => `<option value="${b}">${b}</option>`).join('');
+                
+                detailsHTML += `
+                <div class="flex items-center justify-between bg-white p-2 border rounded shadow-sm">
+                    <label class="flex items-center space-x-2 cursor-pointer w-full">
+                        <input type="checkbox" value="${sub}" class="subject-checkbox w-4 h-4 text-blue-600 rounded">
+                        <span class="text-sm font-medium text-gray-700">${sub}</span>
+                    </label>
+                    <select id="board-${sub.replace(/\s+/g, '-')}" class="text-xs border rounded p-1 hidden bg-gray-50 outline-none">
+                        <option value="" disabled selected>Select Board</option>
+                        ${boardOptions}
+                    </select>
+                </div>`;
             });
 
-            const userProfile = { name, year, target, theme, subjects: selectedSubjects };
-
-            // Save to LocalStorage
-            localStorage.setItem('gcse_user_profile', JSON.stringify(userProfile));
-            
-            // Go to dashboard
-            loadDashboard(userProfile);
-        });
-
-        // Function to transition and display dashboard data
-        function loadDashboard(profile) {
-            // Apply Theme Color
-            document.documentElement.style.setProperty('--theme-color', profile.theme);
-
-            // Populate text elements
-            document.getElementById('nav-username').innerText = profile.name;
-            document.getElementById('nav-pfp').innerText = profile.name.charAt(0).toUpperCase();
-            document.getElementById('dash-greeting').innerText = profile.name;
-            document.getElementById('dash-target').innerText = profile.target || 'Not Set';
-
-            // Populate subjects list
-            const listContainer = document.getElementById('subjects-list');
-            listContainer.innerHTML = '';
-            if (profile.subjects.length === 0) {
-                listContainer.innerHTML = '<p class="text-sm italic text-gray-400">No subjects selected yet.</p>';
-            } else {
-                profile.subjects.forEach(sub => {
-                    listContainer.innerHTML += `
-                        <div class="p-3 border rounded-lg flex justify-between items-center bg-gray-50 hover:bg-gray-100 transition-colors">
-                            <span class="font-medium text-gray-700">${sub}</span>
-                            <button class="text-xs text-indigo-600 hover:underline">View Topics</button>
-                        </div>
-                    `;
-                });
-            }
-
-            // Swap view visibility
-            onboardingSection.classList.add('hidden');
-            dashboardSection.classList.remove('hidden');
-            navProfile.classList.remove('hidden');
+            detailsHTML += `</div></details>`;
+            categoryContainer.innerHTML += detailsHTML;
         }
 
-        // Reset system to clean state
-        document.getElementById('btn-reset').addEventListener('click', () => {
-            if(confirm("Are you sure you want to reset your layout and data?")) {
-                localStorage.removeItem('gcse_user_profile');
-                window.location.reload();
+        // Show/Hide exam board dropdown when a subject is checked
+        document.addEventListener('change', function(e) {
+            if (e.target && e.target.classList.contains('subject-checkbox')) {
+                const subName = e.target.value.replace(/\s+/g, '-');
+                const boardSelect = document.getElementById(`board-${subName}`);
+                if (e.target.checked) {
+                    boardSelect.classList.remove('hidden');
+                    boardSelect.required = true;
+                } else {
+                    boardSelect.classList.add('hidden');
+                    boardSelect.required = false;
+                }
             }
         });
+
+        // --- 3. HANDLE FORM SUBMISSION & RENDERING ---
+        document.getElementById('setup-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Gather User Data
+            const fname = document.getElementById('input-fname').value;
+            const sname = document.getElementById('input-sname').value;
+            
+            // Gather selected subjects and their specific boards
+            const selectedData = [];
+            document.querySelectorAll('.subject-checkbox:checked').forEach(cb => {
+                const subName = cb.value;
+                const boardSelect = document.getElementById(`board-${subName.replace(/\s+/g, '-')}`).value;
+                selectedData.push({ subject: subName, board: boardSelect });
+            });
+
+            if(selectedData.length === 0) {
+                alert("Please select at least one subject!");
+                return;
+            }
+
+            // Go to Dashboard
+            document.getElementById('nav-username').innerText = `${fname} ${sname}`;
+            document.getElementById('dash-greeting').innerText = fname;
+            document.getElementById('onboarding-section').classList.add('hidden');
+            document.getElementById('dashboard-section').classList.remove('hidden');
+            document.getElementById('user-nav-profile').classList.remove('hidden');
+
+            renderChecklists(selectedData);
+        });
+
+        // Function to render the checklists based on your exact formatting rules
+        function renderChecklists(userSubjects) {
+            const container = document.getElementById('checklists-container');
+            container.innerHTML = ''; // Clear previous
+
+            userSubjects.forEach(item => {
+                let html = `<div class="border rounded-xl overflow-hidden mb-6">
+                    <div class="bg-gray-100 p-4 border-b">
+                        <h4 class="text-xl font-bold theme-text">${item.subject} <span class="text-sm font-normal text-gray-500">(${item.board})</span></h4>
+                    </div>
+                    <div class="p-6 bg-white">`;
+
+                // Check if we have data for this subject/board combo in our database
+                if (syllabusData[item.subject] && syllabusData[item.subject][item.board]) {
+                    
+                    const specSections = syllabusData[item.subject][item.board];
+                    
+                    specSections.forEach(section => {
+                        // MAIN TOPIC (13px, Bold, Underline)
+                        html += `<div class="mb-6">
+                            <h5 class="text-[13px] font-bold underline mb-3">${section.mainTopic}</h5>`;
+                            
+                        section.subtopics.forEach(sub => {
+                            // SUBTOPIC (11px, Bold)
+                            html += `<div class="ml-4 mb-4">
+                                <h6 class="text-[11px] font-bold mb-2">${sub.title}</h6>
+                                <ul class="space-y-1.5">`;
+                                
+                            // SPEC POINTS (11px, Normal, with Checkbox)
+                            sub.points.forEach(point => {
+                                html += `
+                                    <li class="flex items-start space-x-2">
+                                        <input type="checkbox" class="topic-check mt-0.5">
+                                        <span class="text-[11px] font-normal leading-tight text-gray-700">${point}</span>
+                                    </li>`;
+                            });
+                            
+                            html += `</ul></div>`;
+                        });
+                        html += `</div>`;
+                    });
+
+                } else {
+                    html += `<p class="text-sm italic text-gray-500">Specification data for ${item.subject} (${item.board}) has not been added to the database yet. You can add it in the code!</p>`;
+                }
+
+                html += `</div></div>`;
+                container.innerHTML += html;
+            });
+        }
+
+        // Reset Button
+        document.getElementById('btn-reset').addEventListener('click', () => {
+            document.getElementById('onboarding-section').classList.remove('hidden');
+            document.getElementById('dashboard-section').classList.add('hidden');
+        });
+
     </script>
 </body>
 </html>
