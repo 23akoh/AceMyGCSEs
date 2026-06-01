@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AceMyGCSEs</title>
+    <title>AceMyGCSEs - Smart Revision Hub</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght=0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     
@@ -15,20 +15,15 @@
         body {
             font-family: 'Comic Neue', cursive, sans-serif;
         }
-        
-        :root { 
-            --theme-color: #b39ddb; 
-        }
-        
+        :root { --theme-color: #b39ddb; }
         .dynamic-bg { background-color: var(--theme-color) !important; }
         .dynamic-text { color: var(--theme-color) !important; }
         .dynamic-border { border-color: var(--theme-color) !important; }
         .dynamic-accent { accent-color: var(--theme-color) !important; }
         .dynamic-ring:focus { --tw-ring-color: var(--theme-color) !important; }
-        
         input[type="checkbox"].topic-check {
-            width: 14px;
-            height: 14px;
+            width: 15px;
+            height: 15px;
             cursor: pointer;
         }
     </style>
@@ -37,14 +32,15 @@
 
     <nav class="bg-white shadow-sm p-4 flex justify-between items-center border-b-2 dynamic-border">
         <div class="flex items-center space-x-3">
-            <img src="Blue White Modern Learning Logo.png" alt="AceMyGCSEs Logo" class="w-10 h-10 object-contain rounded-lg error-fallback">
-            <h1 class="text-2xl font-bold text-gray-900">AceMyGCSEs</h1>
+            <img src="Blue White Modern Learning Logo.png" alt="AceMyGCSEs Logo" class="w-10 h-10 object-contain rounded-lg">
+            <h1 class="text-2xl font-bold text-black select-none">AceMyGCSEs</h1>
         </div>
         <div id="user-nav-profile" class="hidden flex items-center space-x-4">
             <div class="text-right">
-                <span id="nav-username" class="font-bold block text-sm">Student Name</span>
+                <span id="nav-username" class="font-bold block text-sm text-gray-900">Student Name</span>
                 <span id="nav-year" class="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">Year 11</span>
             </div>
+            <img id="nav-pfp" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23b39ddb'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z'/></svg>" class="w-10 h-10 rounded-full object-cover border border-gray-200" alt="Profile">
             <div class="flex items-center space-x-1 bg-amber-50 border border-amber-200 px-2 py-1 rounded-lg">
                 <span>🔥</span>
                 <span id="streak-count" class="text-xs font-bold text-amber-700">1 Day Streak</span>
@@ -54,122 +50,150 @@
 
     <main class="max-w-6xl mx-auto p-4 sm:p-6">
         
-        <section id="onboarding-section" class="bg-white p-6 sm:p-8 rounded-xl shadow-md space-y-6 max-w-3xl mx-auto">
+        <section id="onboarding-section" class="bg-white p-6 sm:p-8 rounded-xl shadow-md space-y-6 max-w-4xl mx-auto">
             <div class="border-b pb-4 text-center">
                 <h2 class="text-3xl font-bold text-gray-900">Welcome to AceMyGCSEs</h2>
                 <p class="text-gray-500 text-sm mt-1">Let's create your highly customised smart revision dashboard.</p>
             </div>
 
             <form id="setup-form" class="space-y-6">
-                <div class="bg-purple-50/50 p-4 rounded-xl border border-purple-100 space-y-4">
-                    <h3 class="font-bold text-lg text-purple-900">1. Personal Information</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">First Name</label>
-                            <input type="text" id="input-fname" required class="mt-1 w-full p-2 border rounded-md outline-none dynamic-ring focus:ring-2">
+                <div class="bg-purple-50/50 p-5 rounded-xl border border-purple-100 space-y-4">
+                    <h3 class="font-bold text-lg text-purple-900">1. Personal Information & Custom Avatar</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+                        <div class="md:col-span-1 flex flex-col items-center justify-center space-y-2 border-r border-purple-100 pr-2">
+                            <label class="block text-xs font-bold text-gray-700 text-center">Profile Picture (PFP)</label>
+                            <img id="setup-pfp-preview" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23b39ddb'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z'/></svg>" class="w-16 h-16 rounded-full object-cover border-2 dynamic-border bg-white shadow-xs">
+                            <input type="file" id="input-pfp" accept="image/*" class="text-[10px] text-gray-500 max-w-[120px]">
                         </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Surname</label>
-                            <input type="text" id="input-sname" required class="mt-1 w-full p-2 border rounded-md outline-none dynamic-ring focus:ring-2">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">School Year</label>
-                            <select id="input-year" class="mt-1 w-full p-2 border rounded-md bg-white">
-                                <option value="7">Year 7</option>
-                                <option value="8">Year 8</option>
-                                <option value="9">Year 9</option>
-                                <option value="10">Year 10</option>
-                                <option value="11" selected>Year 11</option>
-                                <option value="12">Year 12</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-blue-50/50 p-4 rounded-xl border border-blue-100 space-y-4">
-                    <h3 class="font-bold text-lg text-blue-900">2. School Hours & Wellbeing Routine</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">What time does school start?</label>
-                            <input type="time" id="school-start" value="08:45" required class="mt-1 w-full p-2 border rounded-md">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">What time does school end?</label>
-                            <input type="time" id="school-end" value="15:30" required class="mt-1 w-full p-2 border rounded-md">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Target Bedtime</label>
-                            <input type="time" id="sleep-bed" value="22:00" required class="mt-1 w-full p-2 border rounded-md">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Target Wake-up Time</label>
-                            <input type="time" id="sleep-wake" value="07:00" required class="mt-1 w-full p-2 border rounded-md">
+                        <div class="md:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">First Name</label>
+                                <input type="text" id="input-fname" required class="mt-1 w-full p-2 border rounded-md outline-none dynamic-ring focus:ring-2 bg-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Surname</label>
+                                <input type="text" id="input-sname" required class="mt-1 w-full p-2 border rounded-md outline-none dynamic-ring focus:ring-2 bg-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">School Year</label>
+                                <select id="input-year" class="mt-1 w-full p-2 border rounded-md bg-white">
+                                    <option value="9">Year 9</option>
+                                    <option value="10">Year 10</option>
+                                    <option value="11" selected>Year 11</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-amber-50/50 p-4 rounded-xl border border-amber-100 space-y-4">
-                    <h3 class="font-bold text-lg text-amber-900">3. Morning & Evening Free Time Routine</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-blue-50/50 p-5 rounded-xl border border-blue-100 space-y-4">
+                    <h3 class="font-bold text-lg text-blue-900">2. School Hours & Bedtime Routine</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Morning routine buffer (minutes to get ready and eat breakfast)</label>
-                            <input type="number" id="free-morning" min="0" value="60" required class="mt-1 w-full p-2 border rounded-md">
+                            <label class="block text-xs font-medium text-gray-700">School Starts</label>
+                            <input type="time" id="school-start" value="08:45" required class="mt-1 w-full p-2 border rounded-md bg-white">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Evening routine buffer (minutes to rest, shower and eat dinner)</label>
-                            <input type="number" id="free-evening" min="0" value="120" required class="mt-1 w-full p-2 border rounded-md">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-emerald-50/50 p-4 rounded-xl border border-emerald-100 space-y-4">
-                    <h3 class="font-bold text-lg text-emerald-900">4. Customisable Revision Slots Configuration</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Length of 1 revision slot (minutes)</label>
-                            <input type="number" id="slot-length" min="5" max="180" value="45" required class="mt-1 w-full p-2 border rounded-md">
+                            <label class="block text-xs font-medium text-gray-700">School Ends</label>
+                            <input type="time" id="school-end" value="15:30" required class="mt-1 w-full p-2 border rounded-md bg-white">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">How long are breaks (minutes)?</label>
-                            <input type="number" id="break-length" min="0" max="60" value="10" required class="mt-1 w-full p-2 border rounded-md">
+                            <label class="block text-xs font-medium text-gray-700">Target Bedtime</label>
+                            <input type="time" id="sleep-bed" value="22:00" required class="mt-1 w-full p-2 border rounded-md bg-white">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Number of slots on Weekdays</label>
-                            <input type="number" id="slots-weekday" min="0" max="10" value="3" required class="mt-1 w-full p-2 border rounded-md">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Number of slots on Weekends</label>
-                            <input type="number" id="slots-weekend" min="0" max="15" value="6" required class="mt-1 w-full p-2 border rounded-md">
+                            <label class="block text-xs font-medium text-gray-700">Target Wake-up</label>
+                            <input type="time" id="sleep-wake" value="07:00" required class="mt-1 w-full p-2 border rounded-md bg-white">
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-purple-50 p-4 rounded-xl border border-purple-100 flex items-center justify-between">
+                <div class="bg-indigo-50/40 p-5 rounded-xl border border-indigo-100 space-y-3">
+                    <h3 class="font-bold text-lg text-indigo-900">3. Your Everyday School Lesson Schedule</h3>
+                    <p class="text-xs text-gray-500">Input the subjects you have on each school day (comma-separated). The AI will match these to create reactive retrieval revision slots!</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-5 gap-3">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-600">Monday</label>
+                            <input type="text" id="sched-mon" value="Mathematics, Biology, French" placeholder="e.g. Maths, Biology" class="mt-1 w-full p-2 border rounded-md text-xs bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-600">Tuesday</label>
+                            <input type="text" id="sched-tue" value="English Literature, Chemistry, History" class="mt-1 w-full p-2 border rounded-md text-xs bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-600">Wednesday</label>
+                            <input type="text" id="sched-wed" value="Mathematics, Physics, Geography" class="mt-1 w-full p-2 border rounded-md text-xs bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-600">Thursday</label>
+                            <input type="text" id="sched-thu" value="English Language, Biology, French" class="mt-1 w-full p-2 border rounded-md text-xs bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-600">Friday</label>
+                            <input type="text" id="sched-fri" value="Chemistry, Physics, Computer Science" class="mt-1 w-full p-2 border rounded-md text-xs bg-white">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="bg-amber-50/50 p-4 rounded-xl border border-amber-100 space-y-2">
+                        <h4 class="font-bold text-sm text-amber-900">4. Morning Routine Buffer</h4>
+                        <label class="block text-xs text-gray-600">Minutes allocated to breakfast and getting ready:</label>
+                        <input type="number" id="free-morning" min="0" value="60" required class="w-full p-2 border rounded-md bg-white">
+                    </div>
+                    <div class="bg-amber-50/50 p-4 rounded-xl border border-amber-100 space-y-2">
+                        <h4 class="font-bold text-sm text-amber-900">5. Evening Rest & Dinner Buffer</h4>
+                        <label class="block text-xs text-gray-600">Minutes for evening winding down (placed right before bed):</label>
+                        <input type="number" id="free-evening" min="0" value="90" required class="w-full p-2 border rounded-md bg-white">
+                    </div>
+                </div>
+
+                <div class="bg-emerald-50/50 p-5 rounded-xl border border-emerald-100 space-y-4">
+                    <h3 class="font-bold text-lg text-emerald-900">6. Customisable Revision Windows</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-700">1 Slot Length (mins)</label>
+                            <input type="number" id="slot-length" min="15" max="180" value="45" required class="mt-1 w-full p-2 border rounded-md bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-700">Break Length (mins)</label>
+                            <input type="number" id="break-length" min="0" max="60" value="10" required class="mt-1 w-full p-2 border rounded-md bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-700">Weekday Slot Count</label>
+                            <input type="number" id="slots-weekday" min="0" max="10" value="3" required class="mt-1 w-full p-2 border rounded-md bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-700">Weekend Slot Count</label>
+                            <input type="number" id="slots-weekend" min="0" max="12" value="5" required class="mt-1 w-full p-2 border rounded-md bg-white">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-100 p-4 rounded-xl flex items-center justify-between">
                     <div>
-                        <h3 class="font-bold text-lg text-purple-900">5. App Layout Custom Theme</h3>
-                        <p class="text-xs text-gray-500">Pick your favourite accent colour using the palette tool.</p>
+                        <h4 class="font-bold text-sm text-gray-800">7. App Custom Accent Color</h4>
+                        <p class="text-xs text-gray-500">Pick a tone to transform your system dashboards instantly.</p>
                     </div>
-                    <div class="flex items-center space-x-3">
-                        <input type="color" id="input-theme" value="#b39ddb" class="w-12 h-12 p-1 border rounded-md cursor-pointer bg-white">
-                    </div>
+                    <input type="color" id="input-theme" value="#b39ddb" class="w-12 h-12 p-1 border rounded-md cursor-pointer bg-white">
                 </div>
 
                 <div class="bg-rose-50/50 p-4 rounded-xl border border-rose-100 space-y-3">
                     <div class="flex justify-between items-center">
-                        <h3 class="font-bold text-lg text-rose-900">6. Extracurricular Clubs (Unavailability Times)</h3>
-                        <button type="button" id="add-club-btn" class="text-xs bg-rose-600 text-white px-3 py-1 rounded-md hover:bg-rose-700">Add Club +</button>
+                        <h3 class="font-bold text-sm text-rose-900">8. Extra-Curricular Clubs / Busy Windows</h3>
+                        <button type="button" id="add-club-btn" class="text-xs bg-rose-600 text-white px-3 py-1 rounded-md hover:bg-rose-700 font-bold">Add Club +</button>
                     </div>
                     <div id="clubs-list-input" class="space-y-2"></div>
                 </div>
 
                 <div class="space-y-3">
-                    <h3 class="font-bold text-lg text-gray-900">7. Select GCSE Subjects, Boards, Targets & Priorities</h3>
-                    <p class="text-xs text-gray-500">Tick the subjects you study, select your parameters, and check the <strong>Prioritise</strong> box for items you want the auto-scheduler to focus on this week.</p>
+                    <h3 class="font-bold text-lg text-gray-900">9. Select GCSE Tracks, Exam Boards & Weekly Priorities</h3>
+                    <p class="text-xs text-gray-500">Tick the options relevant to your current curriculum. Mark items you need to <strong>Prioritise</strong> to skew the custom scheduler engine towards them.</p>
                     <div class="space-y-3" id="subject-categories-accordion"></div>
                 </div>
 
-                <button type="submit" class="w-full dynamic-bg text-white font-bold py-3.5 px-4 rounded-xl hover:opacity-90 transition-opacity shadow-sm text-lg">
-                    Build My AceMyGCSEs Hub
+                <button type="submit" class="w-full dynamic-bg text-white font-bold py-3.5 px-4 rounded-xl hover:opacity-95 transition-opacity shadow-sm text-lg">
+                    Build My Custom Revision Hub
                 </button>
             </form>
         </section>
@@ -177,20 +201,21 @@
         <section id="dashboard-section" class="hidden space-y-6">
             
             <div class="bg-white p-6 rounded-xl shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center border-l-8 dynamic-border gap-4">
-                <div>
-                    <h2 class="text-3xl font-bold text-gray-900">Let's revise, <span id="dash-greeting" class="dynamic-text">Student</span>!</h2>
-                    <p class="text-sm text-gray-500 mt-0.5">Track your customised profile dashboard preferences and revision sessions below.</p>
+                <div class="flex items-center space-x-4">
+                    <img id="dash-pfp" src="" class="w-16 h-16 rounded-full object-cover border-2 dynamic-border shadow-xs hidden">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900">Let's revise, <span id="dash-greeting" class="dynamic-text">Student</span>!</h2>
+                        <p class="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded-md inline-block mt-1">📅 Today is: <span id="live-day-lbl">Monday</span></p>
+                    </div>
                 </div>
-                <div class="flex space-x-2">
-                    <button id="btn-reset" class="text-sm px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-lg transition-colors">⚙️ Edit Profile Settings</button>
-                </div>
+                <button id="btn-reset" class="text-xs px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-lg transition-colors border">⚙️ Edit Profile Settings</button>
             </div>
 
             <div class="flex flex-wrap gap-2 border-b border-gray-200 pb-2">
-                <button onclick="switchTab('checklists')" class="tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-white shadow-sm border dynamic-border dynamic-text" id="tab-checklists">📚 Syllabus Checklists</button>
-                <button onclick="switchTab('timetable')" class="tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-gray-100 hover:bg-white text-gray-600" id="tab-timetable">📅 Smart Timetable</button>
+                <button onclick="switchTab('checklists')" class="tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-white shadow-sm border dynamic-border dynamic-text" id="tab-checklists">📚 Complete Syllabus Checklists</button>
+                <button onclick="switchTab('timetable')" class="tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-gray-100 hover:bg-white text-gray-600" id="tab-timetable">📅 Intelligent Timetable</button>
                 <button onclick="switchTab('homework')" class="tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-gray-100 hover:bg-white text-gray-600" id="tab-homework">📝 Homework & Deadlines</button>
-                <button onclick="switchTab('wellbeing')" class="tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-gray-100 hover:bg-white text-gray-600" id="tab-wellbeing">🌱 Wellbeing & Techniques</button>
+                <button onclick="switchTab('wellbeing')" class="tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-gray-100 hover:bg-white text-gray-600" id="tab-wellbeing">🌱 Wellbeing & Techniques Hub</button>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -198,24 +223,27 @@
                 <div class="lg:col-span-2 space-y-6">
                     
                     <div id="view-checklists" class="tab-view bg-white p-6 rounded-xl shadow-sm space-y-4">
-                        <h3 class="font-bold text-xl text-gray-800 border-b pb-2">Your Subject Specifications</h3>
+                        <div class="border-b pb-2">
+                            <h3 class="font-bold text-xl text-gray-800">Your Complete Curriculum Specifications</h3>
+                            <p class="text-xs text-gray-400">Track and check off every topic down to the core specification guidelines.</p>
+                        </div>
                         <div id="checklists-output-container" class="space-y-6"></div>
                     </div>
 
                     <div id="view-timetable" class="tab-view hidden bg-white p-6 rounded-xl shadow-sm space-y-4">
                         <div class="flex flex-wrap justify-between items-center border-b pb-2 gap-2">
-                            <h3 class="font-bold text-xl text-gray-800">Your AI-Driven Custom Schedule</h3>
+                            <div>
+                                <h3 class="font-bold text-xl text-gray-800">Your Auto-Generated Schedule</h3>
+                                <p class="text-xs text-gray-500">Driven by your current school day curriculum priorities.</p>
+                            </div>
                             <div class="flex bg-gray-100 p-1 rounded-lg space-x-1 text-xs">
-                                <button onclick="toggleTimetableDay('weekday')" id="btn-sched-weekday" class="px-3 py-1.5 font-bold rounded-md bg-white text-gray-800 shadow-xs">Weekdays</button>
-                                <button onclick="toggleTimetableDay('weekend')" id="btn-sched-weekend" class="px-3 py-1.5 font-bold rounded-md text-gray-500 hover:text-gray-800">Weekends</button>
+                                <button onclick="toggleTimetableDay('weekday')" id="btn-sched-weekday" class="px-3 py-1.5 font-bold rounded-md bg-white text-gray-800 shadow-xs">Weekdays View</button>
+                                <button onclick="toggleTimetableDay('weekend')" id="btn-sched-weekend" class="px-3 py-1.5 font-bold rounded-md text-gray-500 hover:text-gray-800">Weekends View</button>
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs bg-slate-50 p-4 rounded-xl border">
-                            <div><strong>🏫 School Hours:</strong> <span id="lbl-school-time">08:45 - 15:30</span></div>
-                            <div><strong>💤 Sleep Window:</strong> <span id="lbl-sleep-time">22:00 - 07:00</span></div>
-                            <div><strong>🌅 Morning Buffer:</strong> <span id="lbl-morning-time">60 mins</span></div>
-                            <div><strong>🌆 Evening Reset:</strong> <span id="lbl-evening-time">120 mins</span></div>
+                        <div id="timetable-context-banner" class="p-3 rounded-lg text-xs font-medium bg-indigo-50 border border-indigo-200 text-indigo-900">
+                            <strong>💡 AI Context Allocation:</strong> Today's school lessons include <span id="lbl-context-subjects" class="font-bold">None</span>. The generator will boost retrieval options for these targets!
                         </div>
 
                         <div id="timetable-weekday-container" class="space-y-2 mt-4"></div>
@@ -225,38 +253,38 @@
                     <div id="view-homework" class="tab-view hidden bg-white p-6 rounded-xl shadow-sm space-y-4">
                         <div class="flex justify-between items-center border-b pb-2">
                             <h3 class="font-bold text-xl text-gray-800">Homework Planner</h3>
-                            <button onclick="openHomeworkModal()" class="dynamic-bg text-white text-xs font-bold px-3 py-1.5 rounded-lg hover:opacity-90">Add Task +</button>
+                            <button onclick="openHomeworkModal()" class="dynamic-bg text-white text-xs font-bold px-3 py-1.5 rounded-lg hover:opacity-90">Log Assignment +</button>
                         </div>
                         <div id="homework-list-output" class="space-y-3"></div>
                     </div>
 
                     <div id="view-wellbeing" class="tab-view hidden bg-white p-6 rounded-xl shadow-sm space-y-6">
-                        <h3 class="font-bold text-xl text-gray-800 border-b pb-2">🌱 Wellbeing & Active Revision Techniques</h3>
+                        <h3 class="font-bold text-xl text-gray-800 border-b pb-2">🌱 Wellbeing Guardrails & Active Revision Masterclass</h3>
                         
                         <div id="sleep-analysis-card" class="p-4 rounded-xl border flex items-start space-x-3">
                             <div class="text-2xl" id="sleep-status-icon">💡</div>
                             <div>
-                                <h4 class="font-bold text-base" id="sleep-status-title">Sleep Metrics Analysis</h4>
-                                <p class="text-xs text-gray-600 mt-0.5" id="sleep-status-desc">Complete profile setup to evaluate sleep health parameters.</p>
+                                <h4 class="font-bold text-base" id="sleep-status-title">Sleep Metric Analytics</h4>
+                                <p class="text-xs text-gray-600 mt-0.5" id="sleep-status-desc">Evaluating baseline circadian rhythm configurations.</p>
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="border p-4 rounded-xl bg-purple-50/30 space-y-2.5">
-                                <h4 class="font-bold text-sm text-purple-900 border-b pb-1">🧠 High-Yield Revision Techniques</h4>
-                                <ul class="text-xs text-gray-600 space-y-2 list-disc pl-4">
-                                    <li><strong>The Feynman Technique:</strong> Pick a topic you struggle with, review it, then attempt to write an explanation of it as if you were teaching it to an 8-year-old. This highlights gaps in your logic.</li>
-                                    <li><strong>The Pomodoro System:</strong> Work in intervals matching your chosen custom slot lengths, followed by a dedicated rest break to clear mental fatigue.</li>
-                                    <li><strong>Flashcards & Leitner Box:</strong> Move cards you get wrong into boxes reviewed daily, while correctly answered cards move to boxes reviewed less frequently.</li>
-                                    <li><strong>The Blurting Method:</strong> Set a timer for 5 minutes, read a section of your notes, hide it, and instantly write down everything you remember onto a blank canvas page.</li>
+                            <div class="border p-4 rounded-xl bg-purple-50/40 space-y-3">
+                                <h4 class="font-bold text-sm text-purple-900 border-b pb-1">🧠 High-Yield Active Revision Techniques</h4>
+                                <ul class="text-xs text-gray-700 space-y-2.5 list-disc pl-4">
+                                    <li><strong>The Blurting Method:</strong> Read an exam board spec heading for 5 minutes, close your folder, and quickly write down every detail onto a blank paper canvas in red ink. Cross-reference with your revision guide afterwards.</li>
+                                    <li><strong>The Feynman Technique:</strong> Attempt to explain a complex topic (like Mitosis or Fractional Indices) to someone who doesn't study it. If you stumble, look back at your textbook notes immediately.</li>
+                                    <li><strong>Leitner Flashcard Boxes:</strong> Organise flashcards into three boxes. Review Box 1 every day, Box 2 every three days, and Box 3 once a week. Cards you get wrong go back to Box 1!</li>
+                                    <li><strong>Past Paper Dissection:</strong> Do not just read answers. Attempt the question first, mark it harshly with the exam board criteria, and create a "mistakes log book" for quick revision before exams.</li>
                                 </ul>
                             </div>
-                            <div class="border p-4 rounded-xl bg-emerald-50/30 space-y-2.5">
-                                <h4 class="font-bold text-sm text-emerald-900 border-b pb-1">🏃 Mental Health & Focus Architecture</h4>
-                                <ul class="text-xs text-gray-600 space-y-2 list-disc pl-4">
-                                    <li><strong>Hydration Speedups:</strong> Drinking a full glass of water right when waking up fights dehydration fatigue instantly.</li>
-                                    <li><strong>Active Posture Breaks:</strong> Spend your customized break windows standing, walking, or getting fresh air rather than looking down at a mobile phone screen.</li>
-                                    <li><strong>Blue Light Interceptions:</strong> Power down study tabs and revision videos 45 minutes before bedtime to prevent melatonin suppression.</li>
+                            <div class="border p-4 rounded-xl bg-emerald-50/40 space-y-3">
+                                <h4 class="font-bold text-sm text-emerald-900 border-b pb-1">🏃 Cognitive Wellness Rules</h4>
+                                <ul class="text-xs text-gray-700 space-y-2.5 list-disc pl-4">
+                                    <li><strong>Hydration Recovery:</strong> Dehydration reduces overall processing precision by up to 10%. Drink water at the beginning of each slot.</li>
+                                    <li><strong>Active Break Intervals:</strong> Get up, stretch, or step outside during your breaks. Avoid scrolling on social media, as it keeps your brain engaged instead of resting.</li>
+                                    <li><strong>Screen Curfew Thresholds:</strong> Turn off all digital screens and bright revision monitors at least 45 minutes before bedtime to ensure high-quality sleep.</li>
                                 </ul>
                             </div>
                         </div>
@@ -265,45 +293,59 @@
                 </div>
 
                 <div class="space-y-6">
+                    
+                    <div class="bg-gradient-to-br from-slate-900 to-indigo-950 text-white p-5 rounded-xl shadow-md space-y-3">
+                        <h3 class="font-bold text-base text-amber-300 flex items-center gap-1.5">
+                            <span>📝 Direct Past Examination Papers</span>
+                        </h3>
+                        <p class="text-[11px] text-slate-300">Access verified official board repositories to find past papers, mark schemes, and examiner reports:</p>
+                        <div class="grid grid-cols-2 gap-2 text-xs pt-1">
+                            <a href="https://www.aqa.org.uk/find-past-papers-and-mark-schemes" target="_blank" class="p-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors text-center font-bold">AQA Papers ↗</a>
+                            <a href="https://qualifications.pearson.com/en/support/support-topics/exams/past-papers.html" target="_blank" class="p-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors text-center font-bold">Edexcel ↗</a>
+                            <a href="https://www.ocr.org.uk/qualifications/past-paper-finder/" target="_blank" class="p-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors text-center font-bold">OCR Finder ↗</a>
+                            <a href="https://www.wjec.co.uk/qualifications/past-papers/" target="_blank" class="p-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors text-center font-bold">WJEC / Eduqas ↗</a>
+                        </div>
+                    </div>
+
                     <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
-                        <h3 class="font-bold text-lg mb-3 text-gray-800 border-b pb-2">🔗 Comprehensive Revision Links</h3>
+                        <h3 class="font-bold text-base mb-3 text-gray-800 border-b pb-2">🔗 Comprehensive Revision Links</h3>
                         
                         <div class="space-y-3">
-                            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400">General Platforms</h4>
-                            <a href="https://www.bbc.co.uk/bitesize" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium text-sm text-gray-700 flex justify-between items-center transition-colors">
-                                <span>BBC Bitesize</span> <span class="text-xs text-gray-400">↗</span>
+                            <h4 class="text-[10px] font-bold uppercase tracking-wider text-gray-400">General Cross-Subject Platforms</h4>
+                            <a href="https://www.bbc.co.uk/bitesize" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 text-xs font-bold text-gray-700 flex justify-between items-center transition-colors">
+                                <span>BBC Bitesize GCSE Portal</span> <span class="text-xs text-gray-400">↗</span>
                             </a>
-                            <a href="https://www.senecalearning.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium text-sm text-gray-700 flex justify-between items-center transition-colors">
-                                <span>Seneca Learning Platform</span> <span class="text-xs text-gray-400">↗</span>
+                            <a href="https://www.senecalearning.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 text-xs font-bold text-gray-700 flex justify-between items-center transition-colors">
+                                <span>Seneca Smart Learning</span> <span class="text-xs text-gray-400">↗</span>
                             </a>
                             
-                            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400 pt-1">Maths & Sciences</h4>
-                            <a href="https://www.physicsandmathstutor.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium text-sm text-gray-700 flex justify-between items-center transition-colors">
+                            <h4 class="text-[10px] font-bold uppercase tracking-wider text-gray-400 pt-1">Mathematics & Sciences</h4>
+                            <a href="https://www.physicsandmathstutor.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 text-xs font-bold text-gray-700 flex justify-between items-center transition-colors">
                                 <span>Physics & Maths Tutor (PMT)</span> <span class="text-xs text-gray-400">↗</span>
                             </a>
-                            <a href="https://www.savemyexams.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium text-sm text-gray-700 flex justify-between items-center transition-colors">
-                                <span>Save My Exams Notes</span> <span class="text-xs text-gray-400">↗</span>
+                            <a href="https://www.savemyexams.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 text-xs font-bold text-gray-700 flex justify-between items-center transition-colors">
+                                <span>Save My Exams Revision Notes</span> <span class="text-xs text-gray-400">↗</span>
                             </a>
-                            <a href="https://www.youtube.com/@FreeScienceLessons" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium text-sm text-gray-700 flex justify-between items-center transition-colors">
+                            <a href="https://www.youtube.com/@FreeScienceLessons" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 text-xs font-bold text-gray-700 flex justify-between items-center transition-colors">
                                 <span>FreeScienceLessons (YouTube)</span> <span class="text-xs text-gray-400">↗</span>
                             </a>
-                            <a href="https://www.cognitoedu.org" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium text-sm text-gray-700 flex justify-between items-center transition-colors">
-                                <span>Cognito Revision Videos</span> <span class="text-xs text-gray-400">↗</span>
+                            <a href="https://www.cognitoedu.org" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 text-xs font-bold text-gray-700 flex justify-between items-center transition-colors">
+                                <span>Cognito Interactive Platform</span> <span class="text-xs text-gray-400">↗</span>
                             </a>
 
-                            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400 pt-1">English Literature & Language</h4>
-                            <a href="https://www.youtube.com/@mrbruff" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium text-sm text-gray-700 flex justify-between items-center transition-colors">
-                                <span>Mr Bruff Analysis (YouTube)</span> <span class="text-xs text-gray-400">↗</span>
+                            <h4 class="text-[10px] font-bold uppercase tracking-wider text-gray-400 pt-1">English Literature & Language</h4>
+                            <a href="https://www.youtube.com/@mrbruff" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 text-xs font-bold text-gray-700 flex justify-between items-center transition-colors">
+                                <span>Mr Bruff Video Guides</span> <span class="text-xs text-gray-400">↗</span>
                             </a>
-                            <a href="https://www.sparknotes.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium text-sm text-gray-700 flex justify-between items-center transition-colors">
-                                <span>SparkNotes Plot Guides</span> <span class="text-xs text-gray-400">↗</span>
+                            <a href="https://www.sparknotes.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 text-xs font-bold text-gray-700 flex justify-between items-center transition-colors">
+                                <span>SparkNotes Lit Analysis</span> <span class="text-xs text-gray-400">↗</span>
                             </a>
 
-                            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400 pt-1">Modern Foreign Languages</h4>
-                            <a href="https://www.memrise.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium text-sm text-gray-700 flex justify-between items-center transition-colors">
-                                <span>Memrise GCSE Vocab Builders</span> <span class="text-xs text-gray-400">↗</span>
+                            <h4 class="text-[10px] font-bold uppercase tracking-wider text-gray-400 pt-1">Languages & Humanities</h4>
+                            <a href="https://www.memrise.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 text-xs font-bold text-gray-700 flex justify-between items-center transition-colors">
+                                <span>Memrise Vocab Practice</span> <span class="text-xs text-gray-400">↗</span>
                             </a>
-                            <a href="https://www.duolingo.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium text-sm text-gray-700 flex justify-between items-center transition-colors">
+                            <a href="https://www.duolingo.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 text-xs font-bold text-gray-700 flex justify-between items-center transition-colors">
                                 <span>Duolingo Exercises</span> <span class="text-xs text-gray-400">↗</span>
                             </a>
                         </div>
@@ -319,114 +361,116 @@
             <h3 class="text-lg font-bold text-gray-900 border-b pb-2">Log New Homework Assignment</h3>
             <form id="homework-form" class="space-y-3">
                 <div>
-                    <label class="block text-xs font-bold text-gray-700">Task Title / Assignment Description</label>
-                    <input type="text" id="hw-title" required placeholder="e.g. Past Paper Q3-5" class="mt-1 w-full p-2 border rounded-md">
+                    <label class="block text-xs font-bold text-gray-700">Task Title / Description</label>
+                    <input type="text" id="hw-title" required placeholder="e.g. Macbeth Themes Essay Plan" class="mt-1 w-full p-2 border rounded-md bg-white">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-gray-700">Subject Class</label>
-                    <select id="hw-subject" class="mt-1 w-full p-2 border rounded-md bg-white"></select>
+                    <label class="block text-xs font-bold text-gray-700">Subject Category</label>
+                    <select id="hw-subject" class="mt-1 w-full p-2 border rounded-md bg-white text-xs"></select>
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-gray-700">Due Date Deadline</label>
-                    <input type="date" id="hw-date" required class="mt-1 w-full p-2 border rounded-md">
+                    <label class="block text-xs font-bold text-gray-700">Due Deadline Date</label>
+                    <input type="date" id="hw-date" required class="mt-1 w-full p-2 border rounded-md bg-white text-xs">
                 </div>
                 <div class="flex justify-end space-x-2 pt-2">
-                    <button type="button" onclick="closeHomeworkModal()" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold rounded-md">Cancel</button>
-                    <button type="submit" class="dynamic-bg text-white px-4 py-2 text-xs font-bold rounded-md hover:opacity-90">Save Assignment</button>
+                    <button type="button" onclick="closeHomeworkModal()" class="px-4 py-2 bg-gray-100 text-gray-700 text-xs font-bold rounded-md border">Cancel</button>
+                    <button type="submit" class="dynamic-bg text-white px-4 py-2 text-xs font-bold rounded-md">Save Task</button>
                 </div>
             </form>
         </div>
     </div>
 
     <script>
-        // --- 1. CORE DATABASE SYSTEM CHECKLISTS ---
+        // --- 1. FULL SYLLABUS REGISTRY DATASTORE FOR MULTIPLE tracks ---
         const subjectDatabaseList = {
-            "Core Subjects (Compulsory)": ["English Language", "English Literature", "Mathematics", "Biology", "Chemistry", "Physics", "Combined Science"],
-            "Humanities & Social Sciences": ["History", "Geography", "Religious Studies"],
-            "Modern & Ancient Languages": ["French", "Spanish", "German"],
-            "Arts, Computing & Technical": ["Art and Design", "Drama", "Music", "Computer Science", "Business Studies"]
+            "Triple Science Track (Individual)": ["Biology", "Chemistry", "Physics"],
+            "Double / Combined Science Track": ["Combined Science - Biology", "Combined Science - Chemistry", "Combined Science - Physics"],
+            "Core Compulsory Subjects": ["Mathematics", "English Language", "English Literature"],
+            "Humanities & Options": ["History", "Geography", "Computer Science", "French", "Spanish"]
         };
 
         const boardRegistryOptions = ["AQA", "Edexcel", "OCR", "WJEC", "Eduqas"];
 
+        // Expanded database mapping out specifications systematically
         const globalSyllabusDataStore = {
-            "Biology": {
-                "AQA": [
-                    {
-                        mainTopic: "4.1 Cell Biology",
-                        subtopics: [
-                            { title: "4.1.1 Cell Structure", points: ["4.1.1.1 Eukaryotes and prokaryotes", "4.1.1.2 Animal and plant cells", "4.1.1.3 Cell specialisation (savemyexams notes pg12)", "4.1.1.4 Microscopy techniques"] },
-                            { title: "4.1.2 Cell Division", points: ["4.1.2.1 Chromosomes and genes", "4.1.2.2 Mitosis and the cell cycle", "4.1.2.3 Stem cell functions"] }
-                        ]
-                    }
-                ],
-                "Edexcel": [
-                    {
-                        mainTopic: "Topic 1 — Key Concepts in Biology",
-                        subtopics: [
-                            { title: "1.1 Plant and Animal Cells", points: ["1.1 Core structures and organelle functions", "1.2 Calculations of total magnification formulas"] }
-                        ]
-                    }
-                ]
-            },
-            "Chemistry": {
-                "AQA": [
-                    {
-                        mainTopic: "5.1 Atomic Structure & Periodic Table",
-                        subtopics: [
-                            { title: "5.1.1 Atoms, Elements and Compounds", points: ["5.1.1.1 Mixtures separation methods", "5.1.1.2 Development of atomic models"] }
-                        ]
-                    }
-                ]
-            },
-            "Physics": {
-                "AQA": [
-                    {
-                        mainTopic: "4.1 Energy Profiles",
-                        subtopics: [
-                            { title: "4.1.1 Energy Changes in Systems", points: ["4.1.1.1 Kinetic, elastic and gravitational store equations", "4.1.1.2 Conservation of energy rules"] }
-                        ]
-                    }
-                ]
-            },
-            "Mathematics": {
-                "Edexcel": [
-                    {
-                        mainTopic: "Unit 1: Number Systems",
-                        subtopics: [
-                            { title: "1.1 Calculations & Indices", points: ["1.1.1 Standard form conversion rules", "1.1.2 Laws of fractional indices integers"] }
-                        ]
-                    }
-                ],
-                "AQA": [
-                    {
-                        mainTopic: "Topic 1: Number Operations",
-                        subtopics: [
-                            { title: "1.1 Core Number Rules", points: ["1.1.1 Surds calculation simplifications", "1.1.2 LCM and HCF application problems"] }
-                        ]
-                    }
-                ]
-            },
-            "English Literature": {
-                "AQA": [
-                    {
-                        mainTopic: "Shakespeare & Post-1914 Prose",
-                        subtopics: [
-                            { title: "Macbeth Core Themes", points: ["Ambition and internal downfalls", "Supernatural motifs and imagery tracking", "Lady Macbeth dramatic transformations"] }
-                        ]
-                    }
-                ]
-            }
+            "Biology": [
+                { mainTopic: "Unit 1: Cell Biology", subtopics: [{ title: "Cell Structure & Microscopy", points: ["Eukaryotes vs Prokaryotes comparison profiles", "Animal and plant cell organelle structural limits", "Specialised cells (Sperm, Nerve, Muscle, Root Hair structural adaptations)", "Microscopy calculations and scale factors equations"] }, { title: "Cell Division & Transport", points: ["Chromosomes and cell cycle mitosis phases", "Stem cell ethical therapeutic parameters", "Diffusion and factors affecting exchange surface areas", "Osmosis experiments and Active Transport definitions"] }] },
+                { mainTopic: "Unit 2: Organisation", subtopics: [{ title: "Principles & Digestion", points: ["Human digestive system enzymes (Amylase, Protease, Lipase)", "Lock and key theory of enzyme denaturation mechanisms", "Bile production targets and food testing chemical reagents"] }, { title: "Cardiovascular & Disease", points: ["Heart chambers, pacemaker nodes, and blood vessels", "Coronary heart disease treatment (Stents, Statins, Valves)", "Communicable diseases, viral, bacterial, fungal, protist pathogens", "Monoclonal antibodies production protocols"] }] },
+                { mainTopic: "Unit 3: Infection & Response", subtopics: [{ title: "Defences & Drugs", points: ["Nonspecific human defence barriers", "White blood cells: Phagocytosis, antibody and antitoxin generation", "Vaccinations herd immunity frameworks", "Discovery and development of antibiotics and clinical testing stages"] }] },
+                { mainTopic: "Unit 4: Bioenergetics", subtopics: [{ title: "Photosynthesis & Respiration", points: ["Photosynthesis word/symbol equations and limiting light factors", "Aerobic vs Anaerobic respiration pathways", "Metabolism rates and oxygen debt accumulation exercises"] }] },
+                { mainTopic: "Unit 5: Homeostasis & Response", subtopics: [{ title: "Control Systems", points: ["Human nervous system reflex arcs", "Endocrine system control: Insulin and Glucagon glucose regulation", "Thyroxine, Adrenaline and human menstrual cycle feedback loops"] }] },
+                { mainTopic: "Unit 6: Inheritance, Variation & Evolution", subtopics: [{ title: "Genetics & Selection", points: ["Sexual vs asexual reproduction meiosis comparison", "DNA structure, genetic coding, and mutations", "Punnett squares: Monohybrid inheritance genotypes", "Selective breeding, genetic engineering and fossil tracking profiles"] }] },
+                { mainTopic: "Unit 7: Ecology", subtopics: [{ title: "Ecosystems & Biodiversity", points: ["Abiotic and biotic ecosystem variables", "Interdependence, food chains, and distribution field quadrats", "Carbon and water cyclical conversions", "Global warming, deforestation and conservation criteria"] }] }
+            ],
+            "Chemistry": [
+                { mainTopic: "Unit 1: Atomic Structure & Periodic Table", subtopics: [{ title: "Atoms & Elements", points: ["Protons, neutrons, electrons masses and relative charges", "Mixture separating operations (Distillation, Filtration, Chromatography)", "Evolution of atomic history models (Plum pudding vs Nuclear)", "Group 1 Alkalies, Group 7 Halogens, and Group 0 Noble elements properties"] }] },
+                { mainTopic: "Unit 2: Bonding, Structure & Properties", subtopics: [{ title: "Chemical Bonds", points: ["Ionic transfer configurations and electrostatic lattices", "Covalent sharing pairs and simple molecular limits", "Giant structures: Diamond, Graphite, Graphene and Fullerenes", "Metallic packing matrices and alloy properties"] }] },
+                { mainTopic: "Unit 3: Quantitative Chemistry", subtopics: [{ title: "Chemical Measurements", points: ["Conservation of mass rules and relative formula mass equations", "The mole concept, Avogadro constant, and limiting factor reagents", "Concentrations equations ($g/dm^3$ and $mol/dm^3$ conversions)"] }] },
+                { mainTopic: "Unit 4: Chemical Changes", subtopics: [{ title: "Reactions & Extraction", points: ["Metal reactivity series and displacement rules", "Oxidation and reduction in terms of oxygen/electron transfer", "Acids, neutralisation and salt production practical methods", "Electrolysis of molten compounds and aqueous solution systems"] }] },
+                { mainTopic: "Unit 5: Energy Changes", subtopics: [{ title: "Exothermic & Endothermic", points: ["Exothermic vs endothermic profile reactions", "Reaction profile energy path diagrams and activation energy values", "Bond energy calculation rules"] }] },
+                { mainTopic: "Unit 6: Rate & Extent of Chemical Change", subtopics: [{ title: "Reaction Rates", points: ["Factors affecting rates: Temperature, Concentration, Surface area, Catalysts", "Collision theory mechanics", "Reversible reactions and Le Chatelier equilibrium balance guidelines"] }] },
+                { mainTopic: "Unit 7: Organic Chemistry", subtopics: [{ title: "Hydrocarbons", points: ["Crude oil fraction distillation steps", "Alkanes homologous structural formulas", "Cracking operations: Thermal vs Catalytic parameters"] }] },
+                { mainTopic: "Unit 8: Chemical Analysis", subtopics: [{ title: "Purity & Gas Tests", points: ["Formulations, Chromatography $R_f$ factors calculation rules", "Gas testing proofs: Hydrogen, Oxygen, Carbon Dioxide, Chlorine"] }] }
+            ],
+            "Physics": [
+                { mainTopic: "Unit 1: Energy Store Transitions", subtopics: [{ title: "Energy Calculations", points: ["Kinetic, Elastic, and Gravitational store calculation equations", "Specific heat capacity thermal storage equations", "Power, efficiency calculations and renewable energy configurations"] }] },
+                { mainTopic: "Unit 2: Electricity Profiles", subtopics: [{ title: "Circuit Mechanics", points: ["Current, potential difference, and resistance Ohm's law paths", "Series vs Parallel layout variations", "Domestic mains supply wiring plug parameters"] }] },
+                { mainTopic: "Unit 3: Particle Model of Matter", subtopics: [{ title: "Density & Thermal States", points: ["Density formulas and gas pressure kinetic properties", "Internal energy stores and Latent heat changes"] }] },
+                { mainTopic: "Unit 4: Atomic Structure & Radiation", subtopics: [{ title: "Nuclear Decay", points: ["Alpha, Beta, Gamma radiation penetration tracking profiles", "Half-life calculations and contamination hazards"] }] },
+                { mainTopic: "Unit 5: Forces & Motion", subtopics: [{ title: "Vector Calculations", points: ["Scalar vs vector profiles, elasticity Hooke's Law rules", "Newton's laws of motion and momentum safety parameters"] }] },
+                { mainTopic: "Unit 6: Wave Mechanics", subtopics: [{ title: "Transverse & Longitudinal", points: ["Wave speed, frequency, reflection and refraction behaviors", "Electromagnetic spectrum wave groups risk tracking profiles"] }] },
+                { mainTopic: "Unit 7: Magnetism & Electromagnetism", subtopics: [{ title: "Magnetic Fields", points: ["Permanent vs induced magnets, Fleming's left hand rules", "Motor effect mechanics and transformer configurations"] }] }
+            ],
+            "Mathematics": [
+                { mainTopic: "1. Number Systems Strand", subtopics: [{ title: "Core Operations", points: ["Indices, Surds calculation simplifications", "Standard form conversion limits", "HCF, LCM prime factor factorisations"] }] },
+                { mainTopic: "2. Algebra Systems Strand", subtopics: [{ title: "Equations & Functions", points: ["Quadratics factoring, formula, and completing square tracking", "Simultaneous linear and non-linear system groups", "Inequalities regions tracking maps", "Sequences: $n$-th term derivations"] }] },
+                { mainTopic: "3. Ratio, Proportion & Rates Strand", subtopics: [{ title: "Proportion Systems", points: ["Percentage growth compound calculations", "Direct and inverse proportionality formulas", "Speed, density, pressure metric rate changes"] }] },
+                { mainTopic: "4. Geometry & Measures Strand", subtopics: [{ title: "Shapes & Trigonometry", points: ["Pythagoras and SOH CAH TOA calculation rules", "Sine and Cosine triangle formula configurations", "Circle theorems geometric validation tasks", "Vectors matrix transformations"] }] },
+                { mainTopic: "5. Probability & Statistics Strands", subtopics: [{ title: "Data Evaluations", points: ["Conditional probability tree diagrams", "Histograms with frequency density calculations", "Cumulative frequency median and box plot evaluations"] }] }
+            ],
+            "English Literature": [
+                { mainTopic: "Section A: Shakespeare Text", subtopics: [{ title: "Context & Quote Architecture", points: ["Macbeth / Romeo & Juliet character arc progressions", "Thematic tracking: Ambition, Hubris, Power, Fate", "Structural analysis of dramatic irony and meter"] }] },
+                { mainTopic: "Section B: 19th-Century Novel", subtopics: [{ title: "Textual Mastery", points: ["A Christmas Carol / Jekyll & Hyde character analysis", "Victorian societal context, poverty, industrialisation constraints"] }] },
+                { mainTopic: "Section C: Modern Texts & Poetry", subtopics: [{ title: "Comparative Evaluation", points: ["An Inspector Calls social political themes", "Power and Conflict anthology comparative metric planning", "Unseen poem structure dissection strategies"] }] }
+            ],
+            "English Language": [
+                { mainTopic: "Paper 1: Fiction Analysis", subtopics: [{ title: "Reading & Writing Section", points: ["Source analysis lines text interpretations", "Language choices evaluation (Metaphor, Simile, Personification)", "Structural flow, narrative hooks and formatting mechanics", "Descriptive/Creative narrative compositions"] }] },
+                { mainTopic: "Paper 2: Non-Fiction Perspectives", subtopics: [{ title: "Comparative Synthesis", points: ["Synthesising ideas across multiple source texts", "Writer's viewpoint and tone comparison matrices", "Persuasive writing essays (Articles, Letters, Speeches)"] }] }
+            ],
+            "History": [
+                { mainTopic: "Paper 1: Understanding Modern World", subtopics: [{ title: "Period Studies & Conflict", points: ["Germany 1890-1945: Weimar and Nazi regime development", "Conflict and Tension profiles: Cold War / WW1 parameters"] }] },
+                { mainTopic: "Paper 2: Shaping the Nation", subtopics: [{ title: "Thematic Studies", points: ["Health and the People: Medicine changes across time", "Elizabethan England depth study parameters"] }] }
+            ],
+            "Geography": [
+                { mainTopic: "Paper 1: Physical Environments", subtopics: [{ title: "Hazards & Ecosystems", points: ["Tectonic and meteorological hazard event case profiles", "Tropical Rainforests and Cold environments food web balances", "UK Landscapes: River processes and Coastal landforms"] }] },
+                { mainTopic: "Paper 2: Human Environments", subtopics: [{ title: "Urban & Economic Growth", points: ["Urban issues: Megacities vs sustainable cities transformations", "Global development gaps and resource management (Food, Water, Energy)"] }] }
+            ],
+            "Computer Science": [
+                { mainTopic: "Paper 1: Computational Systems", subtopics: [{ title: "Architecture & Networks", points: ["CPU Architecture: Von Neumann, Fetch-Decode-Execute cycles", "Data representation: Binary, Hexadecimal, ASCII, Images pixelation", "Network topologies, protocols (TCP/IP, HTTP), cybersecurity defenses"] }] },
+                { mainTopic: "Paper 2: Algorithms & Programming", subtopics: [{ title: "Logic & Code", points: ["Computational thinking: Abstraction, Decomposition, Algorithmic paths", "Trace tables, trace tracking, syntax vs logic errors detection", "Boolean logic gates (AND, OR, NOT configurations)"] }] }
+            ],
+            "French": [
+                { mainTopic: "Core Themes", subtopics: [{ title: "Vocabulary & Grammars", points: ["Theme 1: Identity and Culture vocabulary sets", "Theme 2: Local, national, international global areas", "Theme 3: Current and future study and employment tracks", "Tense structures: Past, Present, Future, Conditional conjugation rules"] }] }
+            ],
+            "Spanish": [
+                { mainTopic: "Core Themes", subtopics: [{ title: "Vocabulary & Grammars", points: ["Theme 1: Identity, social media, relationships vocab", "Theme 2: Holiday itineraries and regional travel structures", "Theme 3: School routine, rules, and pressures expressions", "Verb conjugations: Preterite, Imperfect, Present, Future configurations"] }] }
+            ]
         };
+
+        // Mirror Combined Science subcomponents to prevent empty specifications
+        globalSyllabusDataStore["Combined Science - Biology"] = globalSyllabusDataStore["Biology"];
+        globalSyllabusDataStore["Combined Science - Chemistry"] = globalSyllabusDataStore["Chemistry"];
+        globalSyllabusDataStore["Combined Science - Physics"] = globalSyllabusDataStore["Physics"];
 
         let appUserProfile = null;
         let homeworkEntriesList = [];
+        let globalBase64PFP = "";
 
         function makeSafeId(str) {
             return 'sub-' + str.replace(/[^a-zA-Z0-9]/g, '-');
         }
 
-        // --- 2. ACCORDION UI SETUP GENERATOR ---
+        // --- 2. ACCORDION BUILDER FOR SETUP SELECTION FORM ---
         const accordionMenuElement = document.getElementById('subject-categories-accordion');
 
         for (const [categoryName, subjectArray] of Object.entries(subjectDatabaseList)) {
@@ -446,7 +490,7 @@
                 <div class="flex flex-col bg-slate-50 p-3 border rounded-xl gap-2">
                     <div class="flex items-center justify-between">
                         <label class="flex items-center space-x-2 cursor-pointer select-none">
-                            <input type="checkbox" value="${subjectName}" class="subject-checkbox w-5 h-5 dynamic-accent rounded">
+                            <input type="checkbox" value="${subjectName}" id="check-box-${safeIdTag}" class="subject-checkbox w-5 h-5 dynamic-accent rounded">
                             <span class="text-sm font-bold text-gray-700">${subjectName}</span>
                         </label>
                     </div>
@@ -470,11 +514,20 @@
             accordionMenuElement.innerHTML += layoutBlockHTML;
         }
 
-        document.querySelectorAll('.error-fallback').forEach(img => {
-            img.onerror = function() { this.style.display = 'none'; }
+        // Handle PFP local image parsing
+        document.getElementById('input-pfp').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if(file) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    globalBase64PFP = evt.target.result;
+                    document.getElementById('setup-pfp-preview').src = globalBase64PFP;
+                };
+                reader.readAsDataURL(file);
+            }
         });
 
-        // Toggle elements context safely
+        // Watch subject selection checkboxes to open configuration dropdown blocks
         document.addEventListener('change', function(event) {
             if (event.target && event.target.classList.contains('subject-checkbox')) {
                 const safeIdTag = makeSafeId(event.target.value);
@@ -492,31 +545,35 @@
             }
         });
 
-        // Add dynamically allocated Extracurricular Clubs 
+        // Dynamic Add Club UI generation configuration
         document.getElementById('add-club-btn').addEventListener('click', () => {
-            const rowID = 'club-' + Date.now();
+            appendClubRowToSetup("", "Weekday", "16:00", "17:00");
+        });
+
+        function appendClubRowToSetup(name, type, start, end) {
+            const rowID = 'club-' + Date.now() + Math.random().toString(36).substr(2, 5);
             const formContainer = document.getElementById('clubs-list-input');
             const clubInputRow = document.createElement('div');
             clubInputRow.id = rowID;
             clubInputRow.className = "flex flex-wrap items-center gap-2 bg-white p-2 border rounded-lg shadow-xs";
             clubInputRow.innerHTML = `
-                <input type="text" placeholder="Club Name" class="text-xs p-1.5 border rounded-md flex-1 min-w-[120px]" required>
+                <input type="text" placeholder="Club Name / Event" value="${name}" class="text-xs p-1.5 border rounded-md flex-1 min-w-[120px]" required>
                 <select class="text-xs p-1.5 border rounded-md bg-white">
-                    <option value="Weekday">Weekday</option>
-                    <option value="Weekend">Weekend</option>
+                    <option value="Weekday" ${type==='Weekday'?'selected':''}>Weekday</option>
+                    <option value="Weekend" ${type==='Weekend'?'selected':''}>Weekend</option>
                 </select>
                 <div class="flex items-center space-x-1">
                     <span class="text-[10px] text-gray-400">From</span>
-                    <input type="time" value="16:00" class="text-xs p-1 border rounded-md">
+                    <input type="time" value="${start}" class="text-xs p-1 border rounded-md">
                     <span class="text-[10px] text-gray-400">To</span>
-                    <input type="time" value="17:00" class="text-xs p-1 border rounded-md">
+                    <input type="time" value="${end}" class="text-xs p-1 border rounded-md">
                 </div>
-                <button type="button" onclick="document.getElementById('${rowID}').remove()" class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-md hover:bg-red-200">X</button>
+                <button type="button" onclick="document.getElementById('${rowID}').remove()" class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-md hover:bg-red-200 font-bold">✕</button>
             `;
             formContainer.appendChild(clubInputRow);
-        });
+        }
 
-        // --- 3. FORM PROCESSING & PREFERENCE SUBMISSIONS ---
+        // --- 3. PROFILE SUBMISSION PROCESSING (PREVENTING LOSS ON EDIT) ---
         document.getElementById('setup-form').addEventListener('submit', function(event) {
             event.preventDefault();
 
@@ -526,7 +583,7 @@
             document.querySelectorAll('.subject-checkbox:checked').forEach(cb => {
                 const safeIdTag = makeSafeId(cb.value);
                 const selectedBoard = document.getElementById(`board-${safeIdTag}`).value;
-                const setTarget = document.getElementById(`target-${safeIdTag}`).value || "N/A";
+                const setTarget = document.getElementById(`target-${safeIdTag}`).value || "9";
                 const isPrioritised = document.getElementById(`priority-${safeIdTag}`).checked;
                 
                 collectedSubjects.push({ 
@@ -538,7 +595,7 @@
             });
 
             if (collectedSubjects.length === 0) {
-                alert("Please select at least one GCSE subject to construct your system checklists.");
+                alert("Please select at least one GCSE track item to generate your curriculum dashboards.");
                 return;
             }
 
@@ -548,7 +605,7 @@
                 if(inputs.length >= 4) {
                     collectedClubs.push({
                         name: inputs[0].value,
-                        type: inputs[1].value, // "Weekday" or "Weekend"
+                        type: inputs[1].value,
                         start: inputs[2].value,
                         end: inputs[3].value
                     });
@@ -571,12 +628,85 @@
                 slotsWeekend: document.getElementById('slots-weekend').value,
                 theme: chosenThemeColor,
                 subjects: collectedSubjects,
-                clubs: collectedClubs
+                clubs: collectedClubs,
+                pfp: globalBase64PFP,
+                schoolLessons: {
+                    Monday: document.getElementById('sched-mon').value,
+                    Tuesday: document.getElementById('sched-tue').value,
+                    Wednesday: document.getElementById('sched-wed').value,
+                    Thursday: document.getElementById('sched-thu').value,
+                    Friday: document.getElementById('sched-fri').value
+                }
             };
 
-            localStorage.setItem('acemygcses_profile', JSON.stringify(appUserProfile));
+            localStorage.setItem('acemygcses_profile_v2', JSON.stringify(appUserProfile));
             launchDashboardEnvironment(appUserProfile);
         });
+
+        // Pre-populates configuration inputs when hitting edit profile button
+        function loadExistingProfileIntoForm(profile) {
+            if(!profile) return;
+            document.getElementById('input-fname').value = profile.firstName || "";
+            document.getElementById('input-sname').value = profile.surname || "";
+            document.getElementById('input-year').value = profile.year || "11";
+            document.getElementById('school-start').value = profile.schoolStart || "08:45";
+            document.getElementById('school-end').value = profile.schoolEnd || "15:30";
+            document.getElementById('sleep-bed').value = profile.sleepBed || "22:00";
+            document.getElementById('sleep-wake').value = profile.sleepWake || "07:00";
+            document.getElementById('free-morning').value = profile.freeMorning || "60";
+            document.getElementById('free-evening').value = profile.freeEvening || "90";
+            document.getElementById('slot-length').value = profile.slotLength || "45";
+            document.getElementById('break-length').value = profile.breakLength || "10";
+            document.getElementById('slots-weekday').value = profile.slotsWeekday || "3";
+            document.getElementById('slots-weekend').value = profile.slotsWeekend || "5";
+            document.getElementById('input-theme').value = profile.theme || "#b39ddb";
+            
+            if(profile.pfp) {
+                globalBase64PFP = profile.pfp;
+                document.getElementById('setup-pfp-preview').src = profile.pfp;
+            }
+
+            if(profile.schoolLessons) {
+                document.getElementById('sched-mon').value = profile.schoolLessons.Monday || "";
+                document.getElementById('sched-tue').value = profile.schoolLessons.Tuesday || "";
+                document.getElementById('sched-wed').value = profile.schoolLessons.Wednesday || "";
+                document.getElementById('sched-thu').value = profile.schoolLessons.Thursday || "";
+                document.getElementById('sched-fri').value = profile.schoolLessons.Friday || "";
+            }
+
+            // Clean existing inputs rows to avoid duplication anomalies
+            document.getElementById('clubs-list-input').innerHTML = "";
+            if(profile.clubs && profile.clubs.length > 0) {
+                profile.clubs.forEach(c => appendClubRowToSetup(c.name, c.type, c.start, c.end));
+            }
+
+            // Uncheck all items first
+            document.querySelectorAll('.subject-checkbox').forEach(cb => {
+                cb.checked = false;
+                const safeIdTag = makeSafeId(cb.value);
+                const wrapper = document.getElementById(`wrapper-${safeIdTag}`);
+                if(wrapper) wrapper.classList.add('hidden');
+            });
+
+            // Re-populate checked state values
+            if(profile.subjects) {
+                profile.subjects.forEach(s => {
+                    const safeIdTag = makeSafeId(s.name);
+                    const cb = document.getElementById(`check-box-${safeIdTag}`);
+                    if(cb) {
+                        cb.checked = true;
+                        const wrapper = document.getElementById(`wrapper-${safeIdTag}`);
+                        if(wrapper) wrapper.classList.remove('hidden');
+                        const bSelect = document.getElementById(`board-${safeIdTag}`);
+                        if(bSelect) bSelect.value = s.board;
+                        const tInput = document.getElementById(`target-${safeIdTag}`);
+                        if(tInput) tInput.value = s.target;
+                        const pInput = document.getElementById(`priority-${safeIdTag}`);
+                        if(pInput) pInput.checked = s.priority || false;
+                    }
+                });
+            }
+        }
 
         function launchDashboardEnvironment(profile) {
             document.documentElement.style.setProperty('--theme-color', profile.theme);
@@ -585,14 +715,25 @@
             document.getElementById('nav-year').innerText = `Year ${profile.year}`;
             document.getElementById('dash-greeting').innerText = profile.firstName;
 
+            if(profile.pfp) {
+                document.getElementById('nav-pfp').src = profile.pfp;
+                document.getElementById('dash-pfp').src = profile.pfp;
+                document.getElementById('dash-pfp').classList.remove('hidden');
+            }
+
             const hwMenu = document.getElementById('hw-subject');
             hwMenu.innerHTML = '';
             profile.subjects.forEach(sub => {
                 hwMenu.innerHTML += `<option value="${sub.name}">${sub.name}</option>`;
             });
 
+            // Map current live day text indicator
+            const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const currentLiveDay = dayNames[new Date().getDay()];
+            document.getElementById('live-day-lbl').innerText = currentLiveDay;
+
             renderSyllabusChecklists(profile.subjects);
-            generateSmartTimetableAI(profile);
+            generateSmartTimetableAI(profile, currentLiveDay);
             analyzeSleepWellbeingParameters(profile);
             renderHomeworkItems();
 
@@ -602,7 +743,7 @@
             window.scrollTo(0,0);
         }
 
-        // --- 4. DATA COMPONENT GENERATORS ---
+        // --- 4. DATA CHECKLIST RENDER MATRIX ---
         function renderSyllabusChecklists(subjectsArray) {
             const targetContainer = document.getElementById('checklists-output-container');
             targetContainer.innerHTML = '';
@@ -611,35 +752,35 @@
                 let listBlockHTML = `
                 <div class="border-2 rounded-xl overflow-hidden shadow-xs bg-white">
                     <div class="bg-slate-50 p-4 border-b flex flex-wrap justify-between items-center gap-2">
-                        <h4 class="text-lg font-bold text-gray-900 flex items-center gap-1.5">
-                            <span>${item.name}</span>
-                            ${item.priority ? '<span class="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full">★ Prioritised</span>' : ''}
+                        <h4 class="text-base font-bold text-gray-900 flex items-center gap-1.5">
+                            <span>${item.name} Specification</span>
+                            ${item.priority ? '<span class="text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-bold">★ Weekly Priority</span>' : ''}
                         </h4>
-                        <div class="flex items-center space-x-3 text-xs font-bold text-gray-500">
+                        <div class="flex items-center space-x-2 text-xs font-bold">
                             <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded-md">Board: ${item.board}</span>
                             <span class="bg-purple-100 text-purple-700 px-2 py-1 rounded-md">Target: ${item.target}</span>
                         </div>
                     </div>
                     <div class="p-4 space-y-4">`;
 
-                if (globalSyllabusDataStore[item.name] && globalSyllabusDataStore[item.name][item.board]) {
-                    const modules = globalSyllabusDataStore[item.name][item.board];
+                if (globalSyllabusDataStore[item.name]) {
+                    const modules = globalSyllabusDataStore[item.name];
                     modules.forEach(mod => {
                         listBlockHTML += `
-                        <div class="mt-1">
-                            <h5 class="text-[13px] font-bold underline text-gray-900 mb-2">${mod.mainTopic}</h5>`;
+                        <div class="border-b pb-3 last:border-b-0">
+                            <h5 class="text-xs font-bold text-purple-900 mb-2 uppercase tracking-wider">${mod.mainTopic}</h5>`;
                         mod.subtopics.forEach(sub => {
                             listBlockHTML += `
-                            <div class="ml-3 mb-3">
-                                <h6 class="text-[11px] font-bold text-gray-800 mb-1.5">${sub.title}</h6>
-                                <ul class="space-y-1.5 ml-2">`;
+                            <div class="ml-2 mb-2">
+                                <h6 class="text-xs font-bold text-gray-800 mb-1">📍 ${sub.title}</h6>
+                                <ul class="space-y-1 ml-3">`;
                             sub.points.forEach((point, pIdx) => {
-                                const storageID = `check-${item.name}-${item.board}-${mod.mainTopic}-${sub.title}-${pIdx}`.replace(/\s+/g, '');
+                                const storageID = `check-${item.name}-${mod.mainTopic}-${sub.title}-${pIdx}`.replace(/\s+/g, '');
                                 const checkedState = localStorage.getItem(storageID) === 'true' ? 'checked' : '';
                                 listBlockHTML += `
                                 <li class="flex items-start space-x-2">
                                     <input type="checkbox" id="${storageID}" onchange="saveCheckState('${storageID}', this.checked)" ${checkedState} class="topic-check dynamic-accent mt-0.5">
-                                    <label for="${storageID}" class="text-[11px] font-normal leading-tight text-gray-700 cursor-pointer select-none">${point}</label>
+                                    <label for="${storageID}" class="text-xs text-gray-600 cursor-pointer select-none">${point}</label>
                                 </li>`;
                             });
                             listBlockHTML += `</ul></div>`;
@@ -648,9 +789,8 @@
                     });
                 } else {
                     listBlockHTML += `
-                    <div class="p-4 text-center border-2 border-dashed rounded-xl">
-                        <p class="text-sm text-gray-500 italic">Specification items for ${item.name} (${item.board}) are queuing for integration.</p>
-                        <p class="text-xs text-gray-400 mt-1">Use the checkbox tracking framework above to monitor current parameters.</p>
+                    <div class="p-4 text-center border-2 border-dashed rounded-xl text-gray-400 italic text-xs">
+                        Specification core index arrays are ready. Use local checkboxes to monitor assignments.
                     </div>`;
                 }
 
@@ -663,87 +803,97 @@
             localStorage.setItem(id, isChecked);
         }
 
-        // --- 5. SMART TIMETABLE INTELLIGENT ROUTINE DISTRIBUTION ENGINE ---
-        function generateSmartTimetableAI(profile) {
-            document.getElementById('lbl-school-time').innerText = `${profile.schoolStart} - ${profile.schoolEnd}`;
-            document.getElementById('lbl-sleep-time').innerText = `${profile.sleepBed} - ${profile.sleepWake}`;
-            document.getElementById('lbl-morning-time').innerText = `${profile.freeMorning} minutes`;
-            document.getElementById('lbl-evening-time').innerText = `${profile.freeEvening} minutes`;
+        // --- 5. TIMETABLE RETRIEVAL LOGIC DISTRIBUTOR ENGINE ---
+        function generateSmartTimetableAI(profile, activeDayString) {
+            // Parse context subjects from today's logged lesson plans
+            let todaySchoolLessons = [];
+            if(profile.schoolLessons && profile.schoolLessons[activeDayString]) {
+                todaySchoolLessons = profile.schoolLessons[activeDayString].split(',').map(s => s.trim().toLowerCase());
+            }
 
-            // Build AI Assignment Priority Pool
-            let subjectPool = [];
+            const displayContextStr = todaySchoolLessons.length > 0 ? profile.schoolLessons[activeDayString] : "None logged for today";
+            document.getElementById('lbl-context-subjects').innerText = displayContextStr;
+
+            // Priority Pool weighting system logic
+            let priorityPool = [];
             profile.subjects.forEach(sub => {
-                // Priority subjects get placed 3 times in random picker pool array matrix
-                const frequencyWeight = sub.priority ? 3 : 1;
-                for(let i = 0; i < frequencyWeight; i++) {
-                    subjectPool.push(sub.name);
+                let weight = 1;
+                if(sub.priority) weight += 2; // Starred priority multiplier
+                if(todaySchoolLessons.includes(sub.name.toLowerCase())) weight += 3; // Had today lesson multiplier!
+                
+                for(let i = 0; i < weight; i++) {
+                    priorityPool.push(sub.name);
                 }
             });
 
-            if(subjectPool.length === 0) subjectPool.push("Self-Study / Free Revision");
+            if(priorityPool.length === 0) priorityPool.push("General Structured Revision");
 
-            // Build Weekdays DOM Schedule Output
+            // --- BUILD WEEKDAYS SCHEDULE DOM ---
             const weekdayBox = document.getElementById('timetable-weekday-container');
             weekdayBox.innerHTML = `
-                <div class="p-2.5 bg-slate-100 rounded-lg text-xs font-bold text-gray-600 flex justify-between"><span>🌅 Morning Prep Routine Buffer</span><span>${profile.freeMorning} mins</span></div>
-                <div class="p-2.5 bg-purple-50 border border-purple-200 text-purple-800 rounded-lg text-xs font-bold flex justify-between"><span>🏫 Compulsory School Hours Classes</span><span>${profile.schoolStart} - ${profile.schoolEnd}</span></div>
+                <div class="p-2.5 bg-slate-100 rounded-lg text-xs font-bold text-gray-600 flex justify-between"><span>🌅 Morning Routine Buffer</span><span>${profile.freeMorning} mins</span></div>
+                <div class="p-2.5 bg-purple-50 border border-purple-200 text-purple-800 rounded-lg text-xs font-bold flex justify-between"><span>🏫 Compulsory School Classes</span><span>${profile.schoolStart} - ${profile.schoolEnd}</span></div>
             `;
-            // Add Weekday Clubs
+
             profile.clubs.filter(c => c.type === "Weekday").forEach(club => {
-                weekdayBox.innerHTML += `<div class="p-2.5 bg-rose-50 border border-rose-200 text-rose-800 rounded-lg text-xs font-bold flex justify-between"><span>🚫 Club: ${club.name}</span><span>${club.start} - ${club.end}</span></div>`;
+                weekdayBox.innerHTML += `<div class="p-2.5 bg-rose-50 border border-rose-200 text-rose-800 rounded-lg text-xs font-bold flex justify-between"><span>🚫 Intercept Club Activity: ${club.name}</span><span>${club.start} - ${club.end}</span></div>`;
             });
-            weekdayBox.innerHTML += `<div class="p-2.5 bg-amber-50 border border-amber-200 text-amber-800 rounded-lg text-xs font-bold flex justify-between"><span>🌆 Rest, Shower & Dinner Buffer</span><span>${profile.freeEvening} mins</span></div>`;
-            
-            // Loop and assign dynamic subjects to weekday revision counts
-            let poolIndex = 0;
+
+            let poolIdx = 0;
             for(let slot = 1; slot <= profile.slotsWeekday; slot++) {
-                let assignedSubject = subjectPool[poolIndex % subjectPool.length];
-                poolIndex++;
+                let chosenSubject = priorityPool[poolIdx % priorityPool.length];
+                poolIdx++;
                 weekdayBox.innerHTML += `
                     <div class="p-3 border-2 dynamic-border bg-white rounded-xl shadow-xs flex justify-between items-center">
                         <div>
-                            <span class="text-xs font-bold block text-gray-400 uppercase tracking-wide">Revision Slot ${slot} (${profile.slotLength} Mins)</span>
-                            <span class="text-sm font-bold text-gray-800">🎯 Focus Subtopics: <span class="dynamic-text">${assignedSubject}</span></span>
+                            <span class="text-[10px] font-bold block text-gray-400 uppercase tracking-wide">Revision Window Session ${slot} (${profile.slotLength} Mins)</span>
+                            <span class="text-sm font-bold text-gray-800">🎯 Active Target focus: <span class="dynamic-text">${chosenSubject}</span></span>
                         </div>
-                        <span class="text-xs bg-slate-100 text-gray-500 px-2 py-1 rounded-md font-bold">Active Focus</span>
+                        <span class="text-[10px] bg-indigo-50 border border-indigo-200 text-indigo-700 px-2 py-0.5 rounded font-bold">Active Retrieval</span>
                     </div>
                 `;
                 if(slot < profile.slotsWeekday && profile.breakLength > 0) {
-                    weekdayBox.innerHTML += `<div class="text-[11px] text-emerald-700 bg-emerald-50/60 border border-emerald-100 p-1.5 px-3 rounded-lg font-bold flex justify-between mx-4"><span>⏸️ Rest Break Interval</span><span>${profile.breakLength} Mins</span></div>`;
+                    weekdayBox.innerHTML += `<div class="text-[10px] text-emerald-700 bg-emerald-50/60 p-1.5 px-3 rounded-lg font-bold flex justify-between mx-4"><span>⏸️ Rest Recess Break</span><span>${profile.breakLength} Mins</span></div>`;
                 }
             }
-            weekdayBox.innerHTML += `<div class="p-2.5 bg-slate-100 rounded-lg text-xs font-bold text-gray-600 flex justify-between"><span>🛌 Night Routine & Sleep Reset Window</span><span>${profile.sleepBed} - ${profile.sleepWake}</span></div>`;
 
-            // Build Weekends DOM Schedule Output
+            // Moved Evening Rest Buffer to the bottom right before bed
+            weekdayBox.innerHTML += `
+                <div class="p-2.5 bg-amber-50 border border-amber-200 text-amber-800 rounded-lg text-xs font-bold flex justify-between"><span>🌆 Rest, Shower & Dinner Buffer</span><span>${profile.freeEvening} mins</span></div>
+                <div class="p-2.5 bg-slate-100 rounded-lg text-xs font-bold text-gray-600 flex justify-between"><span>🛌 Night Routine Curfew & Sleep</span><span>${profile.sleepBed} - ${profile.sleepWake}</span></div>
+            `;
+
+            // --- BUILD WEEKENDS SCHEDULE DOM ---
             const weekendBox = document.getElementById('timetable-weekend-container');
             weekendBox.innerHTML = `
-                <div class="p-2.5 bg-slate-100 rounded-lg text-xs font-bold text-gray-600 flex justify-between"><span>🌅 Morning Routine & Breakfast Prep</span><span>${profile.freeMorning} mins</span></div>
+                <div class="p-2.5 bg-slate-100 rounded-lg text-xs font-bold text-gray-600 flex justify-between"><span>🌅 Weekend Morning Activation</span><span>${profile.freeMorning} mins</span></div>
             `;
-            // Add Weekend Clubs
+
             profile.clubs.filter(c => c.type === "Weekend").forEach(club => {
-                weekendBox.innerHTML += `<div class="p-2.5 bg-rose-50 border border-rose-200 text-rose-800 rounded-lg text-xs font-bold flex justify-between"><span>🚫 Weekend Event: ${club.name}</span><span>${club.start} - ${club.end}</span></div>`;
+                weekendBox.innerHTML += `<div class="p-2.5 bg-rose-50 border border-rose-200 text-rose-800 rounded-lg text-xs font-bold flex justify-between"><span>🚫 Weekend Duty/Club: ${club.name}</span><span>${club.start} - ${club.end}</span></div>`;
             });
-            
-            // Loop and assign dynamic subjects to weekend slots
+
             for(let slot = 1; slot <= profile.slotsWeekend; slot++) {
-                let assignedSubject = subjectPool[poolIndex % subjectPool.length];
-                poolIndex++;
+                let chosenSubject = priorityPool[poolIdx % priorityPool.length];
+                poolIdx++;
                 weekendBox.innerHTML += `
                     <div class="p-3 border-2 dynamic-border bg-white rounded-xl shadow-xs flex justify-between items-center">
                         <div>
-                            <span class="text-xs font-bold block text-gray-400 uppercase tracking-wide">Weekend Slot ${slot} (${profile.slotLength} Mins)</span>
-                            <span class="text-sm font-bold text-gray-800">🎯 Focus Subtopics: <span class="dynamic-text">${assignedSubject}</span></span>
+                            <span class="text-[10px] font-bold block text-gray-400 uppercase tracking-wide">Weekend Session Focus ${slot} (${profile.slotLength} Mins)</span>
+                            <span class="text-sm font-bold text-gray-800">🎯 Active Target focus: <span class="dynamic-text">${chosenSubject}</span></span>
                         </div>
-                        <span class="text-xs bg-slate-100 text-gray-500 px-2 py-1 rounded-md font-bold">Active Focus</span>
+                        <span class="text-[10px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-bold">Deep Practice</span>
                     </div>
                 `;
                 if(slot < profile.slotsWeekend && profile.breakLength > 0) {
-                    weekendBox.innerHTML += `<div class="text-[11px] text-emerald-700 bg-emerald-50/60 border border-emerald-100 p-1.5 px-3 rounded-lg font-bold flex justify-between mx-4"><span>⏸️ Rest Break Interval</span><span>${profile.breakLength} Mins</span></div>`;
+                    weekendBox.innerHTML += `<div class="text-[10px] text-emerald-700 bg-emerald-50/60 p-1.5 px-3 rounded-lg font-bold flex justify-between mx-4"><span>⏸️ Rest Recess Break</span><span>${profile.breakLength} Mins</span></div>`;
                 }
             }
+
+            // Moved Evening Rest Buffer to the bottom right before bed
             weekendBox.innerHTML += `
-                <div class="p-2.5 bg-amber-50 border border-amber-200 text-amber-800 rounded-lg text-xs font-bold flex justify-between"><span>🌆 Weekend Family Downtime Buffer</span><span>${profile.freeEvening} mins</span></div>
-                <div class="p-2.5 bg-slate-100 rounded-lg text-xs font-bold text-gray-600 flex justify-between"><span>🛌 Night Routine & Sleep Reset Window</span><span>${profile.sleepBed} - ${profile.sleepWake}</span></div>
+                <div class="p-2.5 bg-amber-50 border border-amber-200 text-amber-800 rounded-lg text-xs font-bold flex justify-between"><span>🌆 Rest, Shower & Dinner Buffer</span><span>${profile.freeEvening} mins</span></div>
+                <div class="p-2.5 bg-slate-100 rounded-lg text-xs font-bold text-gray-600 flex justify-between"><span>🛌 Sleep Window Configuration</span><span>${profile.sleepBed} - ${profile.sleepWake}</span></div>
             `;
         }
 
@@ -756,127 +906,4 @@
             if(type === 'weekday') {
                 cWk.classList.remove('hidden'); cWnd.classList.add('hidden');
                 btnWk.className = "px-3 py-1.5 font-bold rounded-md bg-white text-gray-800 shadow-xs";
-                btnWnd.className = "px-3 py-1.5 font-bold rounded-md text-gray-500 hover:text-gray-800";
-            } else {
-                cWk.classList.add('hidden'); cWnd.classList.remove('hidden');
-                btnWk.className = "px-3 py-1.5 font-bold rounded-md text-gray-500 hover:text-gray-800";
-                btnWnd.className = "px-3 py-1.5 font-bold rounded-md bg-white text-gray-800 shadow-xs";
-            }
-        }
-
-        function analyzeSleepWellbeingParameters(profile) {
-            const card = document.getElementById('sleep-analysis-card');
-            const icon = document.getElementById('sleep-status-icon');
-            const title = document.getElementById('sleep-status-title');
-            const desc = document.getElementById('sleep-status-desc');
-
-            const [bHour, bMin] = profile.sleepBed.split(':').map(Number);
-            const [wHour, wMin] = profile.sleepWake.split(':').map(Number);
-            
-            let sleepMinutes = (wHour * 60 + wMin) - (bHour * 60 + bMin);
-            if (sleepMinutes < 0) sleepMinutes += 24 * 60;
-            const sleepHours = (sleepMinutes / 60).toFixed(1);
-
-            if(sleepHours >= 7.5 && sleepHours <= 9.5) {
-                card.className = "p-4 rounded-xl border border-emerald-200 bg-emerald-50/30 flex items-start space-x-3";
-                icon.innerText = "✅";
-                title.innerText = `Healthy Sleep Track (${sleepHours} Hours Verified)`;
-                title.className = "font-bold text-emerald-900 text-base";
-                desc.innerText = "Fantastic scheduling! You are hit the optimal threshold required for solid cognitive recovery and retention rules.";
-            } else {
-                card.className = "p-4 rounded-xl border border-amber-200 bg-amber-50/30 flex items-start space-x-3";
-                icon.innerText = "⚠️";
-                title.innerText = `Sleep Warning Range (${sleepHours} Hours Logged)`;
-                title.className = "font-bold text-amber-900 text-base";
-                desc.innerText = "Your current bed parameters fall below optimal targets. Increase your allocation time to prevent burnout processing fatigue.";
-            }
-        }
-
-        // --- 6. HOMEWORK LOGIC ENGINE ---
-        function openHomeworkModal() { document.getElementById('homework-modal').classList.remove('hidden'); }
-        function closeHomeworkModal() { document.getElementById('homework-modal').classList.add('hidden'); }
-
-        document.getElementById('homework-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const task = {
-                id: Date.now(),
-                title: document.getElementById('hw-title').value,
-                subject: document.getElementById('hw-subject').value,
-                date: document.getElementById('hw-date').value,
-                done: false
-            };
-            homeworkEntriesList.push(task);
-            localStorage.setItem('acemygcses_homework', JSON.stringify(homeworkEntriesList));
-            renderHomeworkItems();
-            closeHomeworkModal();
-            this.reset();
-        });
-
-        function toggleTaskStatus(id) {
-            homeworkEntriesList = homeworkEntriesList.map(t => t.id === id ? {...t, done: !t.done} : t);
-            localStorage.setItem('acemygcses_homework', JSON.stringify(homeworkEntriesList));
-            renderHomeworkItems();
-        }
-
-        // Delete individual logged task items securely 
-        function deleteTaskItem(id) {
-            homeworkEntriesList = homeworkEntriesList.filter(t => t.id !== id);
-            localStorage.setItem('acemygcses_homework', JSON.stringify(homeworkEntriesList));
-            renderHomeworkItems();
-        }
-
-        function renderHomeworkItems() {
-            const out = document.getElementById('homework-list-output');
-            out.innerHTML = '';
-            if(homeworkEntriesList.length === 0) {
-                out.innerHTML = `<p class="text-sm text-gray-400 italic">No tasks logged. Click 'Add Task' to map homework items.</p>`;
-                return;
-            }
-            homeworkEntriesList.sort((a,b) => new Date(a.date) - new Date(b.date)).forEach(t => {
-                out.innerHTML += `
-                    <div class="flex items-center justify-between p-3 border rounded-xl shadow-xs bg-slate-50">
-                        <div class="flex items-start space-x-3">
-                            <input type="checkbox" onchange="toggleTaskStatus(${t.id})" ${t.done ? 'checked' : ''} class="w-5 h-5 dynamic-accent mt-0.5 cursor-pointer">
-                            <div>
-                                <span class="text-sm font-bold block ${t.done ? 'line-through text-gray-400' : 'text-gray-800'}">${t.title}</span>
-                                <span class="text-xs font-bold text-purple-600 bg-purple-50 border border-purple-200 px-1.5 py-0.2 rounded-md">${t.subject}</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <span class="text-xs font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded-md border border-red-100">📅 Due: ${t.date}</span>
-                            <button onclick="deleteTaskItem(${t.id})" class="text-xs text-gray-400 hover:text-red-500 font-bold px-1">✕</button>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        // --- 7. APPS TAB CONTROLLER CONTROLS ---
-        function switchTab(targetTabID) {
-            document.querySelectorAll('.tab-view').forEach(view => view.classList.add('hidden'));
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.className = "tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-gray-100 hover:bg-white text-gray-600";
-            });
-
-            document.getElementById(`view-${targetTabID}`).classList.remove('hidden');
-            const activeBtn = document.getElementById(`tab-${targetTabID}`);
-            activeBtn.className = "tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-white shadow-sm border dynamic-border dynamic-text";
-        }
-
-        // --- 8. STARTUP STORAGE RESOLUTIONS ---
-        window.addEventListener('DOMContentLoaded', () => {
-            const cachedProfile = localStorage.getItem('acemygcses_profile');
-            const cachedHomework = localStorage.getItem('acemygcses_homework');
-            
-            if(cachedHomework) { homeworkEntriesList = JSON.parse(cachedHomework); }
-            if (cachedProfile) { launchDashboardEnvironment(JSON.parse(cachedProfile)); }
-        });
-
-        document.getElementById('btn-reset').addEventListener('click', () => {
-            document.getElementById('onboarding-section').classList.remove('hidden');
-            document.getElementById('dashboard-section').classList.add('hidden');
-            window.scrollTo(0,0);
-        });
-    </script>
-</body>
-</html>
+                btnWnd
