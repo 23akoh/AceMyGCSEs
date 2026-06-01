@@ -23,11 +23,6 @@
         .dynamic-border { border-color: var(--theme-color) !important; }
         .dynamic-accent { accent-color: var(--theme-color) !important; }
         .dynamic-ring:focus { --tw-ring-color: var(--theme-color) !important; }
-        input[type="checkbox"].topic-check {
-            width: 15px;
-            height: 15px;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body class="bg-slate-50 text-gray-800 min-h-screen">
@@ -55,7 +50,7 @@
         <section id="onboarding-section" class="bg-white p-6 sm:p-8 rounded-xl shadow-md space-y-6 max-w-4xl mx-auto">
             <div class="border-b pb-4 text-center">
                 <h2 class="text-3xl font-bold text-gray-900">Welcome to AceMyGCSEs</h2>
-                <p class="text-gray-500 text-sm mt-1">Let's create your highly customised smart revision dashboard.</p>
+                <p class="text-gray-500 text-sm mt-1">Let's create your highly customized smart revision dashboard.</p>
             </div>
 
             <form id="setup-form" class="space-y-6" onsubmit="handleFormSubmit(event)">
@@ -64,8 +59,8 @@
                     <h3 class="font-bold text-lg text-purple-900">1. Personal Information & Custom Avatar</h3>
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
                         <div class="md:col-span-1 flex flex-col items-center justify-center border-r border-purple-100 pr-2">
-                            <label for="input-pfp" class="cursor-pointer flex flex-col items-center group">
-                                <img id="setup-pfp-preview" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23b39ddb'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z'/></svg>" class="w-16 h-16 rounded-full object-cover border-2 dynamic-border bg-white shadow-xs group-hover:opacity-80 transition-opacity">
+                            <label id="pfp-container-label" for="input-pfp" class="cursor-pointer flex flex-col items-center group">
+                                <img id="setup-pfp-preview" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23b39ddb'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z'/></svg>" class="w-16 h-16 rounded-full object-cover border-2 dynamic-border bg-white shadow-sm group-hover:opacity-80 transition-opacity">
                                 <span class="text-[10px] text-purple-600 font-bold mt-2 text-center bg-purple-100 px-2 py-1 rounded">Upload PFP +</span>
                             </label>
                             <input type="file" id="input-pfp" accept="image/*" class="hidden" onchange="processPFP(event)">
@@ -73,4 +68,34 @@
                         <div class="md:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-3">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">First Name</label>
-                                <input type="text" id="input-fname" required class="mt-1 w-full p-2 border rounded-md outline-
+                                <input type="text" id="input-fname" required class="mt-1 w-full p-2 border rounded-md outline-none dynamic-ring focus:ring-2 bg-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Surname</label>
+                                <input type="text" id="input-sname" required class="mt-1 w-full p-2 border rounded-md outline-none dynamic-ring focus:ring-2 bg-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">School Year</label>
+                                <select id="input-year" class="mt-1 w-full p-2 border rounded-md bg-white font-medium">
+                                    <option value="7">Year 7</option>
+                                    <option value="8">Year 8</option>
+                                    <option value="9">Year 9</option>
+                                    <option value="10">Year 10</option>
+                                    <option value="11" selected>Year 11</option>
+                                    <option value="12">Year 12</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50/50 p-5 rounded-xl border border-blue-100 space-y-4">
+                    <h3 class="font-bold text-lg text-blue-900">2. School Hours & Bedtime Routine</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-700">School Starts</label>
+                            <input type="time" id="school-start" value="08:45" required class="mt-1 w-full p-2 border rounded-md bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-700">School Ends</label>
+                            <input type="time" id="school-end" value="15:30
