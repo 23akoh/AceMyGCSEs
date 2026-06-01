@@ -8,23 +8,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
-    
-    <link rel="icon" type="image/png" href="logo.png">
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     
     <style>
-        /* Apply Comic Neue globally */
         body {
             font-family: 'Comic Neue', cursive, sans-serif;
         }
         
-        /* Lilac Purple Default Theme Variable */
         :root { 
             --theme-color: #b39ddb; 
         }
         
-        /* Dynamic utility rules to bind styling to the user's chosen custom theme color */
         .dynamic-bg { background-color: var(--theme-color) !important; }
         .dynamic-text { color: var(--theme-color) !important; }
         .dynamic-border { border-color: var(--theme-color) !important; }
@@ -42,8 +37,8 @@
 
     <nav class="bg-white shadow-sm p-4 flex justify-between items-center border-b-2 dynamic-border">
         <div class="flex items-center space-x-3">
-            <img src="logo.png" alt="AceMyGCSEs Logo" class="w-10 h-10 object-contain rounded-lg error-fallback">
-            <h1 class="text-2xl font-bold dynamic-text">AceMyGCSEs</h1>
+            <img src="Blue White Modern Learning Logo.png" alt="AceMyGCSEs Logo" class="w-10 h-10 object-contain rounded-lg error-fallback">
+            <h1 class="text-2xl font-bold text-gray-900">AceMyGCSEs</h1>
         </div>
         <div id="user-nav-profile" class="hidden flex items-center space-x-4">
             <div class="text-right">
@@ -62,7 +57,7 @@
         <section id="onboarding-section" class="bg-white p-6 sm:p-8 rounded-xl shadow-md space-y-6 max-w-3xl mx-auto">
             <div class="border-b pb-4 text-center">
                 <h2 class="text-3xl font-bold text-gray-900">Welcome to AceMyGCSEs</h2>
-                <p class="text-gray-500 text-sm mt-1">Let's build your fully customizable revision engine.</p>
+                <p class="text-gray-500 text-sm mt-1">Let's create your highly customised smart revision dashboard.</p>
             </div>
 
             <form id="setup-form" class="space-y-6">
@@ -114,33 +109,37 @@
                 </div>
 
                 <div class="bg-amber-50/50 p-4 rounded-xl border border-amber-100 space-y-4">
-                    <h3 class="font-bold text-lg text-amber-900">3. Morning & Evening Free Time</h3>
+                    <h3 class="font-bold text-lg text-amber-900">3. Morning & Evening Free Time Routine</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Morning routine buffer (minutes to get ready/eat)</label>
+                            <label class="block text-sm font-medium text-gray-700">Morning routine buffer (minutes to get ready and eat breakfast)</label>
                             <input type="number" id="free-morning" min="0" value="60" required class="mt-1 w-full p-2 border rounded-md">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Evening routine buffer (minutes to rest/shower/dinner)</label>
+                            <label class="block text-sm font-medium text-gray-700">Evening routine buffer (minutes to rest, shower and eat dinner)</label>
                             <input type="number" id="free-evening" min="0" value="120" required class="mt-1 w-full p-2 border rounded-md">
                         </div>
                     </div>
                 </div>
 
                 <div class="bg-emerald-50/50 p-4 rounded-xl border border-emerald-100 space-y-4">
-                    <h3 class="font-bold text-lg text-emerald-900">4. Revision Session Customization</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <h3 class="font-bold text-lg text-emerald-900">4. Customisable Revision Slots Configuration</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Length of 1 revision slot (mins)</label>
-                            <input type="number" id="slot-length" min="5" max="180" value="30" required class="mt-1 w-full p-2 border rounded-md">
+                            <label class="block text-sm font-medium text-gray-700">Length of 1 revision slot (minutes)</label>
+                            <input type="number" id="slot-length" min="5" max="180" value="45" required class="mt-1 w-full p-2 border rounded-md">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">How many revision slots?</label>
-                            <input type="number" id="slot-count" min="1" max="15" value="4" required class="mt-1 w-full p-2 border rounded-md">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">How long are breaks (mins)?</label>
+                            <label class="block text-sm font-medium text-gray-700">How long are breaks (minutes)?</label>
                             <input type="number" id="break-length" min="0" max="60" value="10" required class="mt-1 w-full p-2 border rounded-md">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Number of slots on Weekdays</label>
+                            <input type="number" id="slots-weekday" min="0" max="10" value="3" required class="mt-1 w-full p-2 border rounded-md">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Number of slots on Weekends</label>
+                            <input type="number" id="slots-weekend" min="0" max="15" value="6" required class="mt-1 w-full p-2 border rounded-md">
                         </div>
                     </div>
                 </div>
@@ -148,7 +147,7 @@
                 <div class="bg-purple-50 p-4 rounded-xl border border-purple-100 flex items-center justify-between">
                     <div>
                         <h3 class="font-bold text-lg text-purple-900">5. App Layout Custom Theme</h3>
-                        <p class="text-xs text-gray-500">Pick your favorite accent color using the dropper tool color window.</p>
+                        <p class="text-xs text-gray-500">Pick your favourite accent colour using the palette tool.</p>
                     </div>
                     <div class="flex items-center space-x-3">
                         <input type="color" id="input-theme" value="#b39ddb" class="w-12 h-12 p-1 border rounded-md cursor-pointer bg-white">
@@ -160,14 +159,13 @@
                         <h3 class="font-bold text-lg text-rose-900">6. Extracurricular Clubs (Unavailability Times)</h3>
                         <button type="button" id="add-club-btn" class="text-xs bg-rose-600 text-white px-3 py-1 rounded-md hover:bg-rose-700">Add Club +</button>
                     </div>
-                    <div id="clubs-list-input" class="space-y-2">
-                        </div>
+                    <div id="clubs-list-input" class="space-y-2"></div>
                 </div>
 
                 <div class="space-y-3">
-                    <h3 class="font-bold text-lg text-gray-900">7. Select Your GCSE Subjects, Exam Boards & Targets</h3>
-                    <div class="space-y-3" id="subject-categories-accordion">
-                        </div>
+                    <h3 class="font-bold text-lg text-gray-900">7. Select GCSE Subjects, Boards, Targets & Priorities</h3>
+                    <p class="text-xs text-gray-500">Tick the subjects you study, select your parameters, and check the <strong>Prioritise</strong> box for items you want the auto-scheduler to focus on this week.</p>
+                    <div class="space-y-3" id="subject-categories-accordion"></div>
                 </div>
 
                 <button type="submit" class="w-full dynamic-bg text-white font-bold py-3.5 px-4 rounded-xl hover:opacity-90 transition-opacity shadow-sm text-lg">
@@ -181,7 +179,7 @@
             <div class="bg-white p-6 rounded-xl shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center border-l-8 dynamic-border gap-4">
                 <div>
                     <h2 class="text-3xl font-bold text-gray-900">Let's revise, <span id="dash-greeting" class="dynamic-text">Student</span>!</h2>
-                    <p class="text-sm text-gray-500 mt-0.5">Track your custom profile dashboard preferences and specifications below.</p>
+                    <p class="text-sm text-gray-500 mt-0.5">Track your customised profile dashboard preferences and revision sessions below.</p>
                 </div>
                 <div class="flex space-x-2">
                     <button id="btn-reset" class="text-sm px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-lg transition-colors">⚙️ Edit Profile Settings</button>
@@ -192,7 +190,7 @@
                 <button onclick="switchTab('checklists')" class="tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-white shadow-sm border dynamic-border dynamic-text" id="tab-checklists">📚 Syllabus Checklists</button>
                 <button onclick="switchTab('timetable')" class="tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-gray-100 hover:bg-white text-gray-600" id="tab-timetable">📅 Smart Timetable</button>
                 <button onclick="switchTab('homework')" class="tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-gray-100 hover:bg-white text-gray-600" id="tab-homework">📝 Homework & Deadlines</button>
-                <button onclick="switchTab('wellbeing')" class="tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-gray-100 hover:bg-white text-gray-600" id="tab-wellbeing">🌱 Wellbeing & Advice Hub</button>
+                <button onclick="switchTab('wellbeing')" class="tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-gray-100 hover:bg-white text-gray-600" id="tab-wellbeing">🌱 Wellbeing & Techniques</button>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -201,58 +199,64 @@
                     
                     <div id="view-checklists" class="tab-view bg-white p-6 rounded-xl shadow-sm space-y-4">
                         <h3 class="font-bold text-xl text-gray-800 border-b pb-2">Your Subject Specifications</h3>
-                        <div id="checklists-output-container" class="space-y-6">
-                            </div>
+                        <div id="checklists-output-container" class="space-y-6"></div>
                     </div>
 
                     <div id="view-timetable" class="tab-view hidden bg-white p-6 rounded-xl shadow-sm space-y-4">
-                        <h3 class="font-bold text-xl text-gray-800 border-b pb-2">Your Daily Revision Agenda</h3>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm bg-slate-50 p-4 rounded-xl border">
-                            <div><strong>🏫 School Day Window:</strong> <span id="time-lbl-school">08:45 - 15:30</span></div>
-                            <div><strong>💤 Sleep Allocation:</strong> <span id="time-lbl-sleep">22:00 - 07:00</span></div>
-                            <div><strong>🌅 Morning Prep Routine:</strong> <span id="time-lbl-morning">60 mins</span></div>
-                            <div><strong>🌆 Evening Reset & Dinner:</strong> <span id="time-lbl-evening">120 mins</span></div>
-                        </div>
-                        <div id="timetable-slots-output" class="space-y-2 mt-4">
+                        <div class="flex flex-wrap justify-between items-center border-b pb-2 gap-2">
+                            <h3 class="font-bold text-xl text-gray-800">Your AI-Driven Custom Schedule</h3>
+                            <div class="flex bg-gray-100 p-1 rounded-lg space-x-1 text-xs">
+                                <button onclick="toggleTimetableDay('weekday')" id="btn-sched-weekday" class="px-3 py-1.5 font-bold rounded-md bg-white text-gray-800 shadow-xs">Weekdays</button>
+                                <button onclick="toggleTimetableDay('weekend')" id="btn-sched-weekend" class="px-3 py-1.5 font-bold rounded-md text-gray-500 hover:text-gray-800">Weekends</button>
                             </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs bg-slate-50 p-4 rounded-xl border">
+                            <div><strong>🏫 School Hours:</strong> <span id="lbl-school-time">08:45 - 15:30</span></div>
+                            <div><strong>💤 Sleep Window:</strong> <span id="lbl-sleep-time">22:00 - 07:00</span></div>
+                            <div><strong>🌅 Morning Buffer:</strong> <span id="lbl-morning-time">60 mins</span></div>
+                            <div><strong>🌆 Evening Reset:</strong> <span id="lbl-evening-time">120 mins</span></div>
+                        </div>
+
+                        <div id="timetable-weekday-container" class="space-y-2 mt-4"></div>
+                        <div id="timetable-weekend-container" class="space-y-2 mt-4 hidden"></div>
                     </div>
 
                     <div id="view-homework" class="tab-view hidden bg-white p-6 rounded-xl shadow-sm space-y-4">
                         <div class="flex justify-between items-center border-b pb-2">
-                            <h3 class="font-bold text-xl text-gray-800">Homework & Deadlines Planner</h3>
+                            <h3 class="font-bold text-xl text-gray-800">Homework Planner</h3>
                             <button onclick="openHomeworkModal()" class="dynamic-bg text-white text-xs font-bold px-3 py-1.5 rounded-lg hover:opacity-90">Add Task +</button>
                         </div>
-                        <div id="homework-list-output" class="space-y-3">
-                            <p class="text-sm text-gray-400 italic">No tasks logged. Click 'Add Task' to map homework items.</p>
-                        </div>
+                        <div id="homework-list-output" class="space-y-3"></div>
                     </div>
 
                     <div id="view-wellbeing" class="tab-view hidden bg-white p-6 rounded-xl shadow-sm space-y-6">
-                        <h3 class="font-bold text-xl text-gray-800 border-b pb-2">🌱 Health Architecture & Advice Hub</h3>
+                        <h3 class="font-bold text-xl text-gray-800 border-b pb-2">🌱 Wellbeing & Active Revision Techniques</h3>
                         
                         <div id="sleep-analysis-card" class="p-4 rounded-xl border flex items-start space-x-3">
                             <div class="text-2xl" id="sleep-status-icon">💡</div>
                             <div>
-                                <h4 class="font-bold text-base" id="sleep-status-title">Sleep Window Calculation</h4>
-                                <p class="text-xs text-gray-600 mt-0.5" id="sleep-status-desc">Log your profile settings parameters to calculate metrics.</p>
+                                <h4 class="font-bold text-base" id="sleep-status-title">Sleep Metrics Analysis</h4>
+                                <p class="text-xs text-gray-600 mt-0.5" id="sleep-status-desc">Complete profile setup to evaluate sleep health parameters.</p>
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="border p-4 rounded-xl bg-purple-50/20">
-                                <h4 class="font-bold text-sm text-purple-900 border-b pb-1 mb-2">⚡ Proactive Revision Methods</h4>
+                            <div class="border p-4 rounded-xl bg-purple-50/30 space-y-2.5">
+                                <h4 class="font-bold text-sm text-purple-900 border-b pb-1">🧠 High-Yield Revision Techniques</h4>
                                 <ul class="text-xs text-gray-600 space-y-2 list-disc pl-4">
-                                    <li><strong>The Blurting Method:</strong> Review a subtopic syllabus for 5 minutes, close the resource entirely, then quickly blurt out every fact onto blank paper to target knowledge gaps.</li>
-                                    <li><strong>Dual Coding Strategy:</strong> Pair diagrams, timeline paths, and scientific formulas with explicit annotations to lock memory links.</li>
-                                    <li><strong>Spacing Effect Rules:</strong> Distribute your revision blocks across weeks instead of overnight cramming windows to keep content fresh in your long-term memory.</li>
+                                    <li><strong>The Feynman Technique:</strong> Pick a topic you struggle with, review it, then attempt to write an explanation of it as if you were teaching it to an 8-year-old. This highlights gaps in your logic.</li>
+                                    <li><strong>The Pomodoro System:</strong> Work in intervals matching your chosen custom slot lengths, followed by a dedicated rest break to clear mental fatigue.</li>
+                                    <li><strong>Flashcards & Leitner Box:</strong> Move cards you get wrong into boxes reviewed daily, while correctly answered cards move to boxes reviewed less frequently.</li>
+                                    <li><strong>The Blurting Method:</strong> Set a timer for 5 minutes, read a section of your notes, hide it, and instantly write down everything you remember onto a blank canvas page.</li>
                                 </ul>
                             </div>
-                            <div class="border p-4 rounded-xl bg-emerald-50/20">
-                                <h4 class="font-bold text-sm text-emerald-900 border-b pb-1 mb-2">🏃 Physical Health Rules</h4>
+                            <div class="border p-4 rounded-xl bg-emerald-50/30 space-y-2.5">
+                                <h4 class="font-bold text-sm text-emerald-900 border-b pb-1">🏃 Mental Health & Focus Architecture</h4>
                                 <ul class="text-xs text-gray-600 space-y-2 list-disc pl-4">
-                                    <li><strong>Hydration Optimization:</strong> Drink water before your morning study window to enhance processing speeds.</li>
-                                    <li><strong>Active Break Spans:</strong> Stand up, stretch, or walk outside during breaks to clear your mind between focus slots.</li>
-                                    <li><strong>Screen Sparing Rules:</strong> Turn off your screens at least 45 minutes before bedtime to ensure your brain gets restful sleep.</li>
+                                    <li><strong>Hydration Speedups:</strong> Drinking a full glass of water right when waking up fights dehydration fatigue instantly.</li>
+                                    <li><strong>Active Posture Breaks:</strong> Spend your customized break windows standing, walking, or getting fresh air rather than looking down at a mobile phone screen.</li>
+                                    <li><strong>Blue Light Interceptions:</strong> Power down study tabs and revision videos 45 minutes before bedtime to prevent melatonin suppression.</li>
                                 </ul>
                             </div>
                         </div>
@@ -262,22 +266,45 @@
 
                 <div class="space-y-6">
                     <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
-                        <h3 class="font-bold text-lg mb-3 text-gray-800 border-b pb-2">🔗 Revision Links & Channels</h3>
-                        <div class="space-y-2.5 text-sm">
-                            <a href="https://www.savemyexams.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium transition-colors flex justify-between items-center">
-                                <span>Save My Exams Notes</span> <span class="text-xs text-gray-400">↗</span>
+                        <h3 class="font-bold text-lg mb-3 text-gray-800 border-b pb-2">🔗 Comprehensive Revision Links</h3>
+                        
+                        <div class="space-y-3">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400">General Platforms</h4>
+                            <a href="https://www.bbc.co.uk/bitesize" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium text-sm text-gray-700 flex justify-between items-center transition-colors">
+                                <span>BBC Bitesize</span> <span class="text-xs text-gray-400">↗</span>
                             </a>
-                            <a href="https://www.physicsandmathstutor.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium transition-colors flex justify-between items-center">
-                                <span>Physics & Maths Tutor (PMT)</span> <span class="text-xs text-gray-400">↗</span>
-                            </a>
-                            <a href="https://www.senecalearning.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium transition-colors flex justify-between items-center">
+                            <a href="https://www.senecalearning.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium text-sm text-gray-700 flex justify-between items-center transition-colors">
                                 <span>Seneca Learning Platform</span> <span class="text-xs text-gray-400">↗</span>
                             </a>
-                            <a href="https://www.youtube.com/@FreeScienceLessons" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium transition-colors flex justify-between items-center">
+                            
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400 pt-1">Maths & Sciences</h4>
+                            <a href="https://www.physicsandmathstutor.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium text-sm text-gray-700 flex justify-between items-center transition-colors">
+                                <span>Physics & Maths Tutor (PMT)</span> <span class="text-xs text-gray-400">↗</span>
+                            </a>
+                            <a href="https://www.savemyexams.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium text-sm text-gray-700 flex justify-between items-center transition-colors">
+                                <span>Save My Exams Notes</span> <span class="text-xs text-gray-400">↗</span>
+                            </a>
+                            <a href="https://www.youtube.com/@FreeScienceLessons" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium text-sm text-gray-700 flex justify-between items-center transition-colors">
                                 <span>FreeScienceLessons (YouTube)</span> <span class="text-xs text-gray-400">↗</span>
                             </a>
-                            <a href="https://www.cognitoedu.org" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium transition-colors flex justify-between items-center">
+                            <a href="https://www.cognitoedu.org" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium text-sm text-gray-700 flex justify-between items-center transition-colors">
                                 <span>Cognito Revision Videos</span> <span class="text-xs text-gray-400">↗</span>
+                            </a>
+
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400 pt-1">English Literature & Language</h4>
+                            <a href="https://www.youtube.com/@mrbruff" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium text-sm text-gray-700 flex justify-between items-center transition-colors">
+                                <span>Mr Bruff Analysis (YouTube)</span> <span class="text-xs text-gray-400">↗</span>
+                            </a>
+                            <a href="https://www.sparknotes.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium text-sm text-gray-700 flex justify-between items-center transition-colors">
+                                <span>SparkNotes Plot Guides</span> <span class="text-xs text-gray-400">↗</span>
+                            </a>
+
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400 pt-1">Modern Foreign Languages</h4>
+                            <a href="https://www.memrise.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium text-sm text-gray-700 flex justify-between items-center transition-colors">
+                                <span>Memrise GCSE Vocab Builders</span> <span class="text-xs text-gray-400">↗</span>
+                            </a>
+                            <a href="https://www.duolingo.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium text-sm text-gray-700 flex justify-between items-center transition-colors">
+                                <span>Duolingo Exercises</span> <span class="text-xs text-gray-400">↗</span>
                             </a>
                         </div>
                     </div>
@@ -297,8 +324,7 @@
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-gray-700">Subject Class</label>
-                    <select id="hw-subject" class="mt-1 w-full p-2 border rounded-md bg-white">
-                        </select>
+                    <select id="hw-subject" class="mt-1 w-full p-2 border rounded-md bg-white"></select>
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-gray-700">Due Date Deadline</label>
@@ -313,17 +339,15 @@
     </div>
 
     <script>
-        // --- 1. CORE DATABASE SCHEMAS ---
+        // --- 1. CORE DATABASE SYSTEM CHECKLISTS ---
         const subjectDatabaseList = {
             "Core Subjects (Compulsory)": ["English Language", "English Literature", "Mathematics", "Biology", "Chemistry", "Physics", "Combined Science"],
-            "Humanities & Social Sciences": ["History", "Geography", "Religious Studies", "Citizenship Studies", "Economics", "Psychology", "Sociology", "Law", "Classical Civilisation", "Ancient History"],
-            "Modern & Ancient Languages": ["French", "Spanish", "German", "Mandarin / Chinese", "Arabic", "Bengali", "Gujarati", "Italian", "Japanese", "Persian", "Polish", "Portuguese", "Russian", "Turkish", "Urdu", "British Sign Language (BSL)", "Latin", "Classical Greek"],
-            "Arts & Media": ["Art and Design", "Drama", "Music", "Dance", "Media Studies", "Film Studies"],
-            "Computing, Business & Technical": ["Computer Science", "Business Studies", "Design and Technology (D&T)", "Food Preparation and Nutrition", "Engineering", "Electronics"],
-            "Other": ["Physical Education (PE)", "Statistics", "Astronomy", "Geology"]
+            "Humanities & Social Sciences": ["History", "Geography", "Religious Studies"],
+            "Modern & Ancient Languages": ["French", "Spanish", "German"],
+            "Arts, Computing & Technical": ["Art and Design", "Drama", "Music", "Computer Science", "Business Studies"]
         };
 
-        const boardRegistryOptions = ["AQA", "Edexcel", "OCR", "WJEC", "Eduqas", "CCEA"];
+        const boardRegistryOptions = ["AQA", "Edexcel", "OCR", "WJEC", "Eduqas"];
 
         const globalSyllabusDataStore = {
             "Biology": {
@@ -331,254 +355,78 @@
                     {
                         mainTopic: "4.1 Cell Biology",
                         subtopics: [
-                            {
-                                title: "4.1.1 Cell structure",
-                                points: [
-                                    "4.1.1.1 Eukaryotes and prokaryotes",
-                                    "4.1.1.2 Animal and plant cells",
-                                    "4.1.1.3 Cell specialisation : savemyexams notes (pg12-16)",
-                                    "4.1.1.4 Cell differentiation",
-                                    "4.1.1.5 Microscopy",
-                                    "4.1.1.6 Culturing microorganisms (biology only)"
-                                ]
-                            },
-                            {
-                                title: "4.1.2 Cell division",
-                                points: [
-                                    "4.1.2.1 Chromosomes",
-                                    "4.1.2.2 Mitosis and the cell cycle",
-                                    "4.1.2.3 Stem cells"
-                                ]
-                            },
-                            {
-                                title: "4.1.3 Transport in cells",
-                                points: [
-                                    "4.1.3.1 Diffusion : savemyexams notes (pg9-13)",
-                                    "4.1.3.2 Osmosis",
-                                    "4.1.3.3 Active transport"
-                                ]
-                            }
+                            { title: "4.1.1 Cell Structure", points: ["4.1.1.1 Eukaryotes and prokaryotes", "4.1.1.2 Animal and plant cells", "4.1.1.3 Cell specialisation (savemyexams notes pg12)", "4.1.1.4 Microscopy techniques"] },
+                            { title: "4.1.2 Cell Division", points: ["4.1.2.1 Chromosomes and genes", "4.1.2.2 Mitosis and the cell cycle", "4.1.2.3 Stem cell functions"] }
                         ]
-                    },
+                    }
+                ],
+                "Edexcel": [
                     {
-                        mainTopic: "4.2 Organisation",
+                        mainTopic: "Topic 1 — Key Concepts in Biology",
                         subtopics: [
-                            { title: "4.2.1 Principles of organisation", points: [] },
-                            {
-                                title: "4.2.2 Animal tissues, organs and organ systems",
-                                points: [
-                                    "4.2.2.1 The human digestive system",
-                                    "4.2.2.2 The heart and blood vessels",
-                                    "4.2.2.3 Blood",
-                                    "4.2.2.4 Coronary heart disease: a non-communicable disease",
-                                    "4.2.2.5 Health issues",
-                                    "4.2.2.6 The effect of lifestyle on some non-communicable diseases",
-                                    "4.2.2.7 Cancer"
-                                ]
-                            },
-                            {
-                                title: "4.2.3 Plant tissues, organs and systems",
-                                points: [
-                                    "4.2.3.1 Plant tissues",
-                                    "4.2.3.2 Plant organ system"
-                                ]
-                            }
+                            { title: "1.1 Plant and Animal Cells", points: ["1.1 Core structures and organelle functions", "1.2 Calculations of total magnification formulas"] }
                         ]
-                    },
+                    }
+                ]
+            },
+            "Chemistry": {
+                "AQA": [
                     {
-                        mainTopic: "4.3 Infection and response",
+                        mainTopic: "5.1 Atomic Structure & Periodic Table",
                         subtopics: [
-                            {
-                                title: "4.3.1 Communicable diseases",
-                                points: [
-                                    "4.3.1.1 Communicable (infectious) diseases",
-                                    "4.3.1.2 Viral diseases",
-                                    "4.3.1.3 Bacterial diseases",
-                                    "4.3.1.4 Fungal diseases",
-                                    "4.3.1.5 Protist diseases",
-                                    "4.3.1.6 Human defence systems",
-                                    "4.3.1.7 Vaccination",
-                                    "4.3.1.8 Antibiotics and painkillers",
-                                    "4.3.1.9 Discovery and development of drugs"
-                                ]
-                            },
-                            {
-                                title: "4.3.2 Monoclonal antibodies (biology only) (HT only)",
-                                points: [
-                                    "4.3.2.1 Producing monoclonal antibodies",
-                                    "4.3.2.2 Uses of monoclonal antibodies"
-                                ]
-                            },
-                            {
-                                title: "4.3.3 Plant disease (biology only)",
-                                points: [
-                                    "4.3.3.1 Detection and identification of plant diseases",
-                                    "4.3.3.2 Plant defence responses"
-                                ]
-                            }
+                            { title: "5.1.1 Atoms, Elements and Compounds", points: ["5.1.1.1 Mixtures separation methods", "5.1.1.2 Development of atomic models"] }
                         ]
-                    },
+                    }
+                ]
+            },
+            "Physics": {
+                "AQA": [
                     {
-                        mainTopic: "4.4 Bioenergetics",
+                        mainTopic: "4.1 Energy Profiles",
                         subtopics: [
-                            {
-                                title: "4.4.1 Photosynthesis",
-                                points: [
-                                    "4.4.1.1 Photosynthetic reaction",
-                                    "4.4.1.2 Rate of photosynthesis",
-                                    "4.4.1.3 Uses of glucose from photosynthesis"
-                                ]
-                            },
-                            {
-                                title: "4.4.2 Respiration",
-                                points: [
-                                    "4.4.2.1 Aerobic and anaerobic respiration",
-                                    "4.4.2.2 Response to exercise",
-                                    "4.4.2.3 Metabolism"
-                                ]
-                            }
+                            { title: "4.1.1 Energy Changes in Systems", points: ["4.1.1.1 Kinetic, elastic and gravitational store equations", "4.1.1.2 Conservation of energy rules"] }
                         ]
-                    },
+                    }
+                ]
+            },
+            "Mathematics": {
+                "Edexcel": [
                     {
-                        mainTopic: "4.5 Homeostasis and response",
+                        mainTopic: "Unit 1: Number Systems",
                         subtopics: [
-                            { title: "4.5.1 Homeostasis", points: [] },
-                            {
-                                title: "4.5.2 The human nervous system",
-                                points: [
-                                    "4.5.2.1 Structure and function",
-                                    "4.5.2.2 The brain (biology only)",
-                                    "4.5.2.3 The eye (biology only)",
-                                    "4.5.2.4 Control of body temperature (biology only)"
-                                ]
-                            },
-                            {
-                                title: "4.5.3 Hormonal coordination in humans",
-                                points: [
-                                    "4.5.3.1 Human endocrine system",
-                                    "4.5.3.2 Control of blood glucose concentration",
-                                    "4.5.3.3 Maintaining water and nitrogen balance in the body (biology only)",
-                                    "4.5.3.4 Hormones in human reproduction",
-                                    "4.5.3.5 Contraception",
-                                    "4.5.3.6 The use of hormones to treat infertility (HT only)",
-                                    "4.5.3.7 Feedback systems (HT only)"
-                                ]
-                            },
-                            {
-                                title: "4.5.4 Plant hormones (biology only)",
-                                points: [
-                                    "4.5.4.1 Control and coordination",
-                                    "4.5.4.2 Use of plant hormones (HT only)"
-                                ]
-                            }
+                            { title: "1.1 Calculations & Indices", points: ["1.1.1 Standard form conversion rules", "1.1.2 Laws of fractional indices integers"] }
                         ]
-                    },
+                    }
+                ],
+                "AQA": [
                     {
-                        mainTopic: "4.6 Inheritance, variation and evolution",
+                        mainTopic: "Topic 1: Number Operations",
                         subtopics: [
-                            {
-                                title: "4.6.1 Reproduction",
-                                points: [
-                                    "4.6.1.1 Sexual and asexual reproduction",
-                                    "4.6.1.2 Meiosis",
-                                    "4.6.1.3 Advantages and disadvantages of sexual and asexual reproduction (biology only)",
-                                    "4.6.1.4 DNA and the genome",
-                                    "4.6.1.5 DNA structure (biology only)",
-                                    "4.6.1.6 Genetic inheritance",
-                                    "4.6.1.7 Inherited disorders",
-                                    "4.6.1.8 Sex determination"
-                                ]
-                            },
-                            {
-                                title: "4.6.2 Variation and evolution",
-                                points: [
-                                    "4.6.2.1 Variation",
-                                    "4.6.2.2 Evolution",
-                                    "4.6.2.3 Selective breeding",
-                                    "4.6.2.4 Genetic engineering",
-                                    "4.6.2.5 Cloning (biology only)"
-                                ]
-                            },
-                            {
-                                title: "4.6.3 The development of understanding of genetics and evolution",
-                                points: [
-                                    "4.6.3.1 Theory of evolution (biology only)",
-                                    "4.6.3.2 Speciation (biology only)",
-                                    "4.6.3.3 The understanding of genetics (biology only)",
-                                    "4.6.3.4 Evidence for evolution",
-                                    "4.6.3.5 Fossils",
-                                    "4.6.3.6 Extinction",
-                                    "4.6.3.7 Resistant bacteria"
-                                ]
-                            },
-                            { title: "4.6.4 Classification of living organisms", points: [] }
+                            { title: "1.1 Core Number Rules", points: ["1.1.1 Surds calculation simplifications", "1.1.2 LCM and HCF application problems"] }
                         ]
-                    },
+                    }
+                ]
+            },
+            "English Literature": {
+                "AQA": [
                     {
-                        mainTopic: "4.7 Ecology",
+                        mainTopic: "Shakespeare & Post-1914 Prose",
                         subtopics: [
-                            {
-                                title: "4.7.1 Adaptations, interdependence and competition",
-                                points: [
-                                    "4.7.1.1 Communities",
-                                    "4.7.1.2 Abiotic factors",
-                                    "4.7.1.3 Biotic factors",
-                                    "4.7.1.4 Adaptations"
-                                ]
-                            },
-                            {
-                                title: "4.7.2 Organisation of an ecosystem",
-                                points: [
-                                    "4.7.2.1 Levels of organisation",
-                                    "4.7.2.2 How materials are cycled",
-                                    "4.7.2.3 Decomposition (biology only)",
-                                    "4.7.2.4 Impact of environmental change (biology only) (HT only)"
-                                ]
-                            },
-                            {
-                                title: "4.7.3 Biodiversity and the effect of human interaction on ecosystems",
-                                points: [
-                                    "4.7.3.1 Biodiversity",
-                                    "4.7.3.2 Waste management",
-                                    "4.7.3.3 Land use",
-                                    "4.7.3.4 Deforestation",
-                                    "4.7.3.5 Global warming",
-                                    "4.7.3.6 Maintaining biodiversity"
-                                ]
-                            },
-                            {
-                                title: "4.7.4 Trophic levels in an ecosystem (biology only)",
-                                points: [
-                                    "4.7.4.1 Trophic levels",
-                                    "4.7.4.2 Pyramids of biomass",
-                                    "4.7.4.3 Transfer of biomass"
-                                ]
-                            },
-                            {
-                                title: "4.7.5 Food production (biology only)",
-                                points: [
-                                    "4.7.5.1 Factors affecting food security",
-                                    "4.7.5.2 Farming techniques",
-                                    "4.7.5.3 Sustainable fisheries",
-                                    "4.7.5.4 Role of biotechnology"
-                                ]
-                            }
+                            { title: "Macbeth Core Themes", points: ["Ambition and internal downfalls", "Supernatural motifs and imagery tracking", "Lady Macbeth dramatic transformations"] }
                         ]
                     }
                 ]
             }
         };
 
-        // --- 2. GLOBAL SYSTEM MEMORY COMPONENT CONFIGURATION ---
         let appUserProfile = null;
         let homeworkEntriesList = [];
 
-        // Helper function to turn strings with special symbols into perfectly safe element IDs
         function makeSafeId(str) {
             return 'sub-' + str.replace(/[^a-zA-Z0-9]/g, '-');
         }
 
-        // --- 3. DYNAMIC DOM RENDER BUILD GENERATORS ---
+        // --- 2. ACCORDION UI SETUP GENERATOR ---
         const accordionMenuElement = document.getElementById('subject-categories-accordion');
 
         for (const [categoryName, subjectArray] of Object.entries(subjectDatabaseList)) {
@@ -595,17 +443,25 @@
                 let selectionDropdownHTML = boardRegistryOptions.map(board => `<option value="${board}">${board}</option>`).join('');
                 
                 layoutBlockHTML += `
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between bg-slate-50 p-3 border rounded-xl gap-3">
-                    <label class="flex items-center space-x-3 cursor-pointer select-none">
-                        <input type="checkbox" value="${subjectName}" class="subject-checkbox w-5 h-5 dynamic-accent rounded">
-                        <span class="text-sm font-bold text-gray-700">${subjectName}</span>
-                    </label>
-                    <div id="wrapper-${safeIdTag}" class="hidden flex flex-row items-center gap-2">
-                        <select id="board-${safeIdTag}" class="text-xs border rounded-lg p-1.5 bg-white outline-none">
-                            <option value="" disabled selected>Exam Board</option>
-                            ${selectionDropdownHTML}
-                        </select>
-                        <input type="number" id="target-${safeIdTag}" min="1" max="9" placeholder="Target" class="w-16 text-xs border rounded-lg p-1.5 bg-white text-center">
+                <div class="flex flex-col bg-slate-50 p-3 border rounded-xl gap-2">
+                    <div class="flex items-center justify-between">
+                        <label class="flex items-center space-x-2 cursor-pointer select-none">
+                            <input type="checkbox" value="${subjectName}" class="subject-checkbox w-5 h-5 dynamic-accent rounded">
+                            <span class="text-sm font-bold text-gray-700">${subjectName}</span>
+                        </label>
+                    </div>
+                    <div id="wrapper-${safeIdTag}" class="hidden space-y-2">
+                        <div class="flex gap-2">
+                            <select id="board-${safeIdTag}" class="w-1/2 text-xs border rounded-lg p-1.5 bg-white outline-none">
+                                <option value="" disabled selected>Exam Board</option>
+                                ${selectionDropdownHTML}
+                            </select>
+                            <input type="number" id="target-${safeIdTag}" min="1" max="9" placeholder="Target" class="w-1/2 text-xs border rounded-lg p-1.5 bg-white text-center">
+                        </div>
+                        <label class="flex items-center space-x-1.5 text-xs text-purple-700 font-bold bg-purple-50 p-1.5 rounded-md cursor-pointer">
+                            <input type="checkbox" id="priority-${safeIdTag}" class="priority-checkbox dynamic-accent">
+                            <span>⭐ Prioritise this subject</span>
+                        </label>
                     </div>
                 </div>`;
             });
@@ -614,12 +470,11 @@
             accordionMenuElement.innerHTML += layoutBlockHTML;
         }
 
-        // Catch image element errors elegantly if local icon is absent
         document.querySelectorAll('.error-fallback').forEach(img => {
             img.onerror = function() { this.style.display = 'none'; }
         });
 
-        // Toggle Exam Board dropdown configuration on change events safely
+        // Toggle elements context safely
         document.addEventListener('change', function(event) {
             if (event.target && event.target.classList.contains('subject-checkbox')) {
                 const safeIdTag = makeSafeId(event.target.value);
@@ -632,11 +487,12 @@
                 } else {
                     menuWrapper.classList.add('hidden');
                     boardMenu.required = false;
+                    document.getElementById(`priority-${safeIdTag}`).checked = false;
                 }
             }
         });
 
-        // Add Club Input Dynamically
+        // Add dynamically allocated Extracurricular Clubs 
         document.getElementById('add-club-btn').addEventListener('click', () => {
             const rowID = 'club-' + Date.now();
             const formContainer = document.getElementById('clubs-list-input');
@@ -644,12 +500,10 @@
             clubInputRow.id = rowID;
             clubInputRow.className = "flex flex-wrap items-center gap-2 bg-white p-2 border rounded-lg shadow-xs";
             clubInputRow.innerHTML = `
-                <input type="text" placeholder="Club Name (e.g., Football)" class="text-xs p-1.5 border rounded-md flex-1 min-w-[120px]" required>
+                <input type="text" placeholder="Club Name" class="text-xs p-1.5 border rounded-md flex-1 min-w-[120px]" required>
                 <select class="text-xs p-1.5 border rounded-md bg-white">
-                    <option value="Monday">Monday</option><option value="Tuesday">Tuesday</option>
-                    <option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option>
-                    <option value="Friday">Friday</option><option value="Saturday">Saturday</option>
-                    <option value="Sunday">Sunday</option>
+                    <option value="Weekday">Weekday</option>
+                    <option value="Weekend">Weekend</option>
                 </select>
                 <div class="flex items-center space-x-1">
                     <span class="text-[10px] text-gray-400">From</span>
@@ -662,7 +516,7 @@
             formContainer.appendChild(clubInputRow);
         });
 
-        // --- 4. FORM TRANSACTION FLOWS ---
+        // --- 3. FORM PROCESSING & PREFERENCE SUBMISSIONS ---
         document.getElementById('setup-form').addEventListener('submit', function(event) {
             event.preventDefault();
 
@@ -673,7 +527,14 @@
                 const safeIdTag = makeSafeId(cb.value);
                 const selectedBoard = document.getElementById(`board-${safeIdTag}`).value;
                 const setTarget = document.getElementById(`target-${safeIdTag}`).value || "N/A";
-                collectedSubjects.push({ name: cb.value, board: selectedBoard, target: setTarget });
+                const isPrioritised = document.getElementById(`priority-${safeIdTag}`).checked;
+                
+                collectedSubjects.push({ 
+                    name: cb.value, 
+                    board: selectedBoard, 
+                    target: setTarget,
+                    priority: isPrioritised
+                });
             });
 
             if (collectedSubjects.length === 0) {
@@ -687,7 +548,7 @@
                 if(inputs.length >= 4) {
                     collectedClubs.push({
                         name: inputs[0].value,
-                        day: inputs[1].value,
+                        type: inputs[1].value, // "Weekday" or "Weekend"
                         start: inputs[2].value,
                         end: inputs[3].value
                     });
@@ -705,8 +566,9 @@
                 freeMorning: document.getElementById('free-morning').value,
                 freeEvening: document.getElementById('free-evening').value,
                 slotLength: document.getElementById('slot-length').value,
-                slotCount: document.getElementById('slot-count').value,
                 breakLength: document.getElementById('break-length').value,
+                slotsWeekday: document.getElementById('slots-weekday').value,
+                slotsWeekend: document.getElementById('slots-weekend').value,
                 theme: chosenThemeColor,
                 subjects: collectedSubjects,
                 clubs: collectedClubs
@@ -730,7 +592,7 @@
             });
 
             renderSyllabusChecklists(profile.subjects);
-            generateSmartTimetableSlots(profile);
+            generateSmartTimetableAI(profile);
             analyzeSleepWellbeingParameters(profile);
             renderHomeworkItems();
 
@@ -740,7 +602,7 @@
             window.scrollTo(0,0);
         }
 
-        // --- 5. RENDER SYSTEM ENGINES ---
+        // --- 4. DATA COMPONENT GENERATORS ---
         function renderSyllabusChecklists(subjectsArray) {
             const targetContainer = document.getElementById('checklists-output-container');
             targetContainer.innerHTML = '';
@@ -749,7 +611,10 @@
                 let listBlockHTML = `
                 <div class="border-2 rounded-xl overflow-hidden shadow-xs bg-white">
                     <div class="bg-slate-50 p-4 border-b flex flex-wrap justify-between items-center gap-2">
-                        <h4 class="text-lg font-bold text-gray-900">${item.name}</h4>
+                        <h4 class="text-lg font-bold text-gray-900 flex items-center gap-1.5">
+                            <span>${item.name}</span>
+                            ${item.priority ? '<span class="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full">★ Prioritised</span>' : ''}
+                        </h4>
                         <div class="flex items-center space-x-3 text-xs font-bold text-gray-500">
                             <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded-md">Board: ${item.board}</span>
                             <span class="bg-purple-100 text-purple-700 px-2 py-1 rounded-md">Target: ${item.target}</span>
@@ -759,29 +624,24 @@
 
                 if (globalSyllabusDataStore[item.name] && globalSyllabusDataStore[item.name][item.board]) {
                     const modules = globalSyllabusDataStore[item.name][item.board];
-                    
                     modules.forEach(mod => {
                         listBlockHTML += `
-                        <div class="mt-2">
+                        <div class="mt-1">
                             <h5 class="text-[13px] font-bold underline text-gray-900 mb-2">${mod.mainTopic}</h5>`;
-                        
                         mod.subtopics.forEach(sub => {
                             listBlockHTML += `
                             <div class="ml-3 mb-3">
                                 <h6 class="text-[11px] font-bold text-gray-800 mb-1.5">${sub.title}</h6>
                                 <ul class="space-y-1.5 ml-2">`;
-                            
                             sub.points.forEach((point, pIdx) => {
                                 const storageID = `check-${item.name}-${item.board}-${mod.mainTopic}-${sub.title}-${pIdx}`.replace(/\s+/g, '');
                                 const checkedState = localStorage.getItem(storageID) === 'true' ? 'checked' : '';
-                                
                                 listBlockHTML += `
                                 <li class="flex items-start space-x-2">
                                     <input type="checkbox" id="${storageID}" onchange="saveCheckState('${storageID}', this.checked)" ${checkedState} class="topic-check dynamic-accent mt-0.5">
                                     <label for="${storageID}" class="text-[11px] font-normal leading-tight text-gray-700 cursor-pointer select-none">${point}</label>
                                 </li>`;
                             });
-
                             listBlockHTML += `</ul></div>`;
                         });
                         listBlockHTML += `</div>`;
@@ -789,8 +649,8 @@
                 } else {
                     listBlockHTML += `
                     <div class="p-4 text-center border-2 border-dashed rounded-xl">
-                        <p class="text-sm text-gray-500 italic">Specification details for ${item.name} (${item.board}) are queuing for integration.</p>
-                        <p class="text-xs text-gray-400 mt-1">You can add this specification directly to the globalSyllabusDataStore object in your code script array.</p>
+                        <p class="text-sm text-gray-500 italic">Specification items for ${item.name} (${item.board}) are queuing for integration.</p>
+                        <p class="text-xs text-gray-400 mt-1">Use the checkbox tracking framework above to monitor current parameters.</p>
                     </div>`;
                 }
 
@@ -803,56 +663,105 @@
             localStorage.setItem(id, isChecked);
         }
 
-        function generateSmartTimetableSlots(profile) {
-            const panel = document.getElementById('timetable-slots-output');
-            panel.innerHTML = '';
+        // --- 5. SMART TIMETABLE INTELLIGENT ROUTINE DISTRIBUTION ENGINE ---
+        function generateSmartTimetableAI(profile) {
+            document.getElementById('lbl-school-time').innerText = `${profile.schoolStart} - ${profile.schoolEnd}`;
+            document.getElementById('lbl-sleep-time').innerText = `${profile.sleepBed} - ${profile.sleepWake}`;
+            document.getElementById('lbl-morning-time').innerText = `${profile.freeMorning} minutes`;
+            document.getElementById('lbl-evening-time').innerText = `${profile.freeEvening} minutes`;
 
-            document.getElementById('time-lbl-school').innerText = `${profile.schoolStart} - ${profile.schoolEnd}`;
-            document.getElementById('time-lbl-sleep').innerText = `${profile.sleepBed} - ${profile.sleepWake}`;
-            document.getElementById('time-lbl-morning').innerText = `${profile.freeMorning} minutes`;
-            document.getElementById('time-lbl-evening').innerText = `${profile.freeEvening} minutes`;
+            // Build AI Assignment Priority Pool
+            let subjectPool = [];
+            profile.subjects.forEach(sub => {
+                // Priority subjects get placed 3 times in random picker pool array matrix
+                const frequencyWeight = sub.priority ? 3 : 1;
+                for(let i = 0; i < frequencyWeight; i++) {
+                    subjectPool.push(sub.name);
+                }
+            });
 
-            panel.innerHTML += `
-                <div class="p-3 bg-slate-50 border rounded-lg text-xs font-bold text-gray-700 flex justify-between items-center">
-                    <span>🌅 Morning Routine & Breakfast Buffer</span>
-                    <span class="text-gray-400">${profile.freeMorning} Mins</span>
-                </div>
-                <div class="p-3 bg-purple-50 text-purple-800 border border-purple-200 rounded-lg text-xs font-bold flex justify-between items-center">
-                    <span>🏫 Official School Hours & Classes Session</span>
-                    <span>${profile.schoolStart} - ${profile.schoolEnd}</span>
-                </div>
+            if(subjectPool.length === 0) subjectPool.push("Self-Study / Free Revision");
+
+            // Build Weekdays DOM Schedule Output
+            const weekdayBox = document.getElementById('timetable-weekday-container');
+            weekdayBox.innerHTML = `
+                <div class="p-2.5 bg-slate-100 rounded-lg text-xs font-bold text-gray-600 flex justify-between"><span>🌅 Morning Prep Routine Buffer</span><span>${profile.freeMorning} mins</span></div>
+                <div class="p-2.5 bg-purple-50 border border-purple-200 text-purple-800 rounded-lg text-xs font-bold flex justify-between"><span>🏫 Compulsory School Hours Classes</span><span>${profile.schoolStart} - ${profile.schoolEnd}</span></div>
             `;
-
-            if(profile.clubs && profile.clubs.length > 0) {
-                profile.clubs.forEach(club => {
-                    panel.innerHTML += `
-                        <div class="p-3 bg-rose-50 text-rose-800 border border-rose-200 rounded-lg text-xs font-bold flex justify-between items-center">
-                            <span>🚫 Extracurricular Club: ${club.name} (${club.day})</span>
-                            <span>${club.start} - ${club.end}</span>
+            // Add Weekday Clubs
+            profile.clubs.filter(c => c.type === "Weekday").forEach(club => {
+                weekdayBox.innerHTML += `<div class="p-2.5 bg-rose-50 border border-rose-200 text-rose-800 rounded-lg text-xs font-bold flex justify-between"><span>🚫 Club: ${club.name}</span><span>${club.start} - ${club.end}</span></div>`;
+            });
+            weekdayBox.innerHTML += `<div class="p-2.5 bg-amber-50 border border-amber-200 text-amber-800 rounded-lg text-xs font-bold flex justify-between"><span>🌆 Rest, Shower & Dinner Buffer</span><span>${profile.freeEvening} mins</span></div>`;
+            
+            // Loop and assign dynamic subjects to weekday revision counts
+            let poolIndex = 0;
+            for(let slot = 1; slot <= profile.slotsWeekday; slot++) {
+                let assignedSubject = subjectPool[poolIndex % subjectPool.length];
+                poolIndex++;
+                weekdayBox.innerHTML += `
+                    <div class="p-3 border-2 dynamic-border bg-white rounded-xl shadow-xs flex justify-between items-center">
+                        <div>
+                            <span class="text-xs font-bold block text-gray-400 uppercase tracking-wide">Revision Slot ${slot} (${profile.slotLength} Mins)</span>
+                            <span class="text-sm font-bold text-gray-800">🎯 Focus Subtopics: <span class="dynamic-text">${assignedSubject}</span></span>
                         </div>
-                    `;
-                });
-            }
-
-            panel.innerHTML += `
-                <div class="p-3 bg-amber-50 text-amber-800 border border-amber-200 rounded-lg text-xs font-bold flex justify-between items-center">
-                    <span>🌆 Dinner, Rest & Shower Downtime Buffer</span>
-                    <span>${profile.freeEvening} Mins</span>
-                </div>
-                <div class="p-4 border-2 border-dashed rounded-xl space-y-2 bg-white">
-                    <span class="text-sm font-bold text-gray-800 block">🎯 Your Custom Revision Blocks Matrix</span>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs text-gray-600 bg-slate-50 p-2 rounded-lg">
-                        <div><strong>Total Slots:</strong> ${profile.slotCount}</div>
-                        <div><strong>Slot Duration:</strong> ${profile.slotLength} mins</div>
-                        <div><strong>Break Spans:</strong> ${profile.breakLength} mins</div>
+                        <span class="text-xs bg-slate-100 text-gray-500 px-2 py-1 rounded-md font-bold">Active Focus</span>
                     </div>
-                    <p class="text-xs text-gray-500 pt-1">Make sure to space these <strong>${profile.slotCount} slots</strong> out over your available afternoon hours to avoid processing fatigue.</p>
-                </div>
-                <div class="p-3 bg-slate-100 text-gray-700 border rounded-lg text-xs font-bold flex justify-between items-center">
-                    <span>🛌 Night Routine & Sleep Reset Window</span>
-                    <span>${profile.sleepBed} - ${profile.sleepWake}</span>
-                </div>
+                `;
+                if(slot < profile.slotsWeekday && profile.breakLength > 0) {
+                    weekdayBox.innerHTML += `<div class="text-[11px] text-emerald-700 bg-emerald-50/60 border border-emerald-100 p-1.5 px-3 rounded-lg font-bold flex justify-between mx-4"><span>⏸️ Rest Break Interval</span><span>${profile.breakLength} Mins</span></div>`;
+                }
+            }
+            weekdayBox.innerHTML += `<div class="p-2.5 bg-slate-100 rounded-lg text-xs font-bold text-gray-600 flex justify-between"><span>🛌 Night Routine & Sleep Reset Window</span><span>${profile.sleepBed} - ${profile.sleepWake}</span></div>`;
+
+            // Build Weekends DOM Schedule Output
+            const weekendBox = document.getElementById('timetable-weekend-container');
+            weekendBox.innerHTML = `
+                <div class="p-2.5 bg-slate-100 rounded-lg text-xs font-bold text-gray-600 flex justify-between"><span>🌅 Morning Routine & Breakfast Prep</span><span>${profile.freeMorning} mins</span></div>
             `;
+            // Add Weekend Clubs
+            profile.clubs.filter(c => c.type === "Weekend").forEach(club => {
+                weekendBox.innerHTML += `<div class="p-2.5 bg-rose-50 border border-rose-200 text-rose-800 rounded-lg text-xs font-bold flex justify-between"><span>🚫 Weekend Event: ${club.name}</span><span>${club.start} - ${club.end}</span></div>`;
+            });
+            
+            // Loop and assign dynamic subjects to weekend slots
+            for(let slot = 1; slot <= profile.slotsWeekend; slot++) {
+                let assignedSubject = subjectPool[poolIndex % subjectPool.length];
+                poolIndex++;
+                weekendBox.innerHTML += `
+                    <div class="p-3 border-2 dynamic-border bg-white rounded-xl shadow-xs flex justify-between items-center">
+                        <div>
+                            <span class="text-xs font-bold block text-gray-400 uppercase tracking-wide">Weekend Slot ${slot} (${profile.slotLength} Mins)</span>
+                            <span class="text-sm font-bold text-gray-800">🎯 Focus Subtopics: <span class="dynamic-text">${assignedSubject}</span></span>
+                        </div>
+                        <span class="text-xs bg-slate-100 text-gray-500 px-2 py-1 rounded-md font-bold">Active Focus</span>
+                    </div>
+                `;
+                if(slot < profile.slotsWeekend && profile.breakLength > 0) {
+                    weekendBox.innerHTML += `<div class="text-[11px] text-emerald-700 bg-emerald-50/60 border border-emerald-100 p-1.5 px-3 rounded-lg font-bold flex justify-between mx-4"><span>⏸️ Rest Break Interval</span><span>${profile.breakLength} Mins</span></div>`;
+                }
+            }
+            weekendBox.innerHTML += `
+                <div class="p-2.5 bg-amber-50 border border-amber-200 text-amber-800 rounded-lg text-xs font-bold flex justify-between"><span>🌆 Weekend Family Downtime Buffer</span><span>${profile.freeEvening} mins</span></div>
+                <div class="p-2.5 bg-slate-100 rounded-lg text-xs font-bold text-gray-600 flex justify-between"><span>🛌 Night Routine & Sleep Reset Window</span><span>${profile.sleepBed} - ${profile.sleepWake}</span></div>
+            `;
+        }
+
+        function toggleTimetableDay(type) {
+            const btnWk = document.getElementById('btn-sched-weekday');
+            const btnWnd = document.getElementById('btn-sched-weekend');
+            const cWk = document.getElementById('timetable-weekday-container');
+            const cWnd = document.getElementById('timetable-weekend-container');
+
+            if(type === 'weekday') {
+                cWk.classList.remove('hidden'); cWnd.classList.add('hidden');
+                btnWk.className = "px-3 py-1.5 font-bold rounded-md bg-white text-gray-800 shadow-xs";
+                btnWnd.className = "px-3 py-1.5 font-bold rounded-md text-gray-500 hover:text-gray-800";
+            } else {
+                cWk.classList.add('hidden'); cWnd.classList.remove('hidden');
+                btnWk.className = "px-3 py-1.5 font-bold rounded-md text-gray-500 hover:text-gray-800";
+                btnWnd.className = "px-3 py-1.5 font-bold rounded-md bg-white text-gray-800 shadow-xs";
+            }
         }
 
         function analyzeSleepWellbeingParameters(profile) {
@@ -864,27 +773,26 @@
             const [bHour, bMin] = profile.sleepBed.split(':').map(Number);
             const [wHour, wMin] = profile.sleepWake.split(':').map(Number);
             
-            let sleepTimeMinutes = (wHour * 60 + wMin) - (bHour * 60 + bMin);
-            if (sleepTimeMinutes < 0) sleepTimeMinutes += 24 * 60;
-            
-            const sleepHours = (sleepTimeMinutes / 60).toFixed(1);
+            let sleepMinutes = (wHour * 60 + wMin) - (bHour * 60 + bMin);
+            if (sleepMinutes < 0) sleepMinutes += 24 * 60;
+            const sleepHours = (sleepMinutes / 60).toFixed(1);
 
-            if(sleepHours >= 7.0 && sleepHours <= 9.0) {
+            if(sleepHours >= 7.5 && sleepHours <= 9.5) {
                 card.className = "p-4 rounded-xl border border-emerald-200 bg-emerald-50/30 flex items-start space-x-3";
                 icon.innerText = "✅";
                 title.innerText = `Healthy Sleep Track (${sleepHours} Hours Verified)`;
                 title.className = "font-bold text-emerald-900 text-base";
-                desc.innerText = "Fantastic scheduling! You are hit the required threshold for solid cognitive recovery and retention.";
+                desc.innerText = "Fantastic scheduling! You are hit the optimal threshold required for solid cognitive recovery and retention rules.";
             } else {
                 card.className = "p-4 rounded-xl border border-amber-200 bg-amber-50/30 flex items-start space-x-3";
                 icon.innerText = "⚠️";
-                title.innerText = `Sleep Warning Limit (${sleepHours} Hours Logged)`;
+                title.innerText = `Sleep Warning Range (${sleepHours} Hours Logged)`;
                 title.className = "font-bold text-amber-900 text-base";
-                desc.innerText = "Your current bed/wake parameters fall below 7 hours. Adjust your bedtime to prevent burnout.";
+                desc.innerText = "Your current bed parameters fall below optimal targets. Increase your allocation time to prevent burnout processing fatigue.";
             }
         }
 
-        // --- 6. HOMEWORK MANAGER LOGIC ENGINE ---
+        // --- 6. HOMEWORK LOGIC ENGINE ---
         function openHomeworkModal() { document.getElementById('homework-modal').classList.remove('hidden'); }
         function closeHomeworkModal() { document.getElementById('homework-modal').classList.add('hidden'); }
 
@@ -910,6 +818,7 @@
             renderHomeworkItems();
         }
 
+        // Delete individual logged task items securely 
         function deleteTaskItem(id) {
             homeworkEntriesList = homeworkEntriesList.filter(t => t.id !== id);
             localStorage.setItem('acemygcses_homework', JSON.stringify(homeworkEntriesList));
@@ -942,7 +851,7 @@
             });
         }
 
-        // --- 7. APPS TAB CONTROLLER UTILITY ROUTINES ---
+        // --- 7. APPS TAB CONTROLLER CONTROLS ---
         function switchTab(targetTabID) {
             document.querySelectorAll('.tab-view').forEach(view => view.classList.add('hidden'));
             document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -954,7 +863,7 @@
             activeBtn.className = "tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-white shadow-sm border dynamic-border dynamic-text";
         }
 
-        // --- 8. STARTUP COMPONENT CORE ---
+        // --- 8. STARTUP STORAGE RESOLUTIONS ---
         window.addEventListener('DOMContentLoaded', () => {
             const cachedProfile = localStorage.getItem('acemygcses_profile');
             const cachedHomework = localStorage.getItem('acemygcses_homework');
