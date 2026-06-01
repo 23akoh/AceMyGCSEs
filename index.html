@@ -82,16 +82,18 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="bg-blue-50/50 p-5 rounded-xl border border-blue-100 space-y-3">
-                            <h3 class="font-bold text-sm text-blue-900">School & Sleep Hours</h3>
+                            <h3 class="font-bold text-sm text-blue-900">School, Morning & Night routines</h3>
                             <div class="grid grid-cols-2 gap-2 text-xs">
+                                <div><label>Wake-up Time</label><input type="time" id="sleep-wake" value="07:00" class="w-full p-1.5 border rounded-md bg-white"></div>
+                                <div><label>Morning Prep (Mins)</label><input type="number" id="morning-ready-len" value="45" class="w-full p-1.5 border rounded-md bg-white"></div>
                                 <div><label>School Starts</label><input type="time" id="school-start" value="08:45" class="w-full p-1.5 border rounded-md bg-white"></div>
                                 <div><label>School Ends</label><input type="time" id="school-end" value="15:30" class="w-full p-1.5 border rounded-md bg-white"></div>
+                                <div><label>Evening Rest (Mins)</label><input type="number" id="evening-rest-len" value="60" class="w-full p-1.5 border rounded-md bg-white"></div>
                                 <div><label>Bedtime</label><input type="time" id="sleep-bed" value="22:00" class="w-full p-1.5 border rounded-md bg-white"></div>
-                                <div><label>Wake-up</label><input type="time" id="sleep-wake" value="07:00" class="w-full p-1.5 border rounded-md bg-white"></div>
                             </div>
                         </div>
                         <div class="bg-emerald-50/50 p-5 rounded-xl border border-emerald-100 space-y-3">
-                            <h3 class="font-bold text-sm text-emerald-900">Revision Slots</h3>
+                            <h3 class="font-bold text-sm text-emerald-900">Revision Slot Allocation</h3>
                             <div class="grid grid-cols-2 gap-2 text-xs">
                                 <div><label>Slot Mins</label><input type="number" id="slot-length" value="45" class="w-full p-1.5 border rounded-md bg-white"></div>
                                 <div><label>Break Mins</label><input type="number" id="break-length" value="10" class="w-full p-1.5 border rounded-md bg-white"></div>
@@ -114,7 +116,6 @@
                             <h3 class="font-bold text-lg text-gray-900">Select All Your Subjects & Exam Boards</h3>
                             <input type="color" id="input-theme" value="#b39ddb" title="App Accent Color" class="w-8 h-8 p-0 border rounded-md cursor-pointer bg-white">
                         </div>
-                        <p class="text-xs text-gray-500">Includes ALL standard UK options including CCEA. Priority subjects are targeted heavier in timetables.</p>
                         <div class="space-y-3" id="subject-categories-accordion"></div>
                     </div>
 
@@ -210,9 +211,12 @@
             <div class="bg-white p-5 rounded-xl shadow-sm border">
                 <h3 class="font-bold text-base mb-3 text-gray-800 border-b pb-2">🔗 Revision Portals</h3>
                 <div class="space-y-2 text-xs font-bold">
-                    <a href="https://www.bbc.co.uk/bitesize/levels/z98jmp3" target="_blank" class="block p-2 bg-slate-50 rounded hover:bg-slate-100 flex justify-between text-gray-700"><span>BBC Bitesize GCSE</span> <span>↗</span></a>
                     <a href="https://www.senecalearning.com" target="_blank" class="block p-2 bg-slate-50 rounded hover:bg-slate-100 flex justify-between text-gray-700"><span>Seneca Learning</span> <span>↗</span></a>
-                    <a href="https://corbettmaths.com/" target="_blank" class="block p-2 bg-slate-50 rounded hover:bg-slate-100 flex justify-between text-gray-700"><span>CorbettMaths</span> <span>↗</span></a>
+                    <a href="https://cognitoedu.org" target="_blank" class="block p-2 bg-slate-50 rounded hover:bg-slate-100 flex justify-between text-gray-700"><span>Cognito</span> <span>↗</span></a>
+                    <a href="https://www.bbc.co.uk/bitesize/levels/z98jmp3" target="_blank" class="block p-2 bg-slate-50 rounded hover:bg-slate-100 flex justify-between text-gray-700"><span>BBC Bitesize GCSE</span> <span>↗</span></a>
+                    <a href="https://corbettmaths.com/" target="_blank" class="block p-2 bg-slate-50 rounded hover:bg-slate-100 flex justify-between text-gray-700"><span>Corbett Maths</span> <span>↗</span></a>
+                    <a href="https://www.physicsandmathstutor.com" target="_blank" class="block p-2 bg-slate-50 rounded hover:bg-slate-100 flex justify-between text-gray-700"><span>PMT (Physics & Maths Tutor)</span> <span>↗</span></a>
+                    <a href="https://www.mathsgenie.co.uk" target="_blank" class="block p-2 bg-slate-50 rounded hover:bg-slate-100 flex justify-between text-gray-700"><span>Maths Genie</span> <span>↗</span></a>
                 </div>
             </div>
         </div>
@@ -371,8 +375,12 @@
                 firstName: document.getElementById('input-fname').value,
                 surname: document.getElementById('input-sname').value,
                 theme: document.getElementById('input-theme').value,
+                wakeTime: document.getElementById('sleep-wake').value,
+                morningReady: parseInt(document.getElementById('morning-ready-len').value),
                 schoolStart: document.getElementById('school-start').value,
                 schoolEnd: document.getElementById('school-end').value,
+                eveningRest: parseInt(document.getElementById('evening-rest-len').value),
+                bedtime: document.getElementById('sleep-bed').value,
                 slotLen: parseInt(document.getElementById('slot-length').value),
                 wkCount: parseInt(document.getElementById('slots-weekday').value),
                 wndCount: parseInt(document.getElementById('slots-weekend').value),
@@ -381,10 +389,8 @@
                 clubs: clubs
             };
 
-            // Save homework on submit as well to preserve state
             appUserProfile.homework = homeworkEntriesList;
-
-            localStorage.setItem('acemygcses_v3', JSON.stringify(appUserProfile));
+            localStorage.setItem('acemygcses_v4', JSON.stringify(appUserProfile));
             launchDashboard(appUserProfile);
         }
 
@@ -405,7 +411,6 @@
             currentDailyViewIndex = ALL_DAYS.indexOf(currentLiveDay);
             document.getElementById('live-day-lbl').innerText = currentLiveDay;
 
-            // HW Dropdown setup
             const hwMenu = document.getElementById('hw-subject');
             hwMenu.innerHTML = profile.subjects.map(s => `<option value="${s.name}">${s.name}</option>`).join('');
 
@@ -421,62 +426,62 @@
             window.scrollTo(0,0);
         }
 
-        // --- Core Timetable Engine ---
+        // --- Preserved Core Timetable Engine with Routines Re-integrated ---
         function generateTimetableGrid(profile) {
             let pool = [];
             profile.subjects.forEach(s => {
                 for(let i=0; i<(s.priority ? 3 : 1); i++) pool.push(s.name);
             });
 
-            // Reconstruct Week Data Matrix
             const weekData = {};
             ALL_DAYS.forEach((day, index) => {
                 let items = [];
                 let isWeekend = (day === "Saturday" || day === "Sunday");
                 
-                // Base structure
+                // 1. Morning routine block
+                items.push({ type: "Morning", title: "☀️ Wake Up & Get Ready", time: `${profile.wakeTime || '07:00'} (${profile.morningReady || 45}m)`, bg: "bg-amber-50", text: "text-amber-800" });
+                
+                // 2. Daytime Core Structure
                 if(!isWeekend) {
-                    items.push({ type: "Morning", title: "Morning Routine", time: "07:00", bg: "bg-amber-50", text: "text-amber-800" });
-                    items.push({ type: "School", title: "School Day", time: `${profile.schoolStart}-${profile.schoolEnd}`, bg: "bg-blue-50", text: "text-blue-800" });
+                    items.push({ type: "School", title: "🏫 School Day Blocks", time: `${profile.schoolStart}-${profile.schoolEnd}`, bg: "bg-blue-50", text: "text-blue-800" });
                 } else {
-                    items.push({ type: "Morning", title: "Weekend Wakeup", time: "09:00", bg: "bg-amber-50", text: "text-amber-800" });
+                    items.push({ type: "WeekendActivity", title: "🛹 Free Time / Morning Reset", time: "Morning", bg: "bg-teal-50", text: "text-teal-800" });
                 }
 
-                // Clubs for this specific day
+                // 3. Clubs matching this specific day
                 profile.clubs.filter(c => c.day === day).forEach(c => {
-                    items.push({ type: "Club", title: c.name, time: `${c.start}-${c.end}`, bg: "bg-rose-50", text: "text-rose-800" });
+                    items.push({ type: "Club", title: `🏆 Club: ${c.name}`, time: `${c.start}-${c.end}`, bg: "bg-rose-50", text: "text-rose-800" });
                 });
 
-                // Study Slots
+                // 4. Revision Study Slots
                 let slotCount = isWeekend ? profile.wndCount : profile.wkCount;
                 for(let i=0; i<slotCount; i++) {
                     let sub = pool[(index * 3 + i) % pool.length];
-                    items.push({ type: "Study", title: sub, time: `${profile.slotLen}m`, bg: "bg-white border", text: "text-gray-800", checkable: true });
+                    if (sub) {
+                        items.push({ type: "Study", title: `📚 Revision: ${sub}`, time: `${profile.slotLen}m slot`, bg: "bg-white border", text: "text-gray-800", checkable: true });
+                    }
                 }
 
-                // Inject Homework allocated for THIS DAY (assuming we do it the day before it's due)
-                let dayDate = new Date();
-                dayDate.setDate(dayDate.getDate() - dayDate.getDay() + (index + 1)); // approximate current week date
-                
+                // 5. Auto-injected Homework allocations
                 homeworkEntriesList.forEach(hw => {
                     let hwDate = new Date(hw.date);
-                    // Match day of week roughly (for simplified demo logic, we match if string matches or logic)
-                    // Let's just randomly distribute or place on specific day if requested. 
-                    // Better approach: place homework on the day it was assigned or just list it.
                     let hwDayName = hwDate.getDay() === 0 ? "Sunday" : ALL_DAYS[hwDate.getDay() - 1];
-                    // If due tomorrow, put it on today.
                     let prevDayIndex = ALL_DAYS.indexOf(hwDayName) - 1;
                     if(prevDayIndex < 0) prevDayIndex = 6;
+                    
                     if(index === prevDayIndex) {
-                        items.push({ type: "Homework Task", title: `HW: ${hw.title} (${hw.subject})`, time: `${hw.duration}m`, bg: "bg-indigo-50 border-indigo-200", text: "text-indigo-900 font-bold", checkable: true });
+                        items.push({ type: "Homework Task", title: `📝 HW: ${hw.title} (${hw.subject})`, time: `${hw.duration}m allocated`, bg: "bg-indigo-50 border-indigo-200", text: "text-indigo-900 font-bold", checkable: true });
                     }
                 });
 
-                items.push({ type: "Evening", title: "Wind Down / Sleep", time: "Bedtime", bg: "bg-slate-100", text: "text-gray-500" });
+                // 6. Evening Rest & Bedtime Routines
+                items.push({ type: "Rest", title: "🛋️ Evening Rest / Free Time", time: `${profile.eveningRest || 60}m block`, bg: "bg-emerald-50", text: "text-emerald-800" });
+                items.push({ type: "Evening", title: "🌙 Wind Down & Sleep", time: `Bedtime: ${profile.bedtime || '22:00'}`, bg: "bg-slate-100", text: "text-gray-600" });
+                
                 weekData[day] = items;
             });
 
-            // Render Grid Body (find max items)
+            // Render Rows-and-Columns Grid Layout
             const gridBody = document.getElementById('grid-body');
             gridBody.innerHTML = '';
             let maxRows = Math.max(...Object.values(weekData).map(arr => arr.length));
@@ -488,13 +493,13 @@
                     td.className = "p-2 border-r align-top";
                     let item = weekData[day][r];
                     if(item) {
-                        let chk = item.checkable ? `<input type="checkbox" class="mr-1 mt-0.5 custom-checkbox">` : '';
+                        let chk = item.checkable ? `<input type="checkbox" class="mr-1 mt-0.5 custom-checkbox w-3.5 h-3.5 dynamic-accent">` : '';
                         td.innerHTML = `
-                            <div class="${item.bg} ${item.text} p-2 rounded text-xs flex items-start shadow-xs h-full">
+                            <div class="${item.bg} ${item.text} p-2 rounded text-[11px] flex items-start shadow-xs h-full border-l-2 border-slate-300">
                                 ${chk}
                                 <div>
-                                    <span class="block font-bold">${item.title}</span>
-                                    <span class="block text-[9px] opacity-80 mt-1">${item.time}</span>
+                                    <span class="block font-bold leading-tight">${item.title}</span>
+                                    <span class="block text-[9px] opacity-80 mt-1 font-mono">${item.time}</span>
                                 </div>
                             </div>`;
                     }
@@ -503,11 +508,10 @@
                 gridBody.appendChild(tr);
             }
 
-            // Also attach weekData to window for daily view
             window.currentWeekDataMatrix = weekData;
         }
 
-        // Daily View Logic
+        // Daily View Navigation
         function toggleTimetableView(view) {
             document.getElementById('tt-weekly').classList.toggle('hidden', view !== 'weekly');
             document.getElementById('tt-daily').classList.toggle('hidden', view !== 'daily');
@@ -530,20 +534,20 @@
             let html = "";
             let items = window.currentWeekDataMatrix[day] || [];
             items.forEach(item => {
-                let chk = item.checkable ? `<input type="checkbox" class="w-5 h-5 dynamic-accent rounded">` : `<span class="text-xl">📍</span>`;
+                let chk = item.checkable ? `<input type="checkbox" class="w-5 h-5 dynamic-accent rounded">` : `<span class="text-lg">📍</span>`;
                 html += `
                 <div class="flex items-center gap-4 p-3 border rounded-lg ${item.bg} ${item.text}">
                     ${chk}
                     <div>
                         <span class="font-bold text-base block">${item.title}</span>
-                        <span class="text-xs opacity-75">${item.time}</span>
+                        <span class="text-xs opacity-75 font-mono">${item.time}</span>
                     </div>
                 </div>`;
             });
             document.getElementById('daily-body').innerHTML = html;
         }
 
-        // Checklists & Links injection
+        // Checklists Rendering
         function renderChecklists(profile) {
             const container = document.getElementById('checklists-output-container');
             container.innerHTML = '';
@@ -577,7 +581,7 @@
             });
         }
 
-        // Homework Engine
+        // Homework System
         function openHomeworkModal() { document.getElementById('homework-modal').classList.remove('hidden'); }
         function closeHomeworkModal() { document.getElementById('homework-modal').classList.add('hidden'); }
         
@@ -590,10 +594,10 @@
                 duration: document.getElementById('hw-duration').value
             });
             appUserProfile.homework = homeworkEntriesList;
-            localStorage.setItem('acemygcses_v3', JSON.stringify(appUserProfile));
+            localStorage.setItem('acemygcses_v4', JSON.stringify(appUserProfile));
             
             renderHomework();
-            generateTimetableGrid(appUserProfile); // Rebuild timetable to inject new HW
+            generateTimetableGrid(appUserProfile); 
             updateDailyViewUI();
             closeHomeworkModal();
             e.target.reset();
@@ -623,16 +627,23 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             initAccordions();
-            const saved = localStorage.getItem('acemygcses_v3');
+            const saved = localStorage.getItem('acemygcses_v4');
             if(saved) {
                 appUserProfile = JSON.parse(saved);
                 if(appUserProfile.homework) homeworkEntriesList = appUserProfile.homework;
+                
+                // Fallback values for new config parameters if upgrading from v3
+                if(!appUserProfile.wakeTime) appUserProfile.wakeTime = "07:00";
+                if(!appUserProfile.morningReady) appUserProfile.morningReady = 45;
+                if(!appUserProfile.eveningRest) appUserProfile.eveningRest = 60;
+                if(!appUserProfile.bedtime) appUserProfile.bedtime = "22:00";
+
                 launchDashboard(appUserProfile);
             }
         });
 
         document.getElementById('btn-reset').addEventListener('click', () => {
-            localStorage.removeItem('acemygcses_v3');
+            localStorage.removeItem('acemygcses_v4');
             location.reload();
         });
     </script>
