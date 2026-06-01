@@ -6,23 +6,31 @@
     <title>AceMyGCSEs - Smart Revision Hub</title>
     
     <link id="dynamic-favicon" rel="icon" type="image/png" href="Blue White Modern Learning Logo.png">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght=0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
-
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     
     <style>
-        body {
-            font-family: 'Comic Neue', cursive, sans-serif;
-        }
+        body { font-family: 'Comic Neue', cursive, sans-serif; }
         :root { --theme-color: #b39ddb; }
         .dynamic-bg { background-color: var(--theme-color) !important; }
         .dynamic-text { color: var(--theme-color) !important; }
         .dynamic-border { border-color: var(--theme-color) !important; }
         .dynamic-accent { accent-color: var(--theme-color) !important; }
         .dynamic-ring:focus { --tw-ring-color: var(--theme-color) !important; }
+        
+        /* Print Styles */
+        @media print {
+            body { background: white !important; }
+            nav, #onboarding-section, #subject-focus-banner, .sidebar, .tab-btn, #btn-reset, #btn-print { display: none !important; }
+            #dashboard-section { display: block !important; }
+            .tab-view { display: none !important; }
+            #view-timetable { display: block !important; box-shadow: none !important; margin: 0 !important; padding: 0 !important; }
+            .print-grid { border-collapse: collapse; width: 100%; }
+            .print-grid th, .print-grid td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+            .no-print { display: none !important; }
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-gray-800 min-h-screen">
@@ -37,763 +45,63 @@
                 <span id="nav-username" class="font-bold block text-sm text-gray-900">Student Name</span>
                 <span id="nav-year" class="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">Year 11</span>
             </div>
-            <img id="nav-pfp" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23b39ddb'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z'/></svg>" class="w-10 h-10 rounded-full object-cover border border-gray-200" alt="Profile">
-            <div class="flex items-center space-x-1 bg-amber-50 border border-amber-200 px-2 py-1 rounded-lg">
-                <span>🔥</span>
-                <span id="streak-count" class="text-xs font-bold text-amber-700">1 Day Streak</span>
-            </div>
+            <img id="nav-pfp" src="" class="w-10 h-10 rounded-full object-cover border border-gray-200" alt="Profile">
         </div>
     </nav>
 
-    <main class="max-w-6xl mx-auto p-4 sm:p-6">
+    <main class="max-w-7xl mx-auto p-4 sm:p-6 flex flex-col gap-6 lg:flex-row">
         
-        <section id="onboarding-section" class="bg-white p-6 sm:p-8 rounded-xl shadow-md space-y-6 max-w-4xl mx-auto">
-            <div class="border-b pb-4 text-center">
-                <h2 class="text-3xl font-bold text-gray-900">Welcome to AceMyGCSEs</h2>
-                <p class="text-gray-500 text-sm mt-1">Let's create your highly customized smart revision dashboard.</p>
-            </div>
+        <div class="flex-1 space-y-6">
+            
+            <section id="onboarding-section" class="bg-white p-6 sm:p-8 rounded-xl shadow-md space-y-6">
+                <div class="border-b pb-4 text-center">
+                    <h2 class="text-3xl font-bold text-gray-900">Configure Your Hub</h2>
+                </div>
 
-            <form id="setup-form" class="space-y-6" onsubmit="handleFormSubmit(event)">
-                
-                <div class="bg-purple-50/50 p-5 rounded-xl border border-purple-100 space-y-4">
-                    <h3 class="font-bold text-lg text-purple-900">1. Personal Information & Custom Avatar</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+                <form id="setup-form" class="space-y-6" onsubmit="handleFormSubmit(event)">
+                    
+                    <div class="bg-purple-50/50 p-5 rounded-xl border border-purple-100 grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
                         <div class="md:col-span-1 flex flex-col items-center justify-center border-r border-purple-100 pr-2">
-                            <label id="pfp-container-label" for="input-pfp" class="cursor-pointer flex flex-col items-center group">
-                                <img id="setup-pfp-preview" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23b39ddb'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z'/></svg>" class="w-16 h-16 rounded-full object-cover border-2 dynamic-border bg-white shadow-sm group-hover:opacity-80 transition-opacity">
-                                <span class="text-[10px] text-purple-600 font-bold mt-2 text-center bg-purple-100 px-2 py-1 rounded">Upload PFP +</span>
+                            <label for="input-pfp" class="cursor-pointer flex flex-col items-center group">
+                                <img id="setup-pfp-preview" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23b39ddb'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z'/></svg>" class="w-16 h-16 rounded-full object-cover border-2 dynamic-border bg-white shadow-sm">
+                                <span class="text-[10px] text-purple-600 font-bold mt-2 text-center bg-purple-100 px-2 py-1 rounded">Upload PFP</span>
                             </label>
                             <input type="file" id="input-pfp" accept="image/*" class="hidden" onchange="processPFP(event)">
                         </div>
                         <div class="md:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">First Name</label>
-                                <input type="text" id="input-fname" required class="mt-1 w-full p-2 border rounded-md outline-none dynamic-ring focus:ring-2 bg-white">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Surname</label>
-                                <input type="text" id="input-sname" required class="mt-1 w-full p-2 border rounded-md outline-none dynamic-ring focus:ring-2 bg-white">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">School Year</label>
-                                <select id="input-year" class="mt-1 w-full p-2 border rounded-md bg-white font-medium">
-                                    <option value="7">Year 7</option>
-                                    <option value="8">Year 8</option>
-                                    <option value="9">Year 9</option>
-                                    <option value="10">Year 10</option>
-                                    <option value="11" selected>Year 11</option>
-                                    <option value="12">Year 12</option>
+                            <div><label class="block text-sm font-medium">First Name</label><input type="text" id="input-fname" required class="mt-1 w-full p-2 border rounded-md bg-white"></div>
+                            <div><label class="block text-sm font-medium">Surname</label><input type="text" id="input-sname" required class="mt-1 w-full p-2 border rounded-md bg-white"></div>
+                            <div><label class="block text-sm font-medium">School Year</label>
+                                <select id="input-year" class="mt-1 w-full p-2 border rounded-md bg-white">
+                                    <option value="7">Year 7</option><option value="8">Year 8</option><option value="9">Year 9</option>
+                                    <option value="10">Year 10</option><option value="11" selected>Year 11</option><option value="12">Year 12</option>
                                 </select>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="bg-blue-50/50 p-5 rounded-xl border border-blue-100 space-y-4">
-                    <h3 class="font-bold text-lg text-blue-900">2. School Hours & Bedtime Routine</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
-                        <div>
-                            <label class="block text-xs font-medium text-gray-700">School Starts</label>
-                            <input type="time" id="school-start" value="08:45" required class="mt-1 w-full p-2 border rounded-md bg-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium text-gray-700">School Ends</label>
-                            <input type="time" id="school-end" value="15:30" required class="mt-1 w-full p-2 border rounded-md bg-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium text-gray-700">Target Bedtime</label>
-                            <input type="time" id="sleep-bed" value="22:00" required class="mt-1 w-full p-2 border rounded-md bg-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium text-gray-700">Target Wake-up</label>
-                            <input type="time" id="sleep-wake" value="07:00" required class="mt-1 w-full p-2 border rounded-md bg-white">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-indigo-50/40 p-5 rounded-xl border border-indigo-100 space-y-3">
-                    <h3 class="font-bold text-lg text-indigo-900">3. Your Everyday School Lesson Schedule</h3>
-                    <p class="text-xs text-gray-500">Input the subjects you have on each school day (comma-separated). The engine prioritizes these to match retrieval slots!</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-5 gap-3">
-                        <div>
-                            <label class="block text-xs font-bold text-gray-600">Monday</label>
-                            <input type="text" id="sched-mon" value="Mathematics, Biology, French" placeholder="e.g. Maths, Biology" class="mt-1 w-full p-2 border rounded-md text-xs bg-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-600">Tuesday</label>
-                            <input type="text" id="sched-tue" value="English Literature, Chemistry, History" class="mt-1 w-full p-2 border rounded-md text-xs bg-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-600">Wednesday</label>
-                            <input type="text" id="sched-wed" value="Mathematics, Physics, Geography" class="mt-1 w-full p-2 border rounded-md text-xs bg-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-600">Thursday</label>
-                            <input type="text" id="sched-thu" value="English Language, Biology, French" class="mt-1 w-full p-2 border rounded-md text-xs bg-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-600">Friday</label>
-                            <input type="text" id="sched-fri" value="Chemistry, Physics, Computer Science" class="mt-1 w-full p-2 border rounded-md text-xs bg-white">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="bg-amber-50/50 p-4 rounded-xl border border-amber-100 space-y-2">
-                        <h4 class="font-bold text-sm text-amber-900">4. Morning Routine Buffer</h4>
-                        <label class="block text-xs text-gray-600">Minutes allocated to breakfast and getting ready:</label>
-                        <input type="number" id="free-morning" min="0" value="60" required class="w-full p-2 border rounded-md bg-white">
-                    </div>
-                    <div class="bg-amber-50/50 p-4 rounded-xl border border-amber-100 space-y-2">
-                        <h4 class="font-bold text-sm text-amber-900">5. Evening Rest & Dinner Buffer</h4>
-                        <label class="block text-xs text-gray-600">Minutes for evening winding down (placed right before bed):</label>
-                        <input type="number" id="free-evening" min="0" value="90" required class="w-full p-2 border rounded-md bg-white">
-                    </div>
-                </div>
-
-                <div class="bg-emerald-50/50 p-5 rounded-xl border border-emerald-100 space-y-4">
-                    <h3 class="font-bold text-lg text-emerald-900">6. Customizable Revision Windows</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
-                        <div>
-                            <label class="block text-xs font-medium text-gray-700">1 Slot Length (mins)</label>
-                            <input type="number" id="slot-length" min="15" max="180" value="45" required class="mt-1 w-full p-2 border rounded-md bg-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium text-gray-700">Break Length (mins)</label>
-                            <input type="number" id="break-length" min="0" max="60" value="10" required class="mt-1 w-full p-2 border rounded-md bg-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium text-gray-700">Weekday Slot Count</label>
-                            <input type="number" id="slots-weekday" min="0" max="10" value="3" required class="mt-1 w-full p-2 border rounded-md bg-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium text-gray-700">Weekend Slot Count</label>
-                            <input type="number" id="slots-weekend" min="0" max="12" value="5" required class="mt-1 w-full p-2 border rounded-md bg-white">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-slate-100 p-4 rounded-xl flex items-center justify-between">
-                    <div>
-                        <h4 class="font-bold text-sm text-gray-800">7. App Custom Accent Color</h4>
-                        <p class="text-xs text-gray-500">Pick a tone to transform your system dashboards instantly.</p>
-                    </div>
-                    <input type="color" id="input-theme" value="#b39ddb" class="w-12 h-12 p-1 border rounded-md cursor-pointer bg-white">
-                </div>
-
-                <div class="bg-rose-50/50 p-4 rounded-xl border border-rose-100 space-y-3">
-                    <div class="flex justify-between items-center">
-                        <h3 class="font-bold text-sm text-rose-900">8. Extra-Curricular Clubs / Busy Windows</h3>
-                        <button type="button" onclick="appendClubRowToSetup('', 'Weekday', '16:00', '17:00')" class="text-xs bg-rose-600 text-white px-3 py-1 rounded-md hover:bg-rose-700 font-bold cursor-pointer transition-colors">Add Club +</button>
-                    </div>
-                    <div id="clubs-list-input" class="space-y-2"></div>
-                </div>
-
-                <div class="space-y-3">
-                    <h3 class="font-bold text-lg text-gray-900">9. Select GCSE Tracks, Exam Boards & Weekly Priorities</h3>
-                    <p class="text-xs text-gray-500">Tick the tracks you study. Tick <strong>Prioritize</strong> to skew the scheduler toward those specific subjects.</p>
-                    <div class="space-y-3" id="subject-categories-accordion"></div>
-                </div>
-
-                <button type="submit" class="w-full dynamic-bg text-white font-bold py-3.5 px-4 rounded-xl hover:opacity-95 transition-opacity shadow-md text-lg cursor-pointer">
-                    Build My Custom Revision Hub
-                </button>
-            </form>
-        </section>
-
-        <section id="dashboard-section" class="hidden space-y-6">
-            
-            <div class="bg-white p-6 rounded-xl shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center border-l-8 dynamic-border gap-4">
-                <div class="flex items-center space-x-4">
-                    <img id="dash-pfp" src="" class="w-16 h-16 rounded-full object-cover border-2 dynamic-border shadow-sm hidden">
-                    <div>
-                        <h2 class="text-3xl font-bold text-gray-900">Let's revise, <span id="dash-greeting" class="dynamic-text">Student</span>!</h2>
-                        <p class="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded-md inline-block mt-1">📅 Today is: <span id="live-day-lbl">Monday</span></p>
-                    </div>
-                </div>
-                <button id="btn-reset" class="text-xs px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-lg transition-colors border cursor-pointer">⚙️ Edit Profile Settings</button>
-            </div>
-
-            <div id="subject-focus-banner" class="bg-amber-50 border-2 border-amber-300 rounded-xl p-4 flex items-center justify-between shadow-xs">
-                <div class="flex items-center space-x-3">
-                    <span class="text-2xl">🚨</span>
-                    <div>
-                        <h4 class="font-bold text-amber-900 text-sm sm:text-base">Target Subject Focus Priority</h4>
-                        <p class="text-xs text-amber-700">Your engine is currently locked on: <span id="focus-subject-display" class="font-bold underline">None selected</span>. Prioritize topics in specifications below.</p>
-                    </div>
-                </div>
-                <span class="text-xs bg-amber-200 text-amber-800 font-bold px-2 py-1 rounded-full hidden sm:inline-block">High Yield</span>
-            </div>
-
-            <div class="flex flex-wrap gap-2 border-b border-gray-200 pb-2">
-                <button onclick="switchTab('checklists')" class="tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-white shadow-sm border dynamic-border dynamic-text cursor-pointer" id="tab-checklists">📚 Syllabus Checklists</button>
-                <button onclick="switchTab('timetable')" class="tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-gray-100 hover:bg-white text-gray-600 cursor-pointer" id="tab-timetable">📅 Intelligent Timetable</button>
-                <button onclick="switchTab('homework')" class="tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-gray-100 hover:bg-white text-gray-600 cursor-pointer" id="tab-homework">📝 Homework & Deadlines</button>
-                <button onclick="switchTab('wellbeing')" class="tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-gray-100 hover:bg-white text-gray-600 cursor-pointer" id="tab-wellbeing">🌱 Wellbeing Hub</button>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                
-                <div class="lg:col-span-2 space-y-6">
-                    
-                    <div id="view-checklists" class="tab-view bg-white p-6 rounded-xl shadow-sm space-y-4">
-                        <div class="border-b pb-2">
-                            <h3 class="font-bold text-xl text-gray-800">Your Complete Curriculum Specifications</h3>
-                            <p class="text-xs text-gray-400">Track and check off every topic down to the core specification guidelines.</p>
-                        </div>
-                        <div id="checklists-output-container" class="space-y-6"></div>
-                    </div>
-
-                    <div id="view-timetable" class="tab-view hidden bg-white p-6 rounded-xl shadow-sm space-y-4">
-                        <div class="flex flex-wrap justify-between items-center border-b pb-2 gap-2">
-                            <div>
-                                <h3 class="font-bold text-xl text-gray-800">Your Auto-Generated Schedule</h3>
-                                <p class="text-xs text-gray-500">Driven by your current school day curriculum priorities.</p>
-                            </div>
-                            <div class="flex bg-gray-100 p-1 rounded-lg space-x-1 text-xs">
-                                <button onclick="toggleTimetableDay('weekday')" id="btn-sched-weekday" class="px-3 py-1.5 font-bold rounded-md bg-white text-gray-800 shadow-sm cursor-pointer">Weekdays View</button>
-                                <button onclick="toggleTimetableDay('weekend')" id="btn-sched-weekend" class="px-3 py-1.5 font-bold rounded-md text-gray-500 hover:text-gray-800 cursor-pointer">Weekends View</button>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-blue-50/50 p-5 rounded-xl border border-blue-100 space-y-3">
+                            <h3 class="font-bold text-sm text-blue-900">School & Sleep Hours</h3>
+                            <div class="grid grid-cols-2 gap-2 text-xs">
+                                <div><label>School Starts</label><input type="time" id="school-start" value="08:45" class="w-full p-1.5 border rounded-md bg-white"></div>
+                                <div><label>School Ends</label><input type="time" id="school-end" value="15:30" class="w-full p-1.5 border rounded-md bg-white"></div>
+                                <div><label>Bedtime</label><input type="time" id="sleep-bed" value="22:00" class="w-full p-1.5 border rounded-md bg-white"></div>
+                                <div><label>Wake-up</label><input type="time" id="sleep-wake" value="07:00" class="w-full p-1.5 border rounded-md bg-white"></div>
                             </div>
                         </div>
-
-                        <div id="timetable-context-banner" class="p-3 rounded-lg text-xs font-medium bg-indigo-50 border border-indigo-200 text-indigo-900">
-                            <strong>💡 AI Context Allocation:</strong> Today's school lessons include <span id="lbl-context-subjects" class="font-bold">None</span>. The generator boosted retrieval options for these targets!
-                        </div>
-
-                        <div id="timetable-weekday-container" class="space-y-2 mt-4"></div>
-                        <div id="timetable-weekend-container" class="space-y-2 mt-4 hidden"></div>
-                    </div>
-
-                    <div id="view-homework" class="tab-view hidden bg-white p-6 rounded-xl shadow-sm space-y-4">
-                        <div class="flex justify-between items-center border-b pb-2">
-                            <h3 class="font-bold text-xl text-gray-800">Homework Planner</h3>
-                            <button onclick="openHomeworkModal()" class="dynamic-bg text-white text-xs font-bold px-3 py-1.5 rounded-lg hover:opacity-90 cursor-pointer">Log Assignment +</button>
-                        </div>
-                        <div id="homework-list-output" class="space-y-3"></div>
-                    </div>
-
-                    <div id="view-wellbeing" class="tab-view hidden bg-white p-6 rounded-xl shadow-sm space-y-6">
-                        <h3 class="font-bold text-xl text-gray-800 border-b pb-2">🌱 Wellbeing Guardrails</h3>
-                        <div id="sleep-analysis-card" class="p-4 rounded-xl border flex items-start space-x-3">
-                            <div class="text-2xl" id="sleep-status-icon">💡</div>
-                            <div>
-                                <h4 class="font-bold text-base" id="sleep-status-title">Sleep Metric Analytics</h4>
-                                <p class="text-xs text-gray-600 mt-0.5" id="sleep-status-desc">Evaluating baseline circadian rhythm configurations.</p>
+                        <div class="bg-emerald-50/50 p-5 rounded-xl border border-emerald-100 space-y-3">
+                            <h3 class="font-bold text-sm text-emerald-900">Revision Slots</h3>
+                            <div class="grid grid-cols-2 gap-2 text-xs">
+                                <div><label>Slot Mins</label><input type="number" id="slot-length" value="45" class="w-full p-1.5 border rounded-md bg-white"></div>
+                                <div><label>Break Mins</label><input type="number" id="break-length" value="10" class="w-full p-1.5 border rounded-md bg-white"></div>
+                                <div><label>Weekday Count</label><input type="number" id="slots-weekday" value="3" class="w-full p-1.5 border rounded-md bg-white"></div>
+                                <div><label>Weekend Count</label><input type="number" id="slots-weekend" value="5" class="w-full p-1.5 border rounded-md bg-white"></div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="space-y-6">
-                    <div class="bg-gradient-to-br from-slate-900 to-indigo-950 text-white p-5 rounded-xl shadow-md space-y-3">
-                        <h3 class="font-bold text-sm text-amber-300 flex items-center gap-1.5 uppercase tracking-wider">
-                            <span>📝 Direct Past Exam Papers</span>
-                        </h3>
-                        <p class="text-[11px] text-slate-300">Access verified official board repositories to instantly find past papers, mark schemes, and examiner feedback logs:</p>
-                        <div class="grid grid-cols-1 gap-2 text-xs pt-1">
-                            <a href="https://www.aqa.org.uk/find-past-papers-and-mark-schemes" target="_blank" class="p-2.5 bg-white/10 rounded-lg hover:bg-white/20 transition-colors text-left font-bold flex justify-between items-center">
-                                <span>AQA Official Finders Portal</span> <span class="text-amber-300">↗</span>
-                            </a>
-                            <a href="https://qualifications.pearson.com/en/support/support-topics/exams/past-papers.html" target="_blank" class="p-2.5 bg-white/10 rounded-lg hover:bg-white/20 transition-colors text-left font-bold flex justify-between items-center">
-                                <span>Pearson Edexcel Repositories</span> <span class="text-amber-300">↗</span>
-                            </a>
-                            <a href="https://www.ocr.org.uk/qualifications/past-paper-finder/" target="_blank" class="p-2.5 bg-white/10 rounded-lg hover:bg-white/20 transition-colors text-left font-bold flex justify-between items-center">
-                                <span>OCR Past Paper Finder</span> <span class="text-amber-300">↗</span>
-                            </a>
-                            <a href="https://www.wjec.co.uk/qualifications/past-papers/" target="_blank" class="p-2.5 bg-white/10 rounded-lg hover:bg-white/20 transition-colors text-left font-bold flex justify-between items-center">
-                                <span>WJEC / Eduqas Official Search</span> <span class="text-amber-300">↗</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
-                        <h3 class="font-bold text-base mb-3 text-gray-800 border-b pb-2">🔗 Comprehensive Revision Links</h3>
-                        <div class="space-y-2">
-                            <a href="https://www.bbc.co.uk/bitesize" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 text-xs font-bold text-gray-700 flex justify-between items-center transition-colors">
-                                <span>BBC Bitesize GCSE Portal</span> <span class="text-gray-400">↗</span>
-                            </a>
-                            <a href="https://www.senecalearning.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 text-xs font-bold text-gray-700 flex justify-between items-center transition-colors">
-                                <span>Seneca Smart Learning</span> <span class="text-gray-400">↗</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-    </main>
-
-    <div id="homework-modal" class="hidden fixed inset-0 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-xl shadow-xl max-w-md w-full p-6 space-y-4">
-            <h3 class="text-lg font-bold text-gray-900 border-b pb-2">Log New Homework Assignment</h3>
-            <form id="homework-form" class="space-y-3" onsubmit="saveHomework(event)">
-                <div>
-                    <label class="block text-xs font-bold text-gray-700">Task Title / Description</label>
-                    <input type="text" id="hw-title" required placeholder="e.g. Past Paper Practice" class="mt-1 w-full p-2 border rounded-md bg-white">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-700">Subject Category</label>
-                    <select id="hw-subject" class="mt-1 w-full p-2 border rounded-md bg-white text-xs"></select>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-700">Due Deadline Date</label>
-                    <input type="date" id="hw-date" required class="mt-1 w-full p-2 border rounded-md bg-white text-xs">
-                </div>
-                <div class="flex justify-end space-x-2 pt-2">
-                    <button type="button" onclick="closeHomeworkModal()" class="px-4 py-2 bg-gray-100 text-gray-700 text-xs font-bold rounded-md border cursor-pointer">Cancel</button>
-                    <button type="submit" class="dynamic-bg text-white px-4 py-2 text-xs font-bold rounded-md cursor-pointer">Save Task</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <script>
-        const subjectDatabaseList = {
-            "Triple Science Track (Individual)": ["Biology", "Chemistry", "Physics"],
-            "Double / Combined Science Track": ["Combined Science - Biology", "Combined Science - Chemistry", "Combined Science - Physics"],
-            "Core Compulsory Subjects": ["Mathematics", "English Language", "English Literature"],
-            "Humanities & Options": ["History", "Geography", "Computer Science", "French", "Spanish"]
-        };
-
-        const boardRegistryOptions = ["AQA", "Edexcel", "OCR", "WJEC", "Eduqas"];
-
-        // FULL SPECIFICATION COMPREHENSIVE DATA PRE-LOADED
-        const globalSyllabusDataStore = {
-            "Biology": [
-                { mainTopic: "Cell Biology", subtopics: [{ title: "Cell Structure", points: ["Eukaryotes and prokaryotes", "Functions of nucleus, cytoplasm, cell membrane", "Specialized cell adaptations"] }, { title: "Cell Division", points: ["Chromosomes and mitosis cycles", "Stem cell applications and ethical concerns"] }] },
-                { mainTopic: "Organization", subtopics: [{ title: "Human Digestive System", points: ["Enzyme lock-and-key theories", "Factors altering rates (pH, temperature)"] }] }
-            ],
-            "Chemistry": [
-                { mainTopic: "Atomic Structure", subtopics: [{ title: "The Periodic Table", points: ["History of Mendeleev arrangement", "Group 1, Group 7 element trends"] }] }
-            ],
-            "Physics": [
-                { mainTopic: "Energy Matrices", subtopics: [{ title: "Conservation of Energy", points: ["Kinetic and Potential store metrics", "Efficiency calculation equations"] }] }
-            ],
-            "Mathematics": [
-                { mainTopic: "Number & Algebra", subtopics: [{ title: "Quadratics", points: ["Factoring equations", "Applying the quadratic formula safely"] }] }
-            ]
-        };
-        // Map common fallbacks
-        globalSyllabusDataStore["Combined Science - Biology"] = globalSyllabusDataStore["Biology"];
-        globalSyllabusDataStore["Combined Science - Chemistry"] = globalSyllabusDataStore["Chemistry"];
-        globalSyllabusDataStore["Combined Science - Physics"] = globalSyllabusDataStore["Physics"];
-        globalSyllabusDataStore["English Language"] = [{ mainTopic: "Paper 1 Analysis", subtopics: [{ title: "Creative Prose Reading", points: ["Identifying structural layout methods", "Language analysis tracking"] }] }];
-        globalSyllabusDataStore["English Literature"] = [{ mainTopic: "Shakespeare text", subtopics: [{ title: "Macbeth Themes", points: ["Ambition, guilt, and character arcs"] }] }];
-
-        let appUserProfile = null;
-        let homeworkEntriesList = [];
-        let globalBase64PFP = "";
-
-        function makeSafeId(str) { return 'sub-' + str.replace(/[^a-zA-Z0-9]/g, '-'); }
-
-        function initAccordions() {
-            const accordionMenuElement = document.getElementById('subject-categories-accordion');
-            if(!accordionMenuElement) return;
-
-            let htmlBuilder = "";
-            for (const [categoryName, subjectArray] of Object.entries(subjectDatabaseList)) {
-                let layoutBlockHTML = `<details class="bg-white border-2 rounded-xl p-2 group cursor-pointer transition-all">
-                    <summary class="font-bold text-gray-800 p-2 select-none flex justify-between items-center group-open:text-purple-600">
-                        <span>${categoryName}</span><span class="text-xs text-gray-400 group-open:rotate-180 transition-transform">▼</span>
-                    </summary>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3 p-2 cursor-default border-t pt-4">`;
-
-                subjectArray.forEach(subjectName => {
-                    let safeIdTag = makeSafeId(subjectName);
-                    let selectionDropdownHTML = boardRegistryOptions.map(board => `<option value="${board}">${board}</option>`).join('');
-                    
-                    layoutBlockHTML += `
-                    <div class="flex flex-col bg-slate-50 p-3 border rounded-xl gap-2">
-                        <div class="flex items-center justify-between">
-                            <label class="flex items-center space-x-2 cursor-pointer select-none">
-                                <input type="checkbox" value="${subjectName}" id="check-box-${safeIdTag}" class="subject-checkbox w-5 h-5 dynamic-accent rounded" onchange="toggleSubjectMenu('${safeIdTag}', this.checked)">
-                                <span class="text-sm font-bold text-gray-700">${subjectName}</span>
-                            </label>
-                        </div>
-                        <div id="wrapper-${safeIdTag}" class="hidden space-y-2">
-                            <div class="flex gap-2">
-                                <select id="board-${safeIdTag}" class="w-1/2 text-xs border rounded-lg p-1.5 bg-white outline-none">
-                                    <option value="" disabled selected>Exam Board</option>
-                                    ${selectionDropdownHTML}
-                                </select>
-                                <input type="number" id="target-${safeIdTag}" min="1" max="9" value="7" placeholder="Target" class="w-1/2 text-xs border rounded-lg p-1.5 bg-white text-center">
-                            </div>
-                            <label class="flex items-center space-x-1.5 text-xs text-purple-700 font-bold bg-purple-50 p-1.5 rounded-md cursor-pointer select-none">
-                                <input type="checkbox" id="priority-${safeIdTag}" class="priority-checkbox dynamic-accent">
-                                <span>⭐ Prioritize / Focus on this subject</span>
-                            </label>
-                        </div>
-                    </div>`;
-                });
-                layoutBlockHTML += `</div></details>`;
-                htmlBuilder += layoutBlockHTML;
-            }
-            accordionMenuElement.innerHTML = htmlBuilder;
-        }
-
-        function toggleSubjectMenu(safeIdTag, isChecked) {
-            const menuWrapper = document.getElementById(`wrapper-${safeIdTag}`);
-            const boardMenu = document.getElementById(`board-${safeIdTag}`);
-            if (isChecked) {
-                menuWrapper.classList.remove('hidden');
-                if(boardMenu) boardMenu.required = true;
-            } else {
-                menuWrapper.classList.add('hidden');
-                if(boardMenu) boardMenu.required = false;
-                const prio = document.getElementById(`priority-${safeIdTag}`);
-                if(prio) prio.checked = false;
-            }
-        }
-
-        // UPDATES BOTH PREVIEW AND FAVICON ON THE FLY
-        function processPFP(event) {
-            const file = event.target.files[0];
-            if(file) {
-                const reader = new FileReader();
-                reader.onload = function(evt) {
-                    globalBase64PFP = evt.target.result;
-                    document.getElementById('setup-pfp-preview').src = globalBase64PFP;
-                    document.getElementById('dynamic-favicon').setAttribute('href', globalBase64PFP);
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        function appendClubRowToSetup(name, type, start, end) {
-            const rowID = 'club-' + Date.now() + Math.random().toString(36).substr(2, 5);
-            const formContainer = document.getElementById('clubs-list-input');
-            const clubInputRow = document.createElement('div');
-            clubInputRow.id = rowID;
-            clubInputRow.className = "flex flex-wrap items-center gap-2 bg-white p-2 border rounded-lg shadow-xs";
-            clubInputRow.innerHTML = `
-                <input type="text" placeholder="Club Name" value="${name}" class="text-xs p-1.5 border rounded-md flex-1 min-w-[120px]" required>
-                <select class="text-xs p-1.5 border rounded-md bg-white">
-                    <option value="Weekday" ${type==='Weekday'?'selected':''}>Weekday</option>
-                    <option value="Weekend" ${type==='Weekend'?'selected':''}>Weekend</option>
-                </select>
-                <div class="flex items-center space-x-1">
-                    <span class="text-[10px] text-gray-400">From</span>
-                    <input type="time" value="${start}" class="text-xs p-1 border rounded-md">
-                    <span class="text-[10px] text-gray-400">To</span>
-                    <input type="time" value="${end}" class="text-xs p-1 border rounded-md">
-                </div>
-                <button type="button" onclick="document.getElementById('${rowID}').remove()" class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-md hover:bg-red-200 font-bold cursor-pointer">✕</button>
-            `;
-            formContainer.appendChild(clubInputRow);
-        }
-
-        // SAFE SUBMIT ENGINE - ELIMINATED RESTARTS
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            try {
-                const chosenThemeColor = document.getElementById('input-theme').value;
-                const collectedSubjects = [];
-
-                document.querySelectorAll('.subject-checkbox:checked').forEach(cb => {
-                    const safeIdTag = makeSafeId(cb.value);
-                    const selectedBoard = document.getElementById(`board-${safeIdTag}`).value || "AQA";
-                    const setTarget = document.getElementById(`target-${safeIdTag}`).value || "9";
-                    const isPrioritised = document.getElementById(`priority-${safeIdTag}`).checked;
-                    collectedSubjects.push({ name: cb.value, board: selectedBoard, target: setTarget, priority: isPrioritised });
-                });
-
-                if (collectedSubjects.length === 0) {
-                    alert("Please select at least one GCSE track item to unlock your curriculum dashboard.");
-                    return;
-                }
-
-                const collectedClubs = [];
-                document.getElementById('clubs-list-input').querySelectorAll('div').forEach(row => {
-                    const inputs = row.querySelectorAll('input, select');
-                    if(inputs.length >= 4) {
-                        collectedClubs.push({ name: inputs[0].value, type: inputs[1].value, start: inputs[2].value, end: inputs[3].value });
-                    }
-                });
-
-                appUserProfile = {
-                    firstName: document.getElementById('input-fname').value,
-                    surname: document.getElementById('input-sname').value,
-                    year: document.getElementById('input-year').value,
-                    schoolStart: document.getElementById('school-start').value,
-                    schoolEnd: document.getElementById('school-end').value,
-                    sleepBed: document.getElementById('sleep-bed').value,
-                    sleepWake: document.getElementById('sleep-wake').value,
-                    freeMorning: document.getElementById('free-morning').value,
-                    freeEvening: document.getElementById('free-evening').value,
-                    slotLength: document.getElementById('slot-length').value,
-                    breakLength: document.getElementById('break-length').value,
-                    slotsWeekday: document.getElementById('slots-weekday').value,
-                    slotsWeekend: document.getElementById('slots-weekend').value,
-                    theme: chosenThemeColor,
-                    subjects: collectedSubjects,
-                    clubs: collectedClubs,
-                    pfp: globalBase64PFP,
-                    schoolLessons: {
-                        Monday: document.getElementById('sched-mon').value,
-                        Tuesday: document.getElementById('sched-tue').value,
-                        Wednesday: document.getElementById('sched-wed').value,
-                        Thursday: document.getElementById('sched-thu').value,
-                        Friday: document.getElementById('sched-fri').value
-                    }
-                };
-
-                localStorage.setItem('acemygcses_profile_v2', JSON.stringify(appUserProfile));
-                launchDashboardEnvironment(appUserProfile);
-            } catch(error) {
-                console.error("Submission Crash Blocked:", error);
-            }
-        }
-
-        function loadExistingProfileIntoForm(profile) {
-            if(!profile) return;
-            document.getElementById('input-fname').value = profile.firstName || "";
-            document.getElementById('input-sname').value = profile.surname || "";
-            document.getElementById('input-year').value = profile.year || "11";
-            document.getElementById('school-start').value = profile.schoolStart || "08:45";
-            document.getElementById('school-end').value = profile.schoolEnd || "15:30";
-            document.getElementById('input-theme').value = profile.theme || "#b39ddb";
-            
-            if(profile.pfp) {
-                globalBase64PFP = profile.pfp;
-                document.getElementById('setup-pfp-preview').src = profile.pfp;
-                document.getElementById('dynamic-favicon').setAttribute('href', profile.pfp);
-            }
-
-            document.getElementById('clubs-list-input').innerHTML = "";
-            if(profile.clubs) {
-                profile.clubs.forEach(c => appendClubRowToSetup(c.name, c.type, c.start, c.end));
-            }
-
-            document.querySelectorAll('.subject-checkbox').forEach(cb => {
-                cb.checked = false;
-                toggleSubjectMenu(makeSafeId(cb.value), false);
-            });
-
-            if(profile.subjects) {
-                profile.subjects.forEach(s => {
-                    const safeIdTag = makeSafeId(s.name);
-                    const cb = document.getElementById(`check-box-${safeIdTag}`);
-                    if(cb) {
-                        cb.checked = true;
-                        toggleSubjectMenu(safeIdTag, true);
-                        document.getElementById(`board-${safeIdTag}`).value = s.board;
-                        document.getElementById(`target-${safeIdTag}`).value = s.target;
-                        document.getElementById(`priority-${safeIdTag}`).checked = s.priority || false;
-                    }
-                });
-            }
-        }
-
-        function launchDashboardEnvironment(profile) {
-            document.documentElement.style.setProperty('--theme-color', profile.theme);
-            document.getElementById('nav-username').innerText = `${profile.firstName} ${profile.surname}`;
-            document.getElementById('nav-year').innerText = `Year ${profile.year}`;
-            document.getElementById('dash-greeting').innerText = profile.firstName;
-
-            if(profile.pfp) {
-                document.getElementById('nav-pfp').src = profile.pfp;
-                document.getElementById('dash-pfp').src = profile.pfp;
-                document.getElementById('dash-pfp').classList.remove('hidden');
-                document.getElementById('dynamic-favicon').setAttribute('href', profile.pfp);
-            }
-
-            const hwMenu = document.getElementById('hw-subject');
-            hwMenu.innerHTML = '';
-            profile.subjects.forEach(sub => { hwMenu.innerHTML += `<option value="${sub.name}">${sub.name}</option>`; });
-
-            // FOCUS SUBJECT CALLOUT DISPLAY ENGINE
-            const prioritized = profile.subjects.find(s => s.priority);
-            const primaryFocusSubject = prioritized ? prioritized.name : (profile.subjects[0] ? profile.subjects[0].name : "General");
-            document.getElementById('focus-subject-display').innerText = primaryFocusSubject;
-
-            const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-            const currentLiveDay = dayNames[new Date().getDay()];
-            document.getElementById('live-day-lbl').innerText = currentLiveDay;
-
-            generateSmartTimetableAI(profile, currentLiveDay, primaryFocusSubject);
-            renderSpecificationChecklists(profile);
-
-            document.getElementById('onboarding-section').classList.add('hidden');
-            document.getElementById('dashboard-section').classList.remove('hidden');
-            document.getElementById('user-nav-profile').classList.remove('hidden');
-            window.scrollTo(0,0);
-        }
-
-        function generateSmartTimetableAI(profile, activeDayString, focusSubject) {
-            let todayLessons = [];
-            if(profile.schoolLessons && profile.schoolLessons[activeDayString]) {
-                todayLessons = profile.schoolLessons[activeDayString].split(',').map(s => s.trim().toLowerCase());
-            }
-
-            document.getElementById('lbl-context-subjects').innerText = todayLessons.length > 0 ? profile.schoolLessons[activeDayString] : "None logged";
-
-            let pool = [];
-            profile.subjects.forEach(s => {
-                let weight = s.priority ? 4 : 1;
-                if(todayLessons.includes(s.name.toLowerCase())) weight += 2;
-                for(let i=0; i<weight; i++) pool.push(s.name);
-            });
-
-            const wkBox = document.getElementById('timetable-weekday-container');
-            const wndBox = document.getElementById('timetable-weekend-container');
-
-            // Generate Weekdays view
-            let wkHtml = `
-                <div class="p-2.5 bg-slate-100 rounded-lg text-xs font-bold text-gray-600 flex justify-between"><span>🌅 Morning Buffer</span><span>${profile.freeMorning} mins</span></div>
-                <div class="p-2.5 bg-purple-50 border border-purple-200 text-purple-800 rounded-lg text-xs font-bold flex justify-between"><span>🏫 Compulsory School Classes</span><span>${profile.schoolStart} - ${profile.schoolEnd}</span></div>
-            `;
-            profile.clubs.filter(c => c.type === "Weekday").forEach(club => {
-                wkHtml += `<div class="p-2.5 bg-rose-50 border border-rose-200 text-rose-800 rounded-lg text-xs font-bold flex justify-between"><span>🚫 Intercept Activity: ${club.name}</span><span>${club.start} - ${club.end}</span></div>`;
-            });
-
-            for(let i=1; i<=profile.slotsWeekday; i++) {
-                let subject = pool[i % pool.length] || focusSubject;
-                let focusTag = (subject === focusSubject) ? `<span class="bg-amber-100 text-amber-800 text-[9px] font-bold px-1.5 py-0.5 rounded-sm">🚨 FOCUS TARGET</span>` : '';
-                wkHtml += `
-                    <div class="p-3 border-2 dynamic-border bg-white rounded-xl shadow-xs flex justify-between items-center">
-                        <div>
-                            <div class="flex items-center space-x-2">
-                                <span class="text-[10px] font-bold text-gray-400 uppercase">Session Slot ${i} (${profile.slotLength} Mins)</span>
-                                ${focusTag}
-                            </div>
-                            <span class="text-sm font-bold text-gray-800">🎯 Active Focus: <span class="dynamic-text">${subject}</span></span>
-                        </div>
-                    </div>`;
-            }
-            wkBox.innerHTML = wkHtml;
-
-            // Generate Weekends view
-            let wndHtml = `
-                <div class="p-2.5 bg-slate-100 rounded-lg text-xs font-bold text-gray-600 flex justify-between"><span>🌅 Weekend Awakening Routine</span><span>9:00 AM</span></div>
-            `;
-            profile.clubs.filter(c => c.type === "Weekend").forEach(club => {
-                wndHtml += `<div class="p-2.5 bg-rose-50 border border-rose-200 text-rose-800 rounded-lg text-xs font-bold flex justify-between"><span>🚫 Weekend Club: ${club.name}</span><span>${club.start} - ${club.end}</span></div>`;
-            });
-            for(let i=1; i<=profile.slotsWeekend; i++) {
-                let subject = pool[(i + 2) % pool.length] || focusSubject;
-                wndHtml += `
-                    <div class="p-3 border border-dashed rounded-xl flex justify-between items-center bg-slate-50/50">
-                        <div>
-                            <span class="text-[10px] font-bold block text-gray-400 uppercase">Weekend Slot ${i}</span>
-                            <span class="text-sm font-bold text-gray-700">🎯 Focus Study: <span class="text-indigo-600">${subject}</span></span>
-                        </div>
-                    </div>`;
-            }
-            wndBox.innerHTML = wndHtml;
-        }
-
-        function renderSpecificationChecklists(profile) {
-            const container = document.getElementById('checklists-output-container');
-            container.innerHTML = '';
-
-            profile.subjects.forEach(sub => {
-                const data = globalSyllabusDataStore[sub.name] || [
-                    { mainTopic: "General Core Units", subtopics: [{ title: "Foundational Knowledge", points: ["Review standard exam board guidelines and past summary sheets."] }] }
-                ];
-
-                let subjectCard = `<div class="border rounded-xl p-4 bg-white shadow-xs space-y-3">
-                    <div class="flex justify-between items-center bg-slate-50 p-2 rounded-lg border">
-                        <div>
-                            <h4 class="font-bold text-base text-gray-900">${sub.name}</h4>
-                            <span class="text-[10px] bg-purple-100 text-purple-700 font-bold px-1.5 py-0.5 rounded">${sub.board} Board</span>
-                        </div>
-                        <span class="text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 px-2.5 py-1 rounded-full">Target Grade: ${sub.target}</span>
-                    </div>`;
-
-                data.forEach(topic => {
-                    subjectCard += `<div class="space-y-2 mt-2">
-                        <h5 class="text-xs font-bold text-gray-500 uppercase tracking-wide">● ${topic.mainTopic}</h5>`;
-                    topic.subtopics.forEach(subt => {
-                        subjectCard += `<div class="pl-3 space-y-1">
-                            <p class="text-xs font-bold text-gray-700 underline">${subt.title}</p>`;
-                        subt.points.forEach(pt => {
-                            subjectCard += `
-                            <label class="flex items-start space-x-2 text-xs text-gray-600 cursor-pointer p-1 rounded hover:bg-slate-50 select-none">
-                                <input type="checkbox" class="mt-0.5 dynamic-accent rounded w-3.5 h-3.5">
-                                <span>${pt}</span>
-                            </label>`;
-                        });
-                        subjectCard += `</div>`;
-                    });
-                    subjectCard += `</div>`;
-                });
-
-                subjectCard += `</div>`;
-                container.innerHTML += subjectCard;
-            });
-        }
-
-        function toggleTimetableDay(type) {
-            const btnWk = document.getElementById('btn-sched-weekday');
-            const btnWnd = document.getElementById('btn-sched-weekend');
-            const cWk = document.getElementById('timetable-weekday-container');
-            const cWnd = document.getElementById('timetable-weekend-container');
-
-            if(type === 'weekday') {
-                cWk.classList.remove('hidden'); cWnd.classList.add('hidden');
-                btnWk.className = "px-3 py-1.5 font-bold rounded-md bg-white text-gray-800 shadow-sm cursor-pointer";
-                btnWnd.className = "px-3 py-1.5 font-bold rounded-md text-gray-500 hover:text-gray-800 cursor-pointer";
-            } else {
-                cWk.classList.add('hidden'); cWnd.classList.remove('hidden');
-                btnWk.className = "px-3 py-1.5 font-bold rounded-md text-gray-500 hover:text-gray-800 cursor-pointer";
-                btnWnd.className = "px-3 py-1.5 font-bold rounded-md bg-white text-gray-800 shadow-sm cursor-pointer";
-            }
-        }
-
-        function openHomeworkModal() { document.getElementById('homework-modal').classList.remove('hidden'); }
-        function closeHomeworkModal() { document.getElementById('homework-modal').classList.add('hidden'); }
-
-        function saveHomework(e) {
-            e.preventDefault();
-            homeworkEntriesList.push({
-                title: document.getElementById('hw-title').value,
-                subject: document.getElementById('hw-subject').value,
-                date: document.getElementById('hw-date').value
-            });
-            renderHomeworkItems();
-            closeHomeworkModal();
-            e.target.reset();
-        }
-
-        function renderHomeworkItems() {
-            const out = document.getElementById('homework-list-output');
-            out.innerHTML = homeworkEntriesList.length === 0 ? `<p class="text-xs text-gray-400">No active assignments logged.</p>` : '';
-            homeworkEntriesList.forEach(t => {
-                out.innerHTML += `
-                    <div class="flex items-center justify-between p-3 border rounded-xl bg-slate-50 shadow-xs">
-                        <div>
-                            <span class="text-xs font-bold text-gray-800 block">${t.title}</span>
-                            <span class="text-[10px] font-bold text-purple-600 bg-purple-50 px-1.5 py-0.5 rounded-md mt-1 inline-block">${t.subject}</span>
-                        </div>
-                        <span class="text-[10px] font-bold text-rose-600 bg-rose-50 px-2 py-1 rounded">Due: ${t.date}</span>
-                    </div>`;
-            });
-        }
-
-        function switchTab(targetTabID) {
-            document.querySelectorAll('.tab-view').forEach(view => view.classList.add('hidden'));
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.className = "tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-gray-100 hover:bg-white text-gray-600 cursor-pointer";
-            });
-            document.getElementById(`view-${targetTabID}`).classList.remove('hidden');
-            document.getElementById(`tab-${targetTabID}`).className = "tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-white shadow-sm border dynamic-border dynamic-text cursor-pointer";
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            initAccordions();
-            const cachedProfile = localStorage.getItem('acemygcses_profile_v2');
-            if (cachedProfile) { 
-                appUserProfile = JSON.parse(cachedProfile);
-                launchDashboardEnvironment(appUserProfile); 
-            }
-        });
-
-        document.getElementById('btn-reset').addEventListener('click', () => {
-            loadExistingProfileIntoForm(appUserProfile);
-            document.getElementById('onboarding-section').classList.remove('hidden');
-            document.getElementById('dashboard-section').classList.add('hidden');
-            window.scrollTo(0,0);
-        });
-    </script>
-</body>
-</html>
+                    <div class="bg-rose-50/50 p-4 rounded-xl border border-rose-100 space-y-3">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-bold text-sm text-rose-900">Extra-Curricular Clubs (Specific Days)</h3>
+                            <button type="button" onclick="appendClubRowToSetup('', 'Monday', '1
