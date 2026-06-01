@@ -3,302 +3,289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AceMyGCSEs!!!</title>
+    <title>AceMyGCSEs</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="icon" type="image/png" href="logo.png">
+
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
     <style>
-        :root { --theme-color: #4f46e5; }
-        .theme-bg { background-color: var(--theme-color); }
-        .theme-text { color: var(--theme-color); }
-        .theme-border { border-color: var(--theme-color); }
+        /* Apply Comic Neue globally */
+        body {
+            font-family: 'Comic Neue', cursive, sans-serif;
+        }
         
-        /* Custom Checkbox Styling */
+        /* Lilac Purple Default Theme Variable */
+        :root { 
+            --theme-color: #b39ddb; 
+        }
+        
+        /* Dynamic utility rules to bind styling to the user's chosen custom theme color */
+        .dynamic-bg { background-color: var(--theme-color) !important; }
+        .dynamic-text { color: var(--theme-color) !important; }
+        .dynamic-border { border-color: var(--theme-color) !important; }
+        .dynamic-accent { accent-color: var(--theme-color) !important; }
+        .dynamic-ring:focus { --tw-ring-color: var(--theme-color) !important; }
+        
         input[type="checkbox"].topic-check {
             width: 14px;
             height: 14px;
-            accent-color: var(--theme-color);
             cursor: pointer;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-gray-800 font-sans min-h-screen">
+<body class="bg-slate-50 text-gray-800 min-h-screen">
 
-    <nav class="bg-white shadow-sm p-4 flex justify-between items-center">
-        <h1 class="text-2xl font-bold theme-text">🎓 AceMyGCSEs!!!</h1>
-        <div id="user-nav-profile" class="hidden flex items-center space-x-3">
-            <span id="nav-username" class="font-medium">Student</span>
+    <nav class="bg-white shadow-sm p-4 flex justify-between items-center border-b-2 dynamic-border">
+        <div class="flex items-center space-x-3">
+            <img src="logo.png" alt="AceMyGCSEs Logo" class="w-10 h-10 object-contain rounded-lg error-fallback">
+            <h1 class="text-2xl font-bold dynamic-text">AceMyGCSEs</h1>
+        </div>
+        <div id="user-nav-profile" class="hidden flex items-center space-x-4">
+            <div class="text-right">
+                <span id="nav-username" class="font-bold block text-sm">Student Name</span>
+                <span id="nav-year" class="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">Year 11</span>
+            </div>
+            <div class="flex items-center space-x-1 bg-amber-50 border border-amber-200 px-2 py-1 rounded-lg">
+                <span>🔥</span>
+                <span id="streak-count" class="text-xs font-bold text-amber-700">1 Day Streak</span>
+            </div>
         </div>
     </nav>
 
-    <main class="max-w-5xl mx-auto p-6">
+    <main class="max-w-6xl mx-auto p-4 sm:p-6">
         
-        <section id="onboarding-section" class="bg-white p-8 rounded-xl shadow-md space-y-6">
-            <div class="border-b pb-4">
-                <h2 class="text-2xl font-bold text-gray-900">Set Up Your Profile</h2>
-                <p class="text-gray-500 text-sm">Select your subjects and exam boards to generate your custom syllabus.</p>
+        <section id="onboarding-section" class="bg-white p-6 sm:p-8 rounded-xl shadow-md space-y-6 max-w-3xl mx-auto">
+            <div class="border-b pb-4 text-center">
+                <h2 class="text-3xl font-bold text-gray-900">Welcome to AceMyGCSEs</h2>
+                <p class="text-gray-500 text-sm mt-1">Let's create your highly customized smart revision dashboard.</p>
             </div>
 
             <form id="setup-form" class="space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">First Name</label>
-                        <input type="text" id="input-fname" required class="mt-1 w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Surname</label>
-                        <input type="text" id="input-sname" required class="mt-1 w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">School Year</label>
-                        <select id="input-year" class="mt-1 w-full p-2 border rounded-md">
-                            <option value="7">Year 7</option>
-                            <option value="8">Year 8</option>
-                            <option value="9">Year 9</option>
-                            <option value="10">Year 10</option>
-                            <option value="11">Year 11</option>
-                            <option value="12">Year 12</option>
-                        </select>
+                <div class="bg-purple-50/50 p-4 rounded-xl border border-purple-100 space-y-4">
+                    <h3 class="font-bold text-lg text-purple-900">1. Personal Information</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">First Name</label>
+                            <input type="text" id="input-fname" required class="mt-1 w-full p-2 border rounded-md outline-none dynamic-ring focus:ring-2">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Surname</label>
+                            <input type="text" id="input-sname" required class="mt-1 w-full p-2 border rounded-md outline-none dynamic-ring focus:ring-2">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">School Year</label>
+                            <select id="input-year" class="mt-1 w-full p-2 border rounded-md bg-white">
+                                <option value="7">Year 7</option>
+                                <option value="8">Year 8</option>
+                                <option value="9">Year 9</option>
+                                <option value="10">Year 10</option>
+                                <option value="11" selected>Year 11</option>
+                                <option value="12">Year 12</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Select Your Subjects & Exam Boards</label>
-                    <div class="space-y-3" id="subject-categories">
+                <div class="bg-blue-50/50 p-4 rounded-xl border border-blue-100 space-y-4">
+                    <h3 class="font-bold text-lg text-blue-900">2. School Hours & Wellbeing Routine</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">What time does your school start?</label>
+                            <input type="time" id="school-start" value="08:45" required class="mt-1 w-full p-2 border rounded-md">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">What time does your school end?</label>
+                            <input type="time" id="school-end" value="15:30" required class="mt-1 w-full p-2 border rounded-md">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Target Bedtime / Go-to-sleep time</label>
+                            <input type="time" id="sleep-bed" value="22:00" required class="mt-1 w-full p-2 border rounded-md">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Target Wake-up time</label>
+                            <input type="time" id="sleep-wake" value="07:00" required class="mt-1 w-full p-2 border rounded-md">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-emerald-50/50 p-4 rounded-xl border border-emerald-100 space-y-4">
+                    <h3 class="font-bold text-lg text-emerald-900">3. Revision Schedule Goals</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Target revision hours / day</label>
+                            <input type="number" id="rev-hours" min="1" max="8" value="2" required class="mt-1 w-full p-2 border rounded-md">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Preferred Revision Technique</label>
+                            <select id="rev-technique" class="mt-1 w-full p-2 border rounded-md bg-white">
+                                <option value="pomodoro">Pomodoro (25m study / 5m break)</option>
+                                <option value="method135">1-3-5 Strategy</option>
+                                <option value="slots20">20-Minute Focus Slots</option>
+                                <option value="slots30">30-Minute Focus Slots</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Preferred Break Length</label>
+                            <select id="break-length" class="mt-1 w-full p-2 border rounded-md bg-white">
+                                <option value="5">5 Minutes</option>
+                                <option value="10">10 Minutes</option>
+                                <option value="20">20 Minutes</option>
+                                <option value="30">30 Minutes</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50/50 p-4 rounded-xl border border-amber-100 flex items-center justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-amber-900">4. Customize Layout App Theme</h3>
+                        <p class="text-xs text-gray-500">Pick your favorite color scheme using the dropper tool.</p>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <input type="color" id="input-theme" value="#b39ddb" class="w-12 h-12 p-1 border rounded-md cursor-pointer bg-white">
+                    </div>
+                </div>
+
+                <div class="bg-rose-50/50 p-4 rounded-xl border border-rose-100 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-bold text-lg text-rose-900">5. Extracurricular Clubs (Unavailability Times)</h3>
+                        <button type="button" id="add-club-btn" class="text-xs bg-rose-600 text-white px-3 py-1 rounded-md hover:bg-rose-700">Add Club +</button>
+                    </div>
+                    <div id="clubs-list-input" class="space-y-2">
                         </div>
                 </div>
 
-                <button type="submit" class="w-full theme-bg text-white font-medium py-3 px-4 rounded-md hover:opacity-90 transition-opacity">
-                    Create My Dashboard
+                <div class="space-y-3">
+                    <h3 class="font-bold text-lg text-gray-900">6. Select Your GCSE Subjects, Exam Boards & Targets</h3>
+                    <div class="space-y-3" id="subject-categories-accordion">
+                        </div>
+                </div>
+
+                <button type="submit" class="w-full dynamic-bg text-white font-bold py-3.5 px-4 rounded-xl hover:opacity-90 transition-opacity shadow-sm text-lg">
+                    Build My AceMyGCSEs Hub
                 </button>
             </form>
         </section>
 
         <section id="dashboard-section" class="hidden space-y-6">
-            <div class="bg-white p-6 rounded-xl shadow-sm flex justify-between items-center border-l-4 theme-border">
+            
+            <div class="bg-white p-6 rounded-xl shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center border-l-8 dynamic-border gap-4">
                 <div>
-                    <h2 class="text-2xl font-bold text-gray-900">Let's revise, <span id="dash-greeting" class="theme-text"></span>!</h2>
-                    <p class="text-sm text-gray-500">Track your progress against the official specifications below.</p>
+                    <h2 class="text-3xl font-bold text-gray-900">Let's revise, <span id="dash-greeting" class="dynamic-text">Student</span>!</h2>
+                    <p class="text-sm text-gray-500 mt-0.5">Stay on top of your specifications, homework deadlines, and routine parameters below.</p>
                 </div>
-                <button id="btn-reset" class="text-sm px-4 py-2 bg-red-100 text-red-600 rounded-md hover:bg-red-200">Edit Profile</button>
+                <div class="flex space-x-2">
+                    <button id="btn-reset" class="text-sm px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-lg transition-colors">⚙️ Edit Profile Settings</button>
+                </div>
             </div>
 
-            <div class="bg-white p-6 rounded-xl shadow-sm">
-                <h3 class="font-bold text-lg mb-4 text-gray-800">Your Official Checklists</h3>
-                <div id="checklists-container" class="space-y-8">
+            <div class="flex flex-wrap gap-2 border-b border-gray-200 pb-2">
+                <button onclick="switchTab('checklists')" class="tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-white shadow-sm border dynamic-border dynamic-text" id="tab-checklists">📚 Syllabus Checklists</button>
+                <button onclick="switchTab('timetable')" class="tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-gray-100 hover:bg-white text-gray-600" id="tab-timetable">📅 Smart Timetable</button>
+                <button onclick="switchTab('homework')" class="tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-gray-100 hover:bg-white text-gray-600" id="tab-homework">📝 Homework & Deadlines</button>
+                <button onclick="switchTab('wellbeing')" class="tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-gray-100 hover:bg-white text-gray-600" id="tab-wellbeing">🌱 Wellbeing & Advice Hub</button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                <div class="lg:col-span-2 space-y-6">
+                    
+                    <div id="view-checklists" class="tab-view bg-white p-6 rounded-xl shadow-sm space-y-4">
+                        <h3 class="font-bold text-xl text-gray-800 border-b pb-2">Your Subject Specifications</h3>
+                        <div id="checklists-output-container" class="space-y-6">
+                            </div>
                     </div>
+
+                    <div id="view-timetable" class="tab-view hidden bg-white p-6 rounded-xl shadow-sm space-y-4">
+                        <h3 class="font-bold text-xl text-gray-800 border-b pb-2">Your Daily Revision Slot Agenda</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm bg-slate-50 p-4 rounded-xl border">
+                            <div><strong>🏫 School Hours:</strong> <span id="time-lbl-school">08:45 - 15:30</span></div>
+                            <div><strong>💤 Ideal Sleep window:</strong> <span id="time-lbl-sleep">22:00 - 07:00</span></div>
+                            <div><strong>⏰ Revision Target:</strong> <span id="time-lbl-rev">2 Hours/Day</span></div>
+                            <div><strong>🧠 Technique Mode:</strong> <span id="time-lbl-tech" class="capitalize">Pomodoro</span></div>
+                        </div>
+                        <div id="timetable-slots-output" class="space-y-2 mt-4">
+                            </div>
+                    </div>
+
+                    <div id="view-homework" class="tab-view hidden bg-white p-6 rounded-xl shadow-sm space-y-4">
+                        <div class="flex justify-between items-center border-b pb-2">
+                            <h3 class="font-bold text-xl text-gray-800">Homework & Deadlines Planner</h3>
+                            <button onclick="openHomeworkModal()" class="dynamic-bg text-white text-xs font-bold px-3 py-1.5 rounded-lg hover:opacity-90">Add Task +</button>
+                        </div>
+                        <div id="homework-list-output" class="space-y-3">
+                            <p class="text-sm text-gray-400 italic">No tasks logged. Click 'Add Task' to map homework items.</p>
+                        </div>
+                    </div>
+
+                    <div id="view-wellbeing" class="tab-view hidden bg-white p-6 rounded-xl shadow-sm space-y-6">
+                        <h3 class="font-bold text-xl text-gray-800 border-b pb-2">🌱 Health Architecture & Advice Hub</h3>
+                        
+                        <div id="sleep-analysis-card" class="p-4 rounded-xl border flex items-start space-x-3">
+                            <div class="text-2xl" id="sleep-status-icon">💡</div>
+                            <div>
+                                <h4 class="font-bold text-base" id="sleep-status-title">Sleep Window Calculation</h4>
+                                <p class="text-xs text-gray-600 mt-0.5" id="sleep-status-desc">Log your profile settings parameters to calculate metrics.</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="border p-4 rounded-xl bg-purple-50/20">
+                                <h4 class="font-bold text-sm text-purple-900 border-b pb-1 mb-2">⚡ Proactive Revision Methods</h4>
+                                <ul class="text-xs text-gray-600 space-y-2 list-disc pl-4">
+                                    <li><strong>The Blurting Method:</strong> Review a subtopic syllabus for 5 minutes, close the resource entirely, then quickly blurt out every fact onto blank card stock using a distinctive ink layer color to target knowledge gaps.</li>
+                                    <li><strong>Dual Coding Strategy:</strong> Pair diagrams, timeline paths, and scientific formulas with explicit annotations to lock memory links.</li>
+                                    <li><strong>Spacing Effect Rules:</strong> Distribute your revision blocks across weeks instead of overnight cramming windows to keep content fresh in your long-term memory.</li>
+                                </ul>
+                            </div>
+                            <div class="border p-4 rounded-xl bg-emerald-50/20">
+                                <h4 class="font-bold text-sm text-emerald-900 border-b pb-1 mb-2">🏃 Physical Health Rules</h4>
+                                <ul class="text-xs text-gray-600 space-y-2 list-disc pl-4">
+                                    <li><strong>Hydration Optimization:</strong> Drink water before your morning study window to enhance processing speeds.</li>
+                                    <li><strong>Active Break Spans:</strong> Stand up, stretch, or walk outside during breaks to clear your mind between focus slots.</li>
+                                    <li><strong>Screen Sparing Rules:</strong> Turn off your screens at least 45 minutes before bedtime to ensure your brain gets restful sleep.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="space-y-6">
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+                        <h3 class="font-bold text-lg mb-3 text-gray-800 border-b pb-2">🔗 Revision Links & Channels</h3>
+                        <div class="space-y-2.5 text-sm">
+                            <a href="https://www.savemyexams.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium transition-colors flex justify-between items-center">
+                                <span>Save My Exams Notes</span> <span class="text-xs text-gray-400">↗</span>
+                            </a>
+                            <a href="https://www.physicsandmathstutor.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium transition-colors flex justify-between items-center">
+                                <span>Physics & Maths Tutor (PMT)</span> <span class="text-xs text-gray-400">↗</span>
+                            </a>
+                            <a href="https://www.senecalearning.com" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium transition-colors flex justify-between items-center">
+                                <span>Seneca Learning Platform</span> <span class="text-xs text-gray-400">↗</span>
+                            </a>
+                            <a href="https://www.youtube.com/@FreeScienceLessons" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium transition-colors flex justify-between items-center">
+                                <span>FreeScienceLessons (YouTube)</span> <span class="text-xs text-gray-400">↗</span>
+                            </a>
+                            <a href="https://www.cognitoedu.org" target="_blank" class="block p-2 bg-slate-50 rounded-lg hover:bg-slate-100 font-medium transition-colors flex justify-between items-center">
+                                <span>Cognito Revision Videos</span> <span class="text-xs text-gray-400">↗</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
-
     </main>
 
-    <script>
-        // --- 1. DATA STRUCTURE FOR SUBJECTS & SPECIFICATIONS ---
-        
-        // Full list of subjects to generate the form dynamically
-        const subjectList = {
-            "Core Subjects": ["English Language", "English Literature", "Mathematics", "Biology", "Chemistry", "Physics", "Combined Science"],
-            "Humanities & Social Sciences": ["History", "Geography", "Religious Studies", "Citizenship Studies", "Economics", "Psychology", "Sociology", "Law", "Classical Civilisation", "Ancient History"],
-            "Modern & Ancient Languages": ["French", "Spanish", "German", "Mandarin / Chinese", "Arabic", "Bengali", "Gujarati", "Italian", "Japanese", "Persian", "Polish", "Portuguese", "Russian", "Turkish", "Urdu", "British Sign Language (BSL)", "Latin", "Classical Greek"],
-            "Arts & Media": ["Art and Design", "Drama", "Music", "Dance", "Media Studies", "Film Studies"],
-            "Computing, Business & Tech": ["Computer Science", "Business Studies", "Design and Technology (D&T)", "Food Preparation and Nutrition", "Engineering", "Electronics"],
-            "Other": ["Physical Education (PE)", "Statistics", "Astronomy", "Geology"]
-        };
-
-        const examBoards = ["AQA", "Edexcel", "OCR", "WJEC", "Eduqas", "CCEA"];
-
-        // The Specification Database (Using your provided AQA Biology data!)
-        const syllabusData = {
-            "Biology": {
-                "AQA": [
-                    {
-                        mainTopic: "4.1 Cell Biology",
-                        subtopics: [
-                            {
-                                title: "4.1.1 Cell structure",
-                                points: [
-                                    "4.1.1.1 Eukaryotes and prokaryotes",
-                                    "4.1.1.2 Animal and plant cells",
-                                    "4.1.1.3 Cell specialisation : savemyexams notes (pg12-16)",
-                                    "4.1.1.4 Cell differentiation",
-                                    "4.1.1.5 Microscopy",
-                                    "4.1.1.6 Culturing microorganisms (biology only)"
-                                ]
-                            },
-                            {
-                                title: "4.1.2 Cell division",
-                                points: [
-                                    "4.1.2.1 Chromosomes",
-                                    "4.1.2.2 Mitosis and the cell cycle",
-                                    "4.1.2.3 Stem cells"
-                                ]
-                            },
-                            {
-                                title: "4.1.3 Transport in cells",
-                                points: [
-                                    "4.1.3.1 Diffusion : savemyexams notes (pg9-13)",
-                                    "4.1.3.2 Osmosis",
-                                    "4.1.3.3 Active transport"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        mainTopic: "4.2 Organisation",
-                        subtopics: [
-                            {
-                                title: "4.2.1 Principles of organisation",
-                                points: []
-                            },
-                            {
-                                title: "4.2.2 Animal tissues, organs and organ systems",
-                                points: [
-                                    "4.2.2.1 The human digestive system",
-                                    "4.2.2.2 The heart and blood vessels",
-                                    "4.2.2.3 Blood",
-                                    "4.2.2.4 Coronary heart disease: a non-communicable disease",
-                                    "4.2.2.5 Health issues",
-                                    "4.2.2.6 The effect of lifestyle on some non-communicable diseases",
-                                    "4.2.2.7 Cancer"
-                                ]
-                            }
-                        ]
-                    }
-                    // You can continue adding 4.3 to 4.7 here using the exact same structure!
-                ]
-            }
-        };
-
-        // --- 2. BUILD THE UI FORM DYNAMICALLY ---
-        const categoryContainer = document.getElementById('subject-categories');
-        
-        for (const [category, subjects] of Object.entries(subjectList)) {
-            let detailsHTML = `<details class="bg-gray-50 border rounded-md p-2 group cursor-pointer">
-                <summary class="font-medium text-gray-800 p-2 select-none">${category}</summary>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3 p-2 cursor-default">`;
-            
-            subjects.forEach(sub => {
-                // Create board options
-                let boardOptions = examBoards.map(b => `<option value="${b}">${b}</option>`).join('');
-                
-                detailsHTML += `
-                <div class="flex items-center justify-between bg-white p-2 border rounded shadow-sm">
-                    <label class="flex items-center space-x-2 cursor-pointer w-full">
-                        <input type="checkbox" value="${sub}" class="subject-checkbox w-4 h-4 text-blue-600 rounded">
-                        <span class="text-sm font-medium text-gray-700">${sub}</span>
-                    </label>
-                    <select id="board-${sub.replace(/\s+/g, '-')}" class="text-xs border rounded p-1 hidden bg-gray-50 outline-none">
-                        <option value="" disabled selected>Select Board</option>
-                        ${boardOptions}
-                    </select>
-                </div>`;
-            });
-
-            detailsHTML += `</div></details>`;
-            categoryContainer.innerHTML += detailsHTML;
-        }
-
-        // Show/Hide exam board dropdown when a subject is checked
-        document.addEventListener('change', function(e) {
-            if (e.target && e.target.classList.contains('subject-checkbox')) {
-                const subName = e.target.value.replace(/\s+/g, '-');
-                const boardSelect = document.getElementById(`board-${subName}`);
-                if (e.target.checked) {
-                    boardSelect.classList.remove('hidden');
-                    boardSelect.required = true;
-                } else {
-                    boardSelect.classList.add('hidden');
-                    boardSelect.required = false;
-                }
-            }
-        });
-
-        // --- 3. HANDLE FORM SUBMISSION & RENDERING ---
-        document.getElementById('setup-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            // Gather User Data
-            const fname = document.getElementById('input-fname').value;
-            const sname = document.getElementById('input-sname').value;
-            
-            // Gather selected subjects and their specific boards
-            const selectedData = [];
-            document.querySelectorAll('.subject-checkbox:checked').forEach(cb => {
-                const subName = cb.value;
-                const boardSelect = document.getElementById(`board-${subName.replace(/\s+/g, '-')}`).value;
-                selectedData.push({ subject: subName, board: boardSelect });
-            });
-
-            if(selectedData.length === 0) {
-                alert("Please select at least one subject!");
-                return;
-            }
-
-            // Go to Dashboard
-            document.getElementById('nav-username').innerText = `${fname} ${sname}`;
-            document.getElementById('dash-greeting').innerText = fname;
-            document.getElementById('onboarding-section').classList.add('hidden');
-            document.getElementById('dashboard-section').classList.remove('hidden');
-            document.getElementById('user-nav-profile').classList.remove('hidden');
-
-            renderChecklists(selectedData);
-        });
-
-        // Function to render the checklists based on your exact formatting rules
-        function renderChecklists(userSubjects) {
-            const container = document.getElementById('checklists-container');
-            container.innerHTML = ''; // Clear previous
-
-            userSubjects.forEach(item => {
-                let html = `<div class="border rounded-xl overflow-hidden mb-6">
-                    <div class="bg-gray-100 p-4 border-b">
-                        <h4 class="text-xl font-bold theme-text">${item.subject} <span class="text-sm font-normal text-gray-500">(${item.board})</span></h4>
-                    </div>
-                    <div class="p-6 bg-white">`;
-
-                // Check if we have data for this subject/board combo in our database
-                if (syllabusData[item.subject] && syllabusData[item.subject][item.board]) {
-                    
-                    const specSections = syllabusData[item.subject][item.board];
-                    
-                    specSections.forEach(section => {
-                        // MAIN TOPIC (13px, Bold, Underline)
-                        html += `<div class="mb-6">
-                            <h5 class="text-[13px] font-bold underline mb-3">${section.mainTopic}</h5>`;
-                            
-                        section.subtopics.forEach(sub => {
-                            // SUBTOPIC (11px, Bold)
-                            html += `<div class="ml-4 mb-4">
-                                <h6 class="text-[11px] font-bold mb-2">${sub.title}</h6>
-                                <ul class="space-y-1.5">`;
-                                
-                            // SPEC POINTS (11px, Normal, with Checkbox)
-                            sub.points.forEach(point => {
-                                html += `
-                                    <li class="flex items-start space-x-2">
-                                        <input type="checkbox" class="topic-check mt-0.5">
-                                        <span class="text-[11px] font-normal leading-tight text-gray-700">${point}</span>
-                                    </li>`;
-                            });
-                            
-                            html += `</ul></div>`;
-                        });
-                        html += `</div>`;
-                    });
-
-                } else {
-                    html += `<p class="text-sm italic text-gray-500">Specification data for ${item.subject} (${item.board}) has not been added to the database yet. You can add it in the code!</p>`;
-                }
-
-                html += `</div></div>`;
-                container.innerHTML += html;
-            });
-        }
-
-        // Reset Button
-        document.getElementById('btn-reset').addEventListener('click', () => {
-            document.getElementById('onboarding-section').classList.remove('hidden');
-            document.getElementById('dashboard-section').classList.add('hidden');
-        });
-
-    </script>
-</body>
-</html>
+    <div id="homework-modal" class="hidden fixed inset-0 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-xl shadow-xl max-w-md w-full p-6 space-y-4 animate-in fade-in zoom-in-95 duration-150">
+            <h3 class="text-lg font-bold text-gray-900 border-b pb-2">Log New Homework Assignment</h3>
+            <form id="homework-form" class="space-y-3">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700">Task
