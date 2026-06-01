@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE Companion Hub</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        /* Base styles for dynamic theme switching */
+        :root { --theme-color: #4f46e5; }
+        .theme-bg { background-color: var(--theme-color); }
+        .theme-text { color: var(--theme-color); }
+        .theme-border { border-color: var(--theme-color); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans min-h-screen">
+
+    <nav class="bg-white shadow-sm p-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold theme-text">🚀 GCSE Study Hub</h1>
+        <div id="user-nav-profile" class="hidden flex items-center space-x-3">
+            <span id="nav-username" class="font-medium">Student</span>
+            <div id="nav-pfp" class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-white font-bold">S</div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto p-6">
+        
+        <section id="onboarding-section" class="bg-white p-8 rounded-xl shadow-md space-y-6">
+            <div class="border-b pb-4">
+                <h2 class="text-2xl font-bold text-gray-900">Welcome! Let's set up your profile</h2>
+                <p class="text-gray-500 text-sm">This helps us customize your GCSE revision timetable.</p>
+            </div>
+
+            <form id="setup-form" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Preferred Name</label>
+                        <input type="text" id="input-name" required class="mt-1 w-full p-2 border rounded-md focus:ring-2 focus:ring-indigo-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">School Year</label>
+                        <select id="input-year" class="mt-1 w-full p-2 border rounded-md">
+                            <option value="10">Year 10</option>
+                            <option value="11">Year 11</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Target Grade (Average)</label>
+                        <input type="number" id="input-target" min="1" max="9" placeholder="e.g. 7" class="mt-1 w-full p-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Theme Colour</label>
+                        <input type="color" id="input-theme" value="#4f46e5" class="mt-1 w-full h-10 p-1 border rounded-md cursor-pointer">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Select Your Subjects</label>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        <label class="flex items-center space-x-2"><input type="checkbox" name="subjects" value="Maths" class="rounded text-indigo-600"> <span>Maths</span></label>
+                        <label class="flex items-center space-x-2"><input type="checkbox" name="subjects" value="English Lit" class="rounded text-indigo-600"> <span>English Lit</span></label>
+                        <label class="flex items-center space-x-2"><input type="checkbox" name="subjects" value="English Lang" class="rounded text-indigo-600"> <span>English Lang</span></label>
+                        <label class="flex items-center space-x-2"><input type="checkbox" name="subjects" value="Biology" class="rounded text-indigo-600"> <span>Biology</span></label>
+                        <label class="flex items-center space-x-2"><input type="checkbox" name="subjects" value="Chemistry" class="rounded text-indigo-600"> <span>Chemistry</span></label>
+                        <label class="flex items-center space-x-2"><input type="checkbox" name="subjects" value="Physics" class="rounded text-indigo-600"> <span>Physics</span></label>
+                        <label class="flex items-center space-x-2"><input type="checkbox" name="subjects" value="History" class="rounded text-indigo-600"> <span>History</span></label>
+                        <label class="flex items-center space-x-2"><input type="checkbox" name="subjects" value="Geography" class="rounded text-indigo-600"> <span>Geography</span></label>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full theme-bg text-white font-medium py-2.5 px-4 rounded-md hover:opacity-90 transition-opacity">
+                    Generate My Dashboard
+                </button>
+            </form>
+        </section>
+
+        <section id="dashboard-section" class="hidden space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-sm flex justify-between items-center">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900">Welcome Back, <span id="dash-greeting" class="theme-text">Student</span>!</h2>
+                    <p class="text-sm text-gray-500">Target Grade Focus: GCSE <span id="dash-target" class="font-bold">N/A</span></p>
+                </div>
+                <button id="btn-reset" class="text-xs text-red-500 hover:underline">Reset Data</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="md:col-span-2 space-y-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm">
+                        <h3 class="font-bold text-lg mb-3">Your GCSE Checklist</h3>
+                        <div id="subjects-list" class="space-y-2 text-gray-600">
+                            </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm h-fit">
+                    <h3 class="font-bold text-lg mb-3">💡 Daily Study Tip</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Try the <strong>Blurting Method</strong>: Read a section of your notes for 5 minutes, close the book, and write down absolutely everything you can remember in red pen. Check what you missed!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const form = document.getElementById('setup-form');
+        const onboardingSection = document.getElementById('onboarding-section');
+        const dashboardSection = document.getElementById('dashboard-section');
+        const navProfile = document.getElementById('user-nav-profile');
+
+        // Check if user has already signed up in the past
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedData = localStorage.getItem('gcse_user_profile');
+            if (savedData) {
+                loadDashboard(JSON.parse(savedData));
+            }
+        });
+
+        // Handle form submission
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Gather values
+            const name = document.getElementById('input-name').value;
+            const year = document.getElementById('input-year').value;
+            const target = document.getElementById('input-target').value;
+            const theme = document.getElementById('input-theme').value;
+            
+            const selectedSubjects = [];
+            document.querySelectorAll('input[name="subjects"]:checked').forEach(cb => {
+                selectedSubjects.push(cb.value);
+            });
+
+            const userProfile = { name, year, target, theme, subjects: selectedSubjects };
