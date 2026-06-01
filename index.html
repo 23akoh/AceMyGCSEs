@@ -62,7 +62,7 @@
         <section id="onboarding-section" class="bg-white p-6 sm:p-8 rounded-xl shadow-md space-y-6 max-w-3xl mx-auto">
             <div class="border-b pb-4 text-center">
                 <h2 class="text-3xl font-bold text-gray-900">Welcome to AceMyGCSEs</h2>
-                <p class="text-gray-500 text-sm mt-1">Let's create your highly customized smart revision dashboard.</p>
+                <p class="text-gray-500 text-sm mt-1">Let's build your fully customizable revision engine.</p>
             </div>
 
             <form id="setup-form" class="space-y-6">
@@ -95,56 +95,60 @@
                     <h3 class="font-bold text-lg text-blue-900">2. School Hours & Wellbeing Routine</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">What time does your school start?</label>
+                            <label class="block text-sm font-medium text-gray-700">What time does school start?</label>
                             <input type="time" id="school-start" value="08:45" required class="mt-1 w-full p-2 border rounded-md">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">What time does your school end?</label>
+                            <label class="block text-sm font-medium text-gray-700">What time does school end?</label>
                             <input type="time" id="school-end" value="15:30" required class="mt-1 w-full p-2 border rounded-md">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Target Bedtime / Go-to-sleep time</label>
+                            <label class="block text-sm font-medium text-gray-700">Target Bedtime</label>
                             <input type="time" id="sleep-bed" value="22:00" required class="mt-1 w-full p-2 border rounded-md">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Target Wake-up time</label>
+                            <label class="block text-sm font-medium text-gray-700">Target Wake-up Time</label>
                             <input type="time" id="sleep-wake" value="07:00" required class="mt-1 w-full p-2 border rounded-md">
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-emerald-50/50 p-4 rounded-xl border border-emerald-100 space-y-4">
-                    <h3 class="font-bold text-lg text-emerald-900">3. Revision Schedule Goals</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="bg-amber-50/50 p-4 rounded-xl border border-amber-100 space-y-4">
+                    <h3 class="font-bold text-lg text-amber-900">3. Morning & Evening Free Time</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Target revision hours / day</label>
-                            <input type="number" id="rev-hours" min="1" max="8" value="2" required class="mt-1 w-full p-2 border rounded-md">
+                            <label class="block text-sm font-medium text-gray-700">Morning routine buffer (minutes to get ready/eat)</label>
+                            <input type="number" id="free-morning" min="0" value="60" required class="mt-1 w-full p-2 border rounded-md">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Preferred Revision Technique</label>
-                            <select id="rev-technique" class="mt-1 w-full p-2 border rounded-md bg-white">
-                                <option value="pomodoro">Pomodoro (25m study / 5m break)</option>
-                                <option value="method135">1-3-5 Strategy</option>
-                                <option value="slots20">20-Minute Focus Slots</option>
-                                <option value="slots30">30-Minute Focus Slots</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Preferred Break Length</label>
-                            <select id="break-length" class="mt-1 w-full p-2 border rounded-md bg-white">
-                                <option value="5">5 Minutes</option>
-                                <option value="10">10 Minutes</option>
-                                <option value="20">20 Minutes</option>
-                                <option value="30">30 Minutes</option>
-                            </select>
+                            <label class="block text-sm font-medium text-gray-700">Evening routine buffer (minutes to rest/shower/dinner)</label>
+                            <input type="number" id="free-evening" min="0" value="120" required class="mt-1 w-full p-2 border rounded-md">
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-amber-50/50 p-4 rounded-xl border border-amber-100 flex items-center justify-between">
+                <div class="bg-emerald-50/50 p-4 rounded-xl border border-emerald-100 space-y-4">
+                    <h3 class="font-bold text-lg text-emerald-900">4. Revision Session Customization</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Length of 1 revision slot (mins)</label>
+                            <input type="number" id="slot-length" min="5" max="180" value="30" required class="mt-1 w-full p-2 border rounded-md">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">How many revision slots?</label>
+                            <input type="number" id="slot-count" min="1" max="15" value="4" required class="mt-1 w-full p-2 border rounded-md">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">How long are breaks (mins)?</label>
+                            <input type="number" id="break-length" min="0" max="60" value="10" required class="mt-1 w-full p-2 border rounded-md">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-purple-50 p-4 rounded-xl border border-purple-100 flex items-center justify-between">
                     <div>
-                        <h3 class="font-bold text-lg text-amber-900">4. Customize Layout App Theme</h3>
-                        <p class="text-xs text-gray-500">Pick your favorite color scheme using the dropper tool.</p>
+                        <h3 class="font-bold text-lg text-purple-900">5. App Layout Custom Theme</h3>
+                        <p class="text-xs text-gray-500">Pick your favorite accent color using the dropper tool color window.</p>
                     </div>
                     <div class="flex items-center space-x-3">
                         <input type="color" id="input-theme" value="#b39ddb" class="w-12 h-12 p-1 border rounded-md cursor-pointer bg-white">
@@ -153,7 +157,7 @@
 
                 <div class="bg-rose-50/50 p-4 rounded-xl border border-rose-100 space-y-3">
                     <div class="flex justify-between items-center">
-                        <h3 class="font-bold text-lg text-rose-900">5. Extracurricular Clubs (Unavailability Times)</h3>
+                        <h3 class="font-bold text-lg text-rose-900">6. Extracurricular Clubs (Unavailability Times)</h3>
                         <button type="button" id="add-club-btn" class="text-xs bg-rose-600 text-white px-3 py-1 rounded-md hover:bg-rose-700">Add Club +</button>
                     </div>
                     <div id="clubs-list-input" class="space-y-2">
@@ -161,7 +165,7 @@
                 </div>
 
                 <div class="space-y-3">
-                    <h3 class="font-bold text-lg text-gray-900">6. Select Your GCSE Subjects, Exam Boards & Targets</h3>
+                    <h3 class="font-bold text-lg text-gray-900">7. Select Your GCSE Subjects, Exam Boards & Targets</h3>
                     <div class="space-y-3" id="subject-categories-accordion">
                         </div>
                 </div>
@@ -177,7 +181,7 @@
             <div class="bg-white p-6 rounded-xl shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center border-l-8 dynamic-border gap-4">
                 <div>
                     <h2 class="text-3xl font-bold text-gray-900">Let's revise, <span id="dash-greeting" class="dynamic-text">Student</span>!</h2>
-                    <p class="text-sm text-gray-500 mt-0.5">Stay on top of your specifications, homework deadlines, and routine parameters below.</p>
+                    <p class="text-sm text-gray-500 mt-0.5">Track your custom profile dashboard preferences and specifications below.</p>
                 </div>
                 <div class="flex space-x-2">
                     <button id="btn-reset" class="text-sm px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-lg transition-colors">⚙️ Edit Profile Settings</button>
@@ -202,12 +206,12 @@
                     </div>
 
                     <div id="view-timetable" class="tab-view hidden bg-white p-6 rounded-xl shadow-sm space-y-4">
-                        <h3 class="font-bold text-xl text-gray-800 border-b pb-2">Your Daily Revision Slot Agenda</h3>
+                        <h3 class="font-bold text-xl text-gray-800 border-b pb-2">Your Daily Revision Agenda</h3>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm bg-slate-50 p-4 rounded-xl border">
-                            <div><strong>🏫 School Hours:</strong> <span id="time-lbl-school">08:45 - 15:30</span></div>
-                            <div><strong>💤 Ideal Sleep window:</strong> <span id="time-lbl-sleep">22:00 - 07:00</span></div>
-                            <div><strong>⏰ Revision Target:</strong> <span id="time-lbl-rev">2 Hours/Day</span></div>
-                            <div><strong>🧠 Technique Mode:</strong> <span id="time-lbl-tech" class="capitalize">Pomodoro</span></div>
+                            <div><strong>🏫 School Day Window:</strong> <span id="time-lbl-school">08:45 - 15:30</span></div>
+                            <div><strong>💤 Sleep Allocation:</strong> <span id="time-lbl-sleep">22:00 - 07:00</span></div>
+                            <div><strong>🌅 Morning Prep Routine:</strong> <span id="time-lbl-morning">60 mins</span></div>
+                            <div><strong>🌆 Evening Reset & Dinner:</strong> <span id="time-lbl-evening">120 mins</span></div>
                         </div>
                         <div id="timetable-slots-output" class="space-y-2 mt-4">
                             </div>
@@ -238,7 +242,7 @@
                             <div class="border p-4 rounded-xl bg-purple-50/20">
                                 <h4 class="font-bold text-sm text-purple-900 border-b pb-1 mb-2">⚡ Proactive Revision Methods</h4>
                                 <ul class="text-xs text-gray-600 space-y-2 list-disc pl-4">
-                                    <li><strong>The Blurting Method:</strong> Review a subtopic syllabus for 5 minutes, close the resource entirely, then quickly blurt out every fact onto blank card stock using a distinctive ink layer color to target knowledge gaps.</li>
+                                    <li><strong>The Blurting Method:</strong> Review a subtopic syllabus for 5 minutes, close the resource entirely, then quickly blurt out every fact onto blank paper to target knowledge gaps.</li>
                                     <li><strong>Dual Coding Strategy:</strong> Pair diagrams, timeline paths, and scientific formulas with explicit annotations to lock memory links.</li>
                                     <li><strong>Spacing Effect Rules:</strong> Distribute your revision blocks across weeks instead of overnight cramming windows to keep content fresh in your long-term memory.</li>
                                 </ul>
@@ -284,8 +288,686 @@
     </main>
 
     <div id="homework-modal" class="hidden fixed inset-0 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-xl shadow-xl max-w-md w-full p-6 space-y-4 animate-in fade-in zoom-in-95 duration-150">
+        <div class="bg-white rounded-xl shadow-xl max-w-md w-full p-6 space-y-4">
             <h3 class="text-lg font-bold text-gray-900 border-b pb-2">Log New Homework Assignment</h3>
             <form id="homework-form" class="space-y-3">
                 <div>
-                    <label class="block text-xs font-bold text-gray-700">Task
+                    <label class="block text-xs font-bold text-gray-700">Task Title / Assignment Description</label>
+                    <input type="text" id="hw-title" required placeholder="e.g. Past Paper Q3-5" class="mt-1 w-full p-2 border rounded-md">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700">Subject Class</label>
+                    <select id="hw-subject" class="mt-1 w-full p-2 border rounded-md bg-white">
+                        </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700">Due Date Deadline</label>
+                    <input type="date" id="hw-date" required class="mt-1 w-full p-2 border rounded-md">
+                </div>
+                <div class="flex justify-end space-x-2 pt-2">
+                    <button type="button" onclick="closeHomeworkModal()" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold rounded-md">Cancel</button>
+                    <button type="submit" class="dynamic-bg text-white px-4 py-2 text-xs font-bold rounded-md hover:opacity-90">Save Assignment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. CORE DATABASE SCHEMAS ---
+        const subjectDatabaseList = {
+            "Core Subjects (Compulsory)": ["English Language", "English Literature", "Mathematics", "Biology", "Chemistry", "Physics", "Combined Science"],
+            "Humanities & Social Sciences": ["History", "Geography", "Religious Studies", "Citizenship Studies", "Economics", "Psychology", "Sociology", "Law", "Classical Civilisation", "Ancient History"],
+            "Modern & Ancient Languages": ["French", "Spanish", "German", "Mandarin / Chinese", "Arabic", "Bengali", "Gujarati", "Italian", "Japanese", "Persian", "Polish", "Portuguese", "Russian", "Turkish", "Urdu", "British Sign Language (BSL)", "Latin", "Classical Greek"],
+            "Arts & Media": ["Art and Design", "Drama", "Music", "Dance", "Media Studies", "Film Studies"],
+            "Computing, Business & Technical": ["Computer Science", "Business Studies", "Design and Technology (D&T)", "Food Preparation and Nutrition", "Engineering", "Electronics"],
+            "Other": ["Physical Education (PE)", "Statistics", "Astronomy", "Geology"]
+        };
+
+        const boardRegistryOptions = ["AQA", "Edexcel", "OCR", "WJEC", "Eduqas", "CCEA"];
+
+        const globalSyllabusDataStore = {
+            "Biology": {
+                "AQA": [
+                    {
+                        mainTopic: "4.1 Cell Biology",
+                        subtopics: [
+                            {
+                                title: "4.1.1 Cell structure",
+                                points: [
+                                    "4.1.1.1 Eukaryotes and prokaryotes",
+                                    "4.1.1.2 Animal and plant cells",
+                                    "4.1.1.3 Cell specialisation : savemyexams notes (pg12-16)",
+                                    "4.1.1.4 Cell differentiation",
+                                    "4.1.1.5 Microscopy",
+                                    "4.1.1.6 Culturing microorganisms (biology only)"
+                                ]
+                            },
+                            {
+                                title: "4.1.2 Cell division",
+                                points: [
+                                    "4.1.2.1 Chromosomes",
+                                    "4.1.2.2 Mitosis and the cell cycle",
+                                    "4.1.2.3 Stem cells"
+                                ]
+                            },
+                            {
+                                title: "4.1.3 Transport in cells",
+                                points: [
+                                    "4.1.3.1 Diffusion : savemyexams notes (pg9-13)",
+                                    "4.1.3.2 Osmosis",
+                                    "4.1.3.3 Active transport"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        mainTopic: "4.2 Organisation",
+                        subtopics: [
+                            { title: "4.2.1 Principles of organisation", points: [] },
+                            {
+                                title: "4.2.2 Animal tissues, organs and organ systems",
+                                points: [
+                                    "4.2.2.1 The human digestive system",
+                                    "4.2.2.2 The heart and blood vessels",
+                                    "4.2.2.3 Blood",
+                                    "4.2.2.4 Coronary heart disease: a non-communicable disease",
+                                    "4.2.2.5 Health issues",
+                                    "4.2.2.6 The effect of lifestyle on some non-communicable diseases",
+                                    "4.2.2.7 Cancer"
+                                ]
+                            },
+                            {
+                                title: "4.2.3 Plant tissues, organs and systems",
+                                points: [
+                                    "4.2.3.1 Plant tissues",
+                                    "4.2.3.2 Plant organ system"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        mainTopic: "4.3 Infection and response",
+                        subtopics: [
+                            {
+                                title: "4.3.1 Communicable diseases",
+                                points: [
+                                    "4.3.1.1 Communicable (infectious) diseases",
+                                    "4.3.1.2 Viral diseases",
+                                    "4.3.1.3 Bacterial diseases",
+                                    "4.3.1.4 Fungal diseases",
+                                    "4.3.1.5 Protist diseases",
+                                    "4.3.1.6 Human defence systems",
+                                    "4.3.1.7 Vaccination",
+                                    "4.3.1.8 Antibiotics and painkillers",
+                                    "4.3.1.9 Discovery and development of drugs"
+                                ]
+                            },
+                            {
+                                title: "4.3.2 Monoclonal antibodies (biology only) (HT only)",
+                                points: [
+                                    "4.3.2.1 Producing monoclonal antibodies",
+                                    "4.3.2.2 Uses of monoclonal antibodies"
+                                ]
+                            },
+                            {
+                                title: "4.3.3 Plant disease (biology only)",
+                                points: [
+                                    "4.3.3.1 Detection and identification of plant diseases",
+                                    "4.3.3.2 Plant defence responses"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        mainTopic: "4.4 Bioenergetics",
+                        subtopics: [
+                            {
+                                title: "4.4.1 Photosynthesis",
+                                points: [
+                                    "4.4.1.1 Photosynthetic reaction",
+                                    "4.4.1.2 Rate of photosynthesis",
+                                    "4.4.1.3 Uses of glucose from photosynthesis"
+                                ]
+                            },
+                            {
+                                title: "4.4.2 Respiration",
+                                points: [
+                                    "4.4.2.1 Aerobic and anaerobic respiration",
+                                    "4.4.2.2 Response to exercise",
+                                    "4.4.2.3 Metabolism"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        mainTopic: "4.5 Homeostasis and response",
+                        subtopics: [
+                            { title: "4.5.1 Homeostasis", points: [] },
+                            {
+                                title: "4.5.2 The human nervous system",
+                                points: [
+                                    "4.5.2.1 Structure and function",
+                                    "4.5.2.2 The brain (biology only)",
+                                    "4.5.2.3 The eye (biology only)",
+                                    "4.5.2.4 Control of body temperature (biology only)"
+                                ]
+                            },
+                            {
+                                title: "4.5.3 Hormonal coordination in humans",
+                                points: [
+                                    "4.5.3.1 Human endocrine system",
+                                    "4.5.3.2 Control of blood glucose concentration",
+                                    "4.5.3.3 Maintaining water and nitrogen balance in the body (biology only)",
+                                    "4.5.3.4 Hormones in human reproduction",
+                                    "4.5.3.5 Contraception",
+                                    "4.5.3.6 The use of hormones to treat infertility (HT only)",
+                                    "4.5.3.7 Feedback systems (HT only)"
+                                ]
+                            },
+                            {
+                                title: "4.5.4 Plant hormones (biology only)",
+                                points: [
+                                    "4.5.4.1 Control and coordination",
+                                    "4.5.4.2 Use of plant hormones (HT only)"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        mainTopic: "4.6 Inheritance, variation and evolution",
+                        subtopics: [
+                            {
+                                title: "4.6.1 Reproduction",
+                                points: [
+                                    "4.6.1.1 Sexual and asexual reproduction",
+                                    "4.6.1.2 Meiosis",
+                                    "4.6.1.3 Advantages and disadvantages of sexual and asexual reproduction (biology only)",
+                                    "4.6.1.4 DNA and the genome",
+                                    "4.6.1.5 DNA structure (biology only)",
+                                    "4.6.1.6 Genetic inheritance",
+                                    "4.6.1.7 Inherited disorders",
+                                    "4.6.1.8 Sex determination"
+                                ]
+                            },
+                            {
+                                title: "4.6.2 Variation and evolution",
+                                points: [
+                                    "4.6.2.1 Variation",
+                                    "4.6.2.2 Evolution",
+                                    "4.6.2.3 Selective breeding",
+                                    "4.6.2.4 Genetic engineering",
+                                    "4.6.2.5 Cloning (biology only)"
+                                ]
+                            },
+                            {
+                                title: "4.6.3 The development of understanding of genetics and evolution",
+                                points: [
+                                    "4.6.3.1 Theory of evolution (biology only)",
+                                    "4.6.3.2 Speciation (biology only)",
+                                    "4.6.3.3 The understanding of genetics (biology only)",
+                                    "4.6.3.4 Evidence for evolution",
+                                    "4.6.3.5 Fossils",
+                                    "4.6.3.6 Extinction",
+                                    "4.6.3.7 Resistant bacteria"
+                                ]
+                            },
+                            { title: "4.6.4 Classification of living organisms", points: [] }
+                        ]
+                    },
+                    {
+                        mainTopic: "4.7 Ecology",
+                        subtopics: [
+                            {
+                                title: "4.7.1 Adaptations, interdependence and competition",
+                                points: [
+                                    "4.7.1.1 Communities",
+                                    "4.7.1.2 Abiotic factors",
+                                    "4.7.1.3 Biotic factors",
+                                    "4.7.1.4 Adaptations"
+                                ]
+                            },
+                            {
+                                title: "4.7.2 Organisation of an ecosystem",
+                                points: [
+                                    "4.7.2.1 Levels of organisation",
+                                    "4.7.2.2 How materials are cycled",
+                                    "4.7.2.3 Decomposition (biology only)",
+                                    "4.7.2.4 Impact of environmental change (biology only) (HT only)"
+                                ]
+                            },
+                            {
+                                title: "4.7.3 Biodiversity and the effect of human interaction on ecosystems",
+                                points: [
+                                    "4.7.3.1 Biodiversity",
+                                    "4.7.3.2 Waste management",
+                                    "4.7.3.3 Land use",
+                                    "4.7.3.4 Deforestation",
+                                    "4.7.3.5 Global warming",
+                                    "4.7.3.6 Maintaining biodiversity"
+                                ]
+                            },
+                            {
+                                title: "4.7.4 Trophic levels in an ecosystem (biology only)",
+                                points: [
+                                    "4.7.4.1 Trophic levels",
+                                    "4.7.4.2 Pyramids of biomass",
+                                    "4.7.4.3 Transfer of biomass"
+                                ]
+                            },
+                            {
+                                title: "4.7.5 Food production (biology only)",
+                                points: [
+                                    "4.7.5.1 Factors affecting food security",
+                                    "4.7.5.2 Farming techniques",
+                                    "4.7.5.3 Sustainable fisheries",
+                                    "4.7.5.4 Role of biotechnology"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        // --- 2. GLOBAL SYSTEM MEMORY COMPONENT CONFIGURATION ---
+        let appUserProfile = null;
+        let homeworkEntriesList = [];
+
+        // Helper function to turn strings with special symbols into perfectly safe element IDs
+        function makeSafeId(str) {
+            return 'sub-' + str.replace(/[^a-zA-Z0-9]/g, '-');
+        }
+
+        // --- 3. DYNAMIC DOM RENDER BUILD GENERATORS ---
+        const accordionMenuElement = document.getElementById('subject-categories-accordion');
+
+        for (const [categoryName, subjectArray] of Object.entries(subjectDatabaseList)) {
+            let layoutBlockHTML = `
+            <details class="bg-white border-2 rounded-xl p-2 group cursor-pointer transition-all duration-200">
+                <summary class="font-bold text-gray-800 p-2 select-none flex justify-between items-center group-open:text-purple-600">
+                    <span>${categoryName}</span>
+                    <span class="text-xs text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                </summary>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3 p-2 cursor-default border-t pt-4">`;
+
+            subjectArray.forEach(subjectName => {
+                let safeIdTag = makeSafeId(subjectName);
+                let selectionDropdownHTML = boardRegistryOptions.map(board => `<option value="${board}">${board}</option>`).join('');
+                
+                layoutBlockHTML += `
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between bg-slate-50 p-3 border rounded-xl gap-3">
+                    <label class="flex items-center space-x-3 cursor-pointer select-none">
+                        <input type="checkbox" value="${subjectName}" class="subject-checkbox w-5 h-5 dynamic-accent rounded">
+                        <span class="text-sm font-bold text-gray-700">${subjectName}</span>
+                    </label>
+                    <div id="wrapper-${safeIdTag}" class="hidden flex flex-row items-center gap-2">
+                        <select id="board-${safeIdTag}" class="text-xs border rounded-lg p-1.5 bg-white outline-none">
+                            <option value="" disabled selected>Exam Board</option>
+                            ${selectionDropdownHTML}
+                        </select>
+                        <input type="number" id="target-${safeIdTag}" min="1" max="9" placeholder="Target" class="w-16 text-xs border rounded-lg p-1.5 bg-white text-center">
+                    </div>
+                </div>`;
+            });
+
+            layoutBlockHTML += `</div></details>`;
+            accordionMenuElement.innerHTML += layoutBlockHTML;
+        }
+
+        // Catch image element errors elegantly if local icon is absent
+        document.querySelectorAll('.error-fallback').forEach(img => {
+            img.onerror = function() { this.style.display = 'none'; }
+        });
+
+        // Toggle Exam Board dropdown configuration on change events safely
+        document.addEventListener('change', function(event) {
+            if (event.target && event.target.classList.contains('subject-checkbox')) {
+                const safeIdTag = makeSafeId(event.target.value);
+                const menuWrapper = document.getElementById(`wrapper-${safeIdTag}`);
+                const boardMenu = document.getElementById(`board-${safeIdTag}`);
+                
+                if (event.target.checked) {
+                    menuWrapper.classList.remove('hidden');
+                    boardMenu.required = true;
+                } else {
+                    menuWrapper.classList.add('hidden');
+                    boardMenu.required = false;
+                }
+            }
+        });
+
+        // Add Club Input Dynamically
+        document.getElementById('add-club-btn').addEventListener('click', () => {
+            const rowID = 'club-' + Date.now();
+            const formContainer = document.getElementById('clubs-list-input');
+            const clubInputRow = document.createElement('div');
+            clubInputRow.id = rowID;
+            clubInputRow.className = "flex flex-wrap items-center gap-2 bg-white p-2 border rounded-lg shadow-xs";
+            clubInputRow.innerHTML = `
+                <input type="text" placeholder="Club Name (e.g., Football)" class="text-xs p-1.5 border rounded-md flex-1 min-w-[120px]" required>
+                <select class="text-xs p-1.5 border rounded-md bg-white">
+                    <option value="Monday">Monday</option><option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option><option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+                </select>
+                <div class="flex items-center space-x-1">
+                    <span class="text-[10px] text-gray-400">From</span>
+                    <input type="time" value="16:00" class="text-xs p-1 border rounded-md">
+                    <span class="text-[10px] text-gray-400">To</span>
+                    <input type="time" value="17:00" class="text-xs p-1 border rounded-md">
+                </div>
+                <button type="button" onclick="document.getElementById('${rowID}').remove()" class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-md hover:bg-red-200">X</button>
+            `;
+            formContainer.appendChild(clubInputRow);
+        });
+
+        // --- 4. FORM TRANSACTION FLOWS ---
+        document.getElementById('setup-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const chosenThemeColor = document.getElementById('input-theme').value;
+            const collectedSubjects = [];
+
+            document.querySelectorAll('.subject-checkbox:checked').forEach(cb => {
+                const safeIdTag = makeSafeId(cb.value);
+                const selectedBoard = document.getElementById(`board-${safeIdTag}`).value;
+                const setTarget = document.getElementById(`target-${safeIdTag}`).value || "N/A";
+                collectedSubjects.push({ name: cb.value, board: selectedBoard, target: setTarget });
+            });
+
+            if (collectedSubjects.length === 0) {
+                alert("Please select at least one GCSE subject to construct your system checklists.");
+                return;
+            }
+
+            const collectedClubs = [];
+            document.getElementById('clubs-list-input').querySelectorAll('div').forEach(row => {
+                const inputs = row.querySelectorAll('input, select');
+                if(inputs.length >= 4) {
+                    collectedClubs.push({
+                        name: inputs[0].value,
+                        day: inputs[1].value,
+                        start: inputs[2].value,
+                        end: inputs[3].value
+                    });
+                }
+            });
+
+            appUserProfile = {
+                firstName: document.getElementById('input-fname').value,
+                surname: document.getElementById('input-sname').value,
+                year: document.getElementById('input-year').value,
+                schoolStart: document.getElementById('school-start').value,
+                schoolEnd: document.getElementById('school-end').value,
+                sleepBed: document.getElementById('sleep-bed').value,
+                sleepWake: document.getElementById('sleep-wake').value,
+                freeMorning: document.getElementById('free-morning').value,
+                freeEvening: document.getElementById('free-evening').value,
+                slotLength: document.getElementById('slot-length').value,
+                slotCount: document.getElementById('slot-count').value,
+                breakLength: document.getElementById('break-length').value,
+                theme: chosenThemeColor,
+                subjects: collectedSubjects,
+                clubs: collectedClubs
+            };
+
+            localStorage.setItem('acemygcses_profile', JSON.stringify(appUserProfile));
+            launchDashboardEnvironment(appUserProfile);
+        });
+
+        function launchDashboardEnvironment(profile) {
+            document.documentElement.style.setProperty('--theme-color', profile.theme);
+
+            document.getElementById('nav-username').innerText = `${profile.firstName} ${profile.surname}`;
+            document.getElementById('nav-year').innerText = `Year ${profile.year}`;
+            document.getElementById('dash-greeting').innerText = profile.firstName;
+
+            const hwMenu = document.getElementById('hw-subject');
+            hwMenu.innerHTML = '';
+            profile.subjects.forEach(sub => {
+                hwMenu.innerHTML += `<option value="${sub.name}">${sub.name}</option>`;
+            });
+
+            renderSyllabusChecklists(profile.subjects);
+            generateSmartTimetableSlots(profile);
+            analyzeSleepWellbeingParameters(profile);
+            renderHomeworkItems();
+
+            document.getElementById('onboarding-section').classList.add('hidden');
+            document.getElementById('dashboard-section').classList.remove('hidden');
+            document.getElementById('user-nav-profile').classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        // --- 5. RENDER SYSTEM ENGINES ---
+        function renderSyllabusChecklists(subjectsArray) {
+            const targetContainer = document.getElementById('checklists-output-container');
+            targetContainer.innerHTML = '';
+
+            subjectsArray.forEach(item => {
+                let listBlockHTML = `
+                <div class="border-2 rounded-xl overflow-hidden shadow-xs bg-white">
+                    <div class="bg-slate-50 p-4 border-b flex flex-wrap justify-between items-center gap-2">
+                        <h4 class="text-lg font-bold text-gray-900">${item.name}</h4>
+                        <div class="flex items-center space-x-3 text-xs font-bold text-gray-500">
+                            <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded-md">Board: ${item.board}</span>
+                            <span class="bg-purple-100 text-purple-700 px-2 py-1 rounded-md">Target: ${item.target}</span>
+                        </div>
+                    </div>
+                    <div class="p-4 space-y-4">`;
+
+                if (globalSyllabusDataStore[item.name] && globalSyllabusDataStore[item.name][item.board]) {
+                    const modules = globalSyllabusDataStore[item.name][item.board];
+                    
+                    modules.forEach(mod => {
+                        listBlockHTML += `
+                        <div class="mt-2">
+                            <h5 class="text-[13px] font-bold underline text-gray-900 mb-2">${mod.mainTopic}</h5>`;
+                        
+                        mod.subtopics.forEach(sub => {
+                            listBlockHTML += `
+                            <div class="ml-3 mb-3">
+                                <h6 class="text-[11px] font-bold text-gray-800 mb-1.5">${sub.title}</h6>
+                                <ul class="space-y-1.5 ml-2">`;
+                            
+                            sub.points.forEach((point, pIdx) => {
+                                const storageID = `check-${item.name}-${item.board}-${mod.mainTopic}-${sub.title}-${pIdx}`.replace(/\s+/g, '');
+                                const checkedState = localStorage.getItem(storageID) === 'true' ? 'checked' : '';
+                                
+                                listBlockHTML += `
+                                <li class="flex items-start space-x-2">
+                                    <input type="checkbox" id="${storageID}" onchange="saveCheckState('${storageID}', this.checked)" ${checkedState} class="topic-check dynamic-accent mt-0.5">
+                                    <label for="${storageID}" class="text-[11px] font-normal leading-tight text-gray-700 cursor-pointer select-none">${point}</label>
+                                </li>`;
+                            });
+
+                            listBlockHTML += `</ul></div>`;
+                        });
+                        listBlockHTML += `</div>`;
+                    });
+                } else {
+                    listBlockHTML += `
+                    <div class="p-4 text-center border-2 border-dashed rounded-xl">
+                        <p class="text-sm text-gray-500 italic">Specification details for ${item.name} (${item.board}) are queuing for integration.</p>
+                        <p class="text-xs text-gray-400 mt-1">You can add this specification directly to the globalSyllabusDataStore object in your code script array.</p>
+                    </div>`;
+                }
+
+                listBlockHTML += `</div></div>`;
+                targetContainer.innerHTML += listBlockHTML;
+            });
+        }
+
+        function saveCheckState(id, isChecked) {
+            localStorage.setItem(id, isChecked);
+        }
+
+        function generateSmartTimetableSlots(profile) {
+            const panel = document.getElementById('timetable-slots-output');
+            panel.innerHTML = '';
+
+            document.getElementById('time-lbl-school').innerText = `${profile.schoolStart} - ${profile.schoolEnd}`;
+            document.getElementById('time-lbl-sleep').innerText = `${profile.sleepBed} - ${profile.sleepWake}`;
+            document.getElementById('time-lbl-morning').innerText = `${profile.freeMorning} minutes`;
+            document.getElementById('time-lbl-evening').innerText = `${profile.freeEvening} minutes`;
+
+            panel.innerHTML += `
+                <div class="p-3 bg-slate-50 border rounded-lg text-xs font-bold text-gray-700 flex justify-between items-center">
+                    <span>🌅 Morning Routine & Breakfast Buffer</span>
+                    <span class="text-gray-400">${profile.freeMorning} Mins</span>
+                </div>
+                <div class="p-3 bg-purple-50 text-purple-800 border border-purple-200 rounded-lg text-xs font-bold flex justify-between items-center">
+                    <span>🏫 Official School Hours & Classes Session</span>
+                    <span>${profile.schoolStart} - ${profile.schoolEnd}</span>
+                </div>
+            `;
+
+            if(profile.clubs && profile.clubs.length > 0) {
+                profile.clubs.forEach(club => {
+                    panel.innerHTML += `
+                        <div class="p-3 bg-rose-50 text-rose-800 border border-rose-200 rounded-lg text-xs font-bold flex justify-between items-center">
+                            <span>🚫 Extracurricular Club: ${club.name} (${club.day})</span>
+                            <span>${club.start} - ${club.end}</span>
+                        </div>
+                    `;
+                });
+            }
+
+            panel.innerHTML += `
+                <div class="p-3 bg-amber-50 text-amber-800 border border-amber-200 rounded-lg text-xs font-bold flex justify-between items-center">
+                    <span>🌆 Dinner, Rest & Shower Downtime Buffer</span>
+                    <span>${profile.freeEvening} Mins</span>
+                </div>
+                <div class="p-4 border-2 border-dashed rounded-xl space-y-2 bg-white">
+                    <span class="text-sm font-bold text-gray-800 block">🎯 Your Custom Revision Blocks Matrix</span>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs text-gray-600 bg-slate-50 p-2 rounded-lg">
+                        <div><strong>Total Slots:</strong> ${profile.slotCount}</div>
+                        <div><strong>Slot Duration:</strong> ${profile.slotLength} mins</div>
+                        <div><strong>Break Spans:</strong> ${profile.breakLength} mins</div>
+                    </div>
+                    <p class="text-xs text-gray-500 pt-1">Make sure to space these <strong>${profile.slotCount} slots</strong> out over your available afternoon hours to avoid processing fatigue.</p>
+                </div>
+                <div class="p-3 bg-slate-100 text-gray-700 border rounded-lg text-xs font-bold flex justify-between items-center">
+                    <span>🛌 Night Routine & Sleep Reset Window</span>
+                    <span>${profile.sleepBed} - ${profile.sleepWake}</span>
+                </div>
+            `;
+        }
+
+        function analyzeSleepWellbeingParameters(profile) {
+            const card = document.getElementById('sleep-analysis-card');
+            const icon = document.getElementById('sleep-status-icon');
+            const title = document.getElementById('sleep-status-title');
+            const desc = document.getElementById('sleep-status-desc');
+
+            const [bHour, bMin] = profile.sleepBed.split(':').map(Number);
+            const [wHour, wMin] = profile.sleepWake.split(':').map(Number);
+            
+            let sleepTimeMinutes = (wHour * 60 + wMin) - (bHour * 60 + bMin);
+            if (sleepTimeMinutes < 0) sleepTimeMinutes += 24 * 60;
+            
+            const sleepHours = (sleepTimeMinutes / 60).toFixed(1);
+
+            if(sleepHours >= 7.0 && sleepHours <= 9.0) {
+                card.className = "p-4 rounded-xl border border-emerald-200 bg-emerald-50/30 flex items-start space-x-3";
+                icon.innerText = "✅";
+                title.innerText = `Healthy Sleep Track (${sleepHours} Hours Verified)`;
+                title.className = "font-bold text-emerald-900 text-base";
+                desc.innerText = "Fantastic scheduling! You are hit the required threshold for solid cognitive recovery and retention.";
+            } else {
+                card.className = "p-4 rounded-xl border border-amber-200 bg-amber-50/30 flex items-start space-x-3";
+                icon.innerText = "⚠️";
+                title.innerText = `Sleep Warning Limit (${sleepHours} Hours Logged)`;
+                title.className = "font-bold text-amber-900 text-base";
+                desc.innerText = "Your current bed/wake parameters fall below 7 hours. Adjust your bedtime to prevent burnout.";
+            }
+        }
+
+        // --- 6. HOMEWORK MANAGER LOGIC ENGINE ---
+        function openHomeworkModal() { document.getElementById('homework-modal').classList.remove('hidden'); }
+        function closeHomeworkModal() { document.getElementById('homework-modal').classList.add('hidden'); }
+
+        document.getElementById('homework-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const task = {
+                id: Date.now(),
+                title: document.getElementById('hw-title').value,
+                subject: document.getElementById('hw-subject').value,
+                date: document.getElementById('hw-date').value,
+                done: false
+            };
+            homeworkEntriesList.push(task);
+            localStorage.setItem('acemygcses_homework', JSON.stringify(homeworkEntriesList));
+            renderHomeworkItems();
+            closeHomeworkModal();
+            this.reset();
+        });
+
+        function toggleTaskStatus(id) {
+            homeworkEntriesList = homeworkEntriesList.map(t => t.id === id ? {...t, done: !t.done} : t);
+            localStorage.setItem('acemygcses_homework', JSON.stringify(homeworkEntriesList));
+            renderHomeworkItems();
+        }
+
+        function deleteTaskItem(id) {
+            homeworkEntriesList = homeworkEntriesList.filter(t => t.id !== id);
+            localStorage.setItem('acemygcses_homework', JSON.stringify(homeworkEntriesList));
+            renderHomeworkItems();
+        }
+
+        function renderHomeworkItems() {
+            const out = document.getElementById('homework-list-output');
+            out.innerHTML = '';
+            if(homeworkEntriesList.length === 0) {
+                out.innerHTML = `<p class="text-sm text-gray-400 italic">No tasks logged. Click 'Add Task' to map homework items.</p>`;
+                return;
+            }
+            homeworkEntriesList.sort((a,b) => new Date(a.date) - new Date(b.date)).forEach(t => {
+                out.innerHTML += `
+                    <div class="flex items-center justify-between p-3 border rounded-xl shadow-xs bg-slate-50">
+                        <div class="flex items-start space-x-3">
+                            <input type="checkbox" onchange="toggleTaskStatus(${t.id})" ${t.done ? 'checked' : ''} class="w-5 h-5 dynamic-accent mt-0.5 cursor-pointer">
+                            <div>
+                                <span class="text-sm font-bold block ${t.done ? 'line-through text-gray-400' : 'text-gray-800'}">${t.title}</span>
+                                <span class="text-xs font-bold text-purple-600 bg-purple-50 border border-purple-200 px-1.5 py-0.2 rounded-md">${t.subject}</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-xs font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded-md border border-red-100">📅 Due: ${t.date}</span>
+                            <button onclick="deleteTaskItem(${t.id})" class="text-xs text-gray-400 hover:text-red-500 font-bold px-1">✕</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // --- 7. APPS TAB CONTROLLER UTILITY ROUTINES ---
+        function switchTab(targetTabID) {
+            document.querySelectorAll('.tab-view').forEach(view => view.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.className = "tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-gray-100 hover:bg-white text-gray-600";
+            });
+
+            document.getElementById(`view-${targetTabID}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-${targetTabID}`);
+            activeBtn.className = "tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-white shadow-sm border dynamic-border dynamic-text";
+        }
+
+        // --- 8. STARTUP COMPONENT CORE ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const cachedProfile = localStorage.getItem('acemygcses_profile');
+            const cachedHomework = localStorage.getItem('acemygcses_homework');
+            
+            if(cachedHomework) { homeworkEntriesList = JSON.parse(cachedHomework); }
+            if (cachedProfile) { launchDashboardEnvironment(JSON.parse(cachedProfile)); }
+        });
+
+        document.getElementById('btn-reset').addEventListener('click', () => {
+            document.getElementById('onboarding-section').classList.remove('hidden');
+            document.getElementById('dashboard-section').classList.add('hidden');
+            window.scrollTo(0,0);
+        });
+    </script>
+</body>
+</html>
