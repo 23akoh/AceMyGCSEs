@@ -86,8 +86,8 @@
                             <div class="grid grid-cols-2 gap-2 text-xs">
                                 <div><label>Wake-up Time</label><input type="time" id="sleep-wake" value="07:00" class="w-full p-1.5 border rounded-md bg-white"></div>
                                 <div><label>Morning Prep (Mins)</label><input type="number" id="morning-ready-len" value="45" class="w-full p-1.5 border rounded-md bg-white"></div>
-                                <div><label>School Starts</label><input type="time" id="school-start" value="08:45" class="w-full p-1.5 border rounded-md bg-white"></div>
-                                <div><label>School Ends</label><input type="time" id="school-end" value="15:30" class="w-full p-1.5 border rounded-md bg-white"></div>
+                                <div><label>School Starts</label><input type="time" id="school-start" value="08:30" class="w-full p-1.5 border rounded-md bg-white"></div>
+                                <div><label>School Ends</label><input type="time" id="school-end" value="15:15" class="w-full p-1.5 border rounded-md bg-white"></div>
                                 <div><label>Evening Rest (Mins)</label><input type="number" id="evening-rest-len" value="60" class="w-full p-1.5 border rounded-md bg-white"></div>
                                 <div><label>Bedtime</label><input type="time" id="sleep-bed" value="22:00" class="w-full p-1.5 border rounded-md bg-white"></div>
                             </div>
@@ -679,8 +679,8 @@
             // Load Timings
             document.getElementById('sleep-wake').value = appUserProfile.wakeTime || '07:00';
             document.getElementById('morning-ready-len').value = appUserProfile.morningReady || 45;
-            document.getElementById('school-start').value = appUserProfile.schoolStart || '08:45';
-            document.getElementById('school-end').value = appUserProfile.schoolEnd || '15:30';
+            document.getElementById('school-start').value = appUserProfile.schoolStart || '08:30';
+            document.getElementById('school-end').value = appUserProfile.schoolEnd || '15:15';
             document.getElementById('evening-rest-len').value = appUserProfile.eveningRest || 60;
             document.getElementById('sleep-bed').value = appUserProfile.bedtime || '22:00';
             
