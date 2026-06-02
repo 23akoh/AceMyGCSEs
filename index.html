@@ -131,7 +131,7 @@
                     <div class="flex items-center space-x-4">
                         <img id="dash-pfp" src="" class="w-16 h-16 rounded-full object-cover border-2 dynamic-border shadow-sm hidden">
                         <div>
-                            <h2 class="text-3xl font-bold text-gray-900">Dashboard, <span id="dash-greeting" class="dynamic-text">Student</span>!</h2>
+                            <h2 class="text-3xl font-bold text-gray-900">Hello, <span id="dash-greeting" class="dynamic-text">Student</span>!</h2>
                             <p class="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded-md inline-block mt-1">📅 Today: <span id="live-day-lbl"></span></p>
                         </div>
                     </div>
@@ -179,7 +179,7 @@
                 <div id="view-checklists" class="tab-view hidden bg-white p-6 rounded-xl shadow-sm space-y-4">
                     <div class="border-b pb-2">
                         <h3 class="font-bold text-xl text-gray-800">Official Exam Board Specifications</h3>
-                        <p class="text-xs text-gray-500">Access the direct, unedited syllabus files for your exact subjects below.</p>
+                        <p class="text-xs text-gray-500">Direct links to your exact syllabus. For niche subjects, clicking will generate a specific board search to find the correct PDF instantly.</p>
                     </div>
                     <div id="checklists-output-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
                 </div>
@@ -211,11 +211,12 @@
             <div class="bg-white p-5 rounded-xl shadow-sm border">
                 <h3 class="font-bold text-base mb-3 text-gray-800 border-b pb-2">🔗 Revision Portals</h3>
                 <div class="space-y-2 text-xs font-bold">
+                    <a href="https://www.savemyexams.co.uk/" target="_blank" class="block p-2 bg-slate-50 rounded hover:bg-slate-100 flex justify-between text-gray-700 border-b"><span>Save My Exams</span> <span>↗</span></a>
                     <a href="https://www.senecalearning.com" target="_blank" class="block p-2 bg-slate-50 rounded hover:bg-slate-100 flex justify-between text-gray-700"><span>Seneca Learning</span> <span>↗</span></a>
                     <a href="https://cognitoedu.org" target="_blank" class="block p-2 bg-slate-50 rounded hover:bg-slate-100 flex justify-between text-gray-700"><span>Cognito</span> <span>↗</span></a>
                     <a href="https://www.bbc.co.uk/bitesize/levels/z98jmp3" target="_blank" class="block p-2 bg-slate-50 rounded hover:bg-slate-100 flex justify-between text-gray-700"><span>BBC Bitesize GCSE</span> <span>↗</span></a>
                     <a href="https://corbettmaths.com/" target="_blank" class="block p-2 bg-slate-50 rounded hover:bg-slate-100 flex justify-between text-gray-700"><span>Corbett Maths</span> <span>↗</span></a>
-                    <a href="https://www.physicsandmathstutor.com" target="_blank" class="block p-2 bg-slate-50 rounded hover:bg-slate-100 flex justify-between text-gray-700"><span>PMT (Physics & Maths Tutor)</span> <span>↗</span></a>
+                    <a href="https://www.physicsandmathstutor.com" target="_blank" class="block p-2 bg-slate-50 rounded hover:bg-slate-100 flex justify-between text-gray-700"><span>PMT</span> <span>↗</span></a>
                     <a href="https://www.mathsgenie.co.uk" target="_blank" class="block p-2 bg-slate-50 rounded hover:bg-slate-100 flex justify-between text-gray-700"><span>Maths Genie</span> <span>↗</span></a>
                 </div>
             </div>
@@ -244,7 +245,7 @@
         const ALL_DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
         let currentDailyViewIndex = 0;
 
-        // Expanded Subject Database (ALL Subjects)
+        // Expanded Subject Database
         const subjectDatabaseList = {
             "Core Subjects": ["Mathematics", "Further Mathematics", "English Language", "English Literature"],
             "Sciences": ["Biology", "Chemistry", "Physics", "Combined Science", "Astronomy", "Geology"],
@@ -257,15 +258,48 @@
 
         const boardRegistryOptions = ["AQA", "Edexcel", "OCR", "WJEC", "Eduqas", "CCEA"];
 
-        // Official Links Router Engine
-        const boardSpecRouters = {
-            "AQA": "https://www.aqa.org.uk/subjects",
-            "Edexcel": "https://qualifications.pearson.com/en/qualifications/edexcel-gcses.html",
-            "OCR": "https://www.ocr.org.uk/qualifications/gcse/",
-            "WJEC": "https://www.wjec.co.uk/qualifications/",
-            "Eduqas": "https://www.eduqas.co.uk/qualifications/",
-            "CCEA": "https://ccea.org.uk/key-stage-4/gcse/subjects"
-        };
+        // Direct Spec Links Mapping (Core ones hardcoded, niche ones use smart search)
+        function getSpecLink(board, subject) {
+            const baseSub = subject.startsWith("Combined Science") ? "Combined Science" : subject;
+            
+            const hardcodedLinks = {
+                "AQA": {
+                    "Biology": "https://www.aqa.org.uk/subjects/science/gcse/biology-8461/specification-at-a-glance",
+                    "Chemistry": "https://www.aqa.org.uk/subjects/science/gcse/chemistry-8462/specification-at-a-glance",
+                    "Physics": "https://www.aqa.org.uk/subjects/science/gcse/physics-8463/specification-at-a-glance",
+                    "Combined Science": "https://www.aqa.org.uk/subjects/science/gcse/combined-science-trilogy-8464/specification-at-a-glance",
+                    "Mathematics": "https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification-at-a-glance",
+                    "English Language": "https://www.aqa.org.uk/subjects/english/gcse/english-language-8700/specification-at-a-glance",
+                    "English Literature": "https://www.aqa.org.uk/subjects/english/gcse/english-literature-8702/specification-at-a-glance",
+                    "History": "https://www.aqa.org.uk/subjects/history/gcse/history-8145/specification-at-a-glance",
+                    "Geography": "https://www.aqa.org.uk/subjects/geography/gcse/geography-8035/specification-at-a-glance",
+                    "Computer Science": "https://www.aqa.org.uk/subjects/computer-science-and-it/gcse/computer-science-8525/specification-at-a-glance"
+                },
+                "Edexcel": {
+                    "Mathematics": "https://qualifications.pearson.com/en/qualifications/edexcel-gcses/mathematics-2015.html",
+                    "English Language": "https://qualifications.pearson.com/en/qualifications/edexcel-gcses/english-language-2015.html",
+                    "English Literature": "https://qualifications.pearson.com/en/qualifications/edexcel-gcses/english-literature-2015.html",
+                    "Biology": "https://qualifications.pearson.com/en/qualifications/edexcel-gcses/sciences-2016.html",
+                    "Chemistry": "https://qualifications.pearson.com/en/qualifications/edexcel-gcses/sciences-2016.html",
+                    "Physics": "https://qualifications.pearson.com/en/qualifications/edexcel-gcses/sciences-2016.html",
+                    "History": "https://qualifications.pearson.com/en/qualifications/edexcel-gcses/history-2016.html",
+                    "Geography": "https://qualifications.pearson.com/en/qualifications/edexcel-gcses/geography-a-2016.html"
+                },
+                "OCR": {
+                    "Mathematics": "https://www.ocr.org.uk/qualifications/gcse/mathematics-j560-from-2015/",
+                    "Computer Science": "https://www.ocr.org.uk/qualifications/gcse/computer-science-j277-from-2020/",
+                    "Biology": "https://www.ocr.org.uk/qualifications/gcse/gateway-science-suite-biology-a-j247-from-2016/",
+                    "History": "https://www.ocr.org.uk/qualifications/gcse/history-a-explaining-the-modern-world-j410-from-2016/"
+                }
+            };
+
+            if (hardcodedLinks[board] && hardcodedLinks[board][baseSub]) {
+                return hardcodedLinks[board][baseSub];
+            }
+
+            // Smart Search Fallback for unmapped subjects
+            return `https://www.google.com/search?q=${encodeURIComponent(board + " GCSE " + baseSub + " specification pdf")}`;
+        }
 
         let appUserProfile = null;
         let homeworkEntriesList = [];
@@ -285,7 +319,6 @@
                     let sId = makeSafeId(sub);
                     let boardsHtml = boardRegistryOptions.map(b => `<option value="${b}">${b}</option>`).join('');
                     
-                    // Add conditional dropdown for Combined Science
                     let combinedScienceDropdown = sub === 'Combined Science' ? `
                         <select id="comb-sci-${sId}" class="w-full text-xs border rounded p-1">
                             <option value="Biology & Chemistry">Biology & Chemistry</option>
@@ -335,7 +368,7 @@
         }
 
         function appendClubRowToSetup(name, day, start, end) {
-            const rowID = 'club-' + Date.now();
+            const rowID = 'club-' + Date.now() + Math.floor(Math.random() * 1000);
             const container = document.getElementById('clubs-list-input');
             let daysHtml = ALL_DAYS.map(d => `<option value="${d}" ${day===d?'selected':''}>${d}</option>`).join('');
             
@@ -359,7 +392,6 @@
             document.querySelectorAll('.subj-cb:checked').forEach(cb => {
                 const sId = makeSafeId(cb.value);
                 
-                // Adjust name if it is Combined Science
                 let finalSubjectName = cb.value;
                 if (cb.value === "Combined Science") {
                     let combValue = document.getElementById(`comb-sci-${sId}`).value;
@@ -401,13 +433,14 @@
             };
 
             appUserProfile.homework = homeworkEntriesList;
-            localStorage.setItem('acemygcses_v5', JSON.stringify(appUserProfile));
+            localStorage.setItem('acemygcses_v6', JSON.stringify(appUserProfile));
             launchDashboard(appUserProfile);
         }
 
         function launchDashboard(profile) {
             document.documentElement.style.setProperty('--theme-color', profile.theme);
             document.getElementById('dash-greeting').innerText = profile.firstName;
+            document.getElementById('nav-username').innerText = profile.firstName + ' ' + profile.surname;
             
             if(profile.pfp) {
                 document.getElementById('nav-pfp').src = profile.pfp;
@@ -449,22 +482,22 @@
                 let items = [];
                 let isWeekend = (day === "Saturday" || day === "Sunday");
                 
-                // 1. Morning routine block
+                // 1. Morning routine
                 items.push({ type: "Morning", title: "☀️ Wake Up & Get Ready", time: `${profile.wakeTime || '07:00'} (${profile.morningReady || 45}m)`, bg: "bg-amber-50", text: "text-amber-800" });
                 
-                // 2. Daytime Core Structure
+                // 2. School or Weekend
                 if(!isWeekend) {
                     items.push({ type: "School", title: "🏫 School Day Blocks", time: `${profile.schoolStart}-${profile.schoolEnd}`, bg: "bg-blue-50", text: "text-blue-800" });
                 } else {
                     items.push({ type: "WeekendActivity", title: "🛹 Free Time / Morning Reset", time: "Morning", bg: "bg-teal-50", text: "text-teal-800" });
                 }
 
-                // 3. Clubs matching this specific day
+                // 3. Clubs
                 profile.clubs.filter(c => c.day === day).forEach(c => {
                     items.push({ type: "Club", title: `🏆 Club: ${c.name}`, time: `${c.start}-${c.end}`, bg: "bg-rose-50", text: "text-rose-800" });
                 });
 
-                // 4. Revision Study Slots
+                // 4. Revision Slots
                 let slotCount = isWeekend ? profile.wndCount : profile.wkCount;
                 for(let i=0; i<slotCount; i++) {
                     let sub = pool[(index * 3 + i) % pool.length];
@@ -473,7 +506,7 @@
                     }
                 }
 
-                // 5. Auto-injected Homework allocations
+                // 5. Homework
                 homeworkEntriesList.forEach(hw => {
                     let hwDate = new Date(hw.date);
                     let hwDayName = hwDate.getDay() === 0 ? "Sunday" : ALL_DAYS[hwDate.getDay() - 1];
@@ -485,14 +518,14 @@
                     }
                 });
 
-                // 6. Evening Rest & Bedtime Routines
+                // 6. Evening routines
                 items.push({ type: "Rest", title: "🛋️ Evening Rest / Free Time", time: `${profile.eveningRest || 60}m block`, bg: "bg-emerald-50", text: "text-emerald-800" });
                 items.push({ type: "Evening", title: "🌙 Wind Down & Sleep", time: `Bedtime: ${profile.bedtime || '22:00'}`, bg: "bg-slate-100", text: "text-gray-600" });
                 
                 weekData[day] = items;
             });
 
-            // Render Rows-and-Columns Grid Layout
+            // Build Grid
             const gridBody = document.getElementById('grid-body');
             gridBody.innerHTML = '';
             let maxRows = Math.max(...Object.values(weekData).map(arr => arr.length));
@@ -522,7 +555,7 @@
             window.currentWeekDataMatrix = weekData;
         }
 
-        // Daily View Navigation
+        // Daily View
         function toggleTimetableView(view) {
             document.getElementById('tt-weekly').classList.toggle('hidden', view !== 'weekly');
             document.getElementById('tt-daily').classList.toggle('hidden', view !== 'daily');
@@ -558,12 +591,12 @@
             document.getElementById('daily-body').innerHTML = html;
         }
 
-        // Official Specifications Links Render
+        // Specs Render
         function renderChecklists(profile) {
             const container = document.getElementById('checklists-output-container');
             container.innerHTML = '';
             profile.subjects.forEach(sub => {
-                const specUrl = boardSpecRouters[sub.board] || "https://www.google.com/search?q=GCSE+specification";
+                const specUrl = getSpecLink(sub.board, sub.name);
                 
                 let html = `
                     <div class="border rounded-xl p-4 bg-white shadow-xs flex flex-col justify-between items-start space-y-3">
@@ -592,7 +625,7 @@
                 duration: document.getElementById('hw-duration').value
             });
             appUserProfile.homework = homeworkEntriesList;
-            localStorage.setItem('acemygcses_v5', JSON.stringify(appUserProfile));
+            localStorage.setItem('acemygcses_v6', JSON.stringify(appUserProfile));
             
             renderHomework();
             generateTimetableGrid(appUserProfile); 
@@ -625,17 +658,80 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             initAccordions();
-            const saved = localStorage.getItem('acemygcses_v5');
+            const saved = localStorage.getItem('acemygcses_v6');
             if(saved) {
                 appUserProfile = JSON.parse(saved);
                 if(appUserProfile.homework) homeworkEntriesList = appUserProfile.homework;
+                globalBase64PFP = appUserProfile.pfp || "";
                 launchDashboard(appUserProfile);
             }
         });
 
+        // Smart Settings Edit Logic (Preserves user input)
         document.getElementById('btn-reset').addEventListener('click', () => {
-            localStorage.removeItem('acemygcses_v5');
-            location.reload();
+            if(!appUserProfile) return;
+
+            // Load Basic Profile
+            document.getElementById('input-fname').value = appUserProfile.firstName || '';
+            document.getElementById('input-sname').value = appUserProfile.surname || '';
+            document.getElementById('input-theme').value = appUserProfile.theme || '#b39ddb';
+            
+            // Load Timings
+            document.getElementById('sleep-wake').value = appUserProfile.wakeTime || '07:00';
+            document.getElementById('morning-ready-len').value = appUserProfile.morningReady || 45;
+            document.getElementById('school-start').value = appUserProfile.schoolStart || '08:45';
+            document.getElementById('school-end').value = appUserProfile.schoolEnd || '15:30';
+            document.getElementById('evening-rest-len').value = appUserProfile.eveningRest || 60;
+            document.getElementById('sleep-bed').value = appUserProfile.bedtime || '22:00';
+            
+            // Load Slots
+            document.getElementById('slot-length').value = appUserProfile.slotLen || 45;
+            document.getElementById('slots-weekday').value = appUserProfile.wkCount || 3;
+            document.getElementById('slots-weekend').value = appUserProfile.wndCount || 5;
+
+            // Load Clubs
+            document.getElementById('clubs-list-input').innerHTML = '';
+            if (appUserProfile.clubs) {
+                appUserProfile.clubs.forEach(c => appendClubRowToSetup(c.name, c.day, c.start, c.end));
+            }
+
+            // Load Subjects (reset all first, then check active ones)
+            document.querySelectorAll('.subj-cb').forEach(cb => {
+                cb.checked = false;
+                toggleSubj(makeSafeId(cb.value), false);
+            });
+
+            if (appUserProfile.subjects) {
+                appUserProfile.subjects.forEach(sub => {
+                    let baseSubName = sub.name.startsWith("Combined Science") ? "Combined Science" : sub.name;
+                    let sId = makeSafeId(baseSubName);
+                    let cb = document.getElementById(`cb-${sId}`);
+                    
+                    if (cb) {
+                        cb.checked = true;
+                        toggleSubj(sId, true);
+                        document.getElementById(`board-${sId}`).value = sub.board;
+                        document.getElementById(`target-${sId}`).value = sub.target;
+                        document.getElementById(`prio-${sId}`).checked = sub.priority;
+                        
+                        if (baseSubName === "Combined Science") {
+                            let match = sub.name.match(/\((.*?)\)/);
+                            if (match) document.getElementById(`comb-sci-${sId}`).value = match[1];
+                        }
+                    }
+                });
+            }
+
+            // Load PFP Preview
+            if (globalBase64PFP) {
+                document.getElementById('setup-pfp-preview').src = globalBase64PFP;
+            }
+
+            // Swap Views Back to Setup
+            document.getElementById('dashboard-section').classList.add('hidden');
+            document.getElementById('links-sidebar').style.display = 'none';
+            document.getElementById('onboarding-section').classList.remove('hidden');
+            window.scrollTo(0,0);
         });
     </script>
 </body>
