@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght=700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     
     <style>
         body { 
@@ -83,7 +83,7 @@
 
                 <form id="setup-form" class="space-y-6" onsubmit="handleFormSubmit(event)">
                     
-                    <div class="bg-purple-50/50 p-5 rounded-xl border border-purple-100 grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+                    <div class="bg-purple-50 p-5 rounded-xl border border-purple-100 grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
                         <div class="md:col-span-1 flex flex-col items-center justify-center border-r border-purple-100 pr-2">
                             <label for="input-pfp" class="cursor-pointer flex flex-col items-center group">
                                 <img id="setup-pfp-preview" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23b39ddb'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z'/></svg>" class="w-16 h-16 rounded-full object-cover border-2 dynamic-border bg-white shadow-sm">
@@ -104,7 +104,7 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="bg-blue-50/50 p-5 rounded-xl border border-blue-100 space-y-3">
+                        <div class="bg-blue-50 p-5 rounded-xl border border-blue-100 space-y-3">
                             <h3 class="font-bold text-sm text-blue-900">Routine Benchmarks</h3>
                             <div class="grid grid-cols-2 gap-2 text-xs font-medium">
                                 <div><label class="text-gray-600">Wake-up Time</label><input type="time" id="sleep-wake" value="07:00" class="w-full p-1.5 border rounded-md bg-white"></div>
@@ -115,7 +115,7 @@
                                 <div><label class="text-gray-600">Bedtime</label><input type="time" id="sleep-bed" value="22:00" class="w-full p-1.5 border rounded-md bg-white"></div>
                             </div>
                         </div>
-                        <div class="bg-emerald-50/50 p-5 rounded-xl border border-emerald-100 space-y-3">
+                        <div class="bg-emerald-50 p-5 rounded-xl border border-emerald-100 space-y-3">
                             <h3 class="font-bold text-sm text-emerald-900">Revision Constraints</h3>
                             <div class="grid grid-cols-2 gap-2 text-xs font-medium">
                                 <div><label class="text-gray-600">Slot Duration (Mins)</label><input type="number" id="slot-length" value="45" class="w-full p-1.5 border rounded-md bg-white"></div>
@@ -126,18 +126,18 @@
                         </div>
                     </div>
 
-                    <div class="bg-indigo-50/50 p-4 rounded-xl border border-indigo-100 space-y-3">
+                    <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100 space-y-3">
                         <div class="flex justify-between items-center">
                             <div>
                                 <h3 class="font-bold text-sm text-indigo-900">School Timetable Integration</h3>
-                                <p class="text-[10px] text-indigo-700 font-medium">Add your daily lessons. The engine will schedule revision for subjects you studied today (spaced repetition) or subjects with homework due soon.</p>
+                                <p class="text-[10px] text-indigo-700 font-medium">Add all lessons you have each day. Spaced repetition hooks into this to maximize your retention balance.</p>
                             </div>
                             <button type="button" onclick="appendLessonRowToSetup('Monday', '')" class="text-xs bg-indigo-600 text-white px-3 py-1.5 rounded-md hover:bg-indigo-700 font-bold cursor-pointer min-w-[100px]">Add Lesson +</button>
                         </div>
                         <div id="lessons-list-input" class="space-y-2 grid grid-cols-1 md:grid-cols-2 gap-2"></div>
                     </div>
 
-                    <div class="bg-rose-50/50 p-4 rounded-xl border border-rose-100 space-y-3">
+                    <div class="bg-rose-50 p-4 rounded-xl border border-rose-100 space-y-3">
                         <div class="flex justify-between items-center">
                             <h3 class="font-bold text-sm text-rose-900">Extra-Curricular Clubs</h3>
                             <button type="button" onclick="appendClubRowToSetup('', 'Monday', '16:00', '17:00')" class="text-xs bg-rose-600 text-white px-3 py-1.5 rounded-md hover:bg-rose-700 font-bold cursor-pointer">Add Club +</button>
@@ -145,7 +145,7 @@
                         <div id="clubs-list-input" class="space-y-2"></div>
                     </div>
 
-                    <div class="bg-slate-100/80 p-5 rounded-xl border space-y-3">
+                    <div class="bg-slate-100 p-5 rounded-xl border space-y-3">
                         <div class="flex justify-between items-center border-b pb-2">
                             <div>
                                 <h3 class="font-bold text-lg text-gray-900">Your GCSE Subjects</h3>
@@ -285,7 +285,6 @@
         let homeworkEntriesList = [];
         let globalBase64PFP = "";
 
-        // Time processing helper functions
         function parseTimeToMinutes(tStr) {
             if(!tStr) return 0;
             const parts = tStr.split(':');
@@ -320,7 +319,7 @@
             let daysHtml = ALL_DAYS.slice(0, 5).map(d => `<option value="${d}" ${day===d?'selected':''}>${d}</option>`).join('');
             div.innerHTML = `
                 <select class="text-xs p-1.5 border rounded w-1/3">${daysHtml}</select>
-                <input type="text" list="subject-suggestions" placeholder="Subject" value="${subject}" class="text-xs p-1.5 border rounded flex-1" required>
+                <input type="text" list="subject-suggestions" placeholder="Subject Name" value="${subject}" class="text-xs p-1.5 border rounded flex-1" required>
                 <button type="button" onclick="document.getElementById('${id}').remove()" class="text-xs bg-red-50 text-red-600 border border-red-100 px-2 py-1.5 rounded-md font-bold hover:bg-red-100 transition-colors">✕</button>
             `;
             document.getElementById('lessons-list-input').appendChild(div);
@@ -353,7 +352,7 @@
             let boardsHtml = EXAM_BOARDS.map(b => `<option value="${b}" ${board===b?'selected':''}>${b}</option>`).join('');
             div.innerHTML = `
                 <div class="flex flex-wrap items-center gap-2">
-                    <input type="text" list="subject-suggestions" placeholder="Subject Name (e.g. History)" value="${name}" class="text-xs p-2 border rounded flex-1 min-w-[180px] font-bold" required>
+                    <input type="text" list="subject-suggestions" placeholder="Subject Name" value="${name}" class="text-xs p-2 border rounded flex-1 min-w-[180px] font-bold" required>
                     <select class="text-xs p-2 border rounded font-medium">${boardsHtml}</select>
                     <input type="text" placeholder="Target" value="${target}" class="text-xs p-2 border rounded w-16 text-center" required>
                     <label class="flex items-center space-x-1 text-xs font-bold bg-purple-50 p-1.5 border border-purple-100 rounded cursor-pointer select-none">
@@ -456,7 +455,6 @@
             currentDailyViewIndex = ALL_DAYS.indexOf(currentLiveDay);
             document.getElementById('live-day-lbl').innerText = currentLiveDay;
 
-            // Re-populate homework option box drop downs dynamically
             const hwMenu = document.getElementById('hw-subject');
             hwMenu.innerHTML = profile.subjects.map(s => `<option value="${s.name}">${s.name}</option>`).join('');
 
@@ -471,41 +469,58 @@
             window.scrollTo(0,0);
         }
 
-        // --- INTELLIGENT PACING STUDY TIMETABLE ENGINE ---
         function generateSmartTimetable(profile) {
             const weekDataMatrix = {};
 
             ALL_DAYS.forEach((day, dIdx) => {
                 const dayPlan = [];
                 const isWeekend = (day === "Saturday" || day === "Sunday");
-                
-                // Track occupied segments using chronologically ordered minutes of the 24-hr day
                 const timelineMap = [];
 
                 const startWakeMins = parseTimeToMinutes(profile.wakeTime);
                 const morningPrepEnd = startWakeMins + profile.morningReady;
                 
-                // 1. Morning Routine
                 dayPlan.push({ type: "Routine", title: "☀️ Wake & Prep", start: startWakeMins, end: morningPrepEnd, display: `${profile.wakeTime} - ${formatMinutesToTime(morningPrepEnd)}`, bg: "bg-amber-50 border-amber-200", text: "text-amber-900" });
                 timelineMap.push({ start: startWakeMins, end: morningPrepEnd });
 
-                // 2. Core School
                 let schoolStartMins = parseTimeToMinutes(profile.schoolStart);
                 let schoolEndMins = parseTimeToMinutes(profile.schoolEnd);
+                
                 if(!isWeekend) {
-                    dayPlan.push({ type: "School", title: "🏫 Core School", start: schoolStartMins, end: schoolEndMins, display: `${profile.schoolStart} - ${profile.schoolEnd}`, bg: "bg-blue-50 border-blue-200", text: "text-blue-900" });
+                    // Block school travel time buffer BEFORE school
+                    let preSchoolTravelStart = Math.max(0, schoolStartMins - 30);
+                    timelineMap.push({ start: preSchoolTravelStart, end: schoolStartMins });
+                    dayPlan.push({ type: "Buffer", title: "🚗 Travel / Rest Buffer", start: preSchoolTravelStart, end: schoolStartMins, display: `${formatMinutesToTime(preSchoolTravelStart)} - ${profile.schoolStart}`, bg: "bg-gray-100 border-gray-200 text-gray-500 italic", text: "text-gray-500" });
+
+                    // Block School core hours
+                    dayPlan.push({ type: "School", title: "🏫 Core School Hours", start: schoolStartMins, end: schoolEndMins, display: `${profile.schoolStart} - ${profile.schoolEnd}`, bg: "bg-blue-50 border-blue-200", text: "text-blue-900" });
                     timelineMap.push({ start: schoolStartMins, end: schoolEndMins });
+
+                    // Block school travel time buffer AFTER school
+                    let postSchoolTravelEnd = schoolEndMins + 30;
+                    timelineMap.push({ start: schoolEndMins, end: postSchoolTravelEnd });
+                    dayPlan.push({ type: "Buffer", title: "🚗 Travel / Rest Buffer", start: schoolEndMins, end: postSchoolTravelEnd, display: `${profile.schoolEnd} - ${formatMinutesToTime(postSchoolTravelEnd)}`, bg: "bg-gray-100 border-gray-200 text-gray-500 italic", text: "text-gray-500" });
                 }
 
-                // 3. Clubs
                 profile.clubs.filter(c => c.day === day).forEach(club => {
                     const cStart = parseTimeToMinutes(club.start);
                     const cEnd = parseTimeToMinutes(club.end);
+                    
+                    // Buffer BEFORE club
+                    let preClubStart = Math.max(0, cStart - 30);
+                    timelineMap.push({ start: preClubStart, end: cStart });
+                    dayPlan.push({ type: "Buffer", title: `🚗 Buffer: ${club.name}`, start: preClubStart, end: cStart, display: `${formatMinutesToTime(preClubStart)} - ${club.start}`, bg: "bg-gray-100 border-gray-200 text-gray-400 italic", text: "text-gray-500" });
+
+                    // Club event itself
                     dayPlan.push({ type: "Club", title: `🏆 Club: ${club.name}`, start: cStart, end: cEnd, display: `${club.start} - ${club.end}`, bg: "bg-rose-50 border-rose-200", text: "text-rose-900" });
                     timelineMap.push({ start: cStart, end: cEnd });
+
+                    // Buffer AFTER club
+                    let postClubEnd = cEnd + 30;
+                    timelineMap.push({ start: cEnd, end: postClubEnd });
+                    dayPlan.push({ type: "Buffer", title: `🚗 Buffer: ${club.name}`, start: cEnd, end: postClubEnd, display: `${club.end} - ${formatMinutesToTime(postClubEnd)}`, bg: "bg-gray-100 border-gray-200 text-gray-400 italic", text: "text-gray-500" });
                 });
 
-                // 4. Night Rest
                 const bedMins = parseTimeToMinutes(profile.bedtime);
                 const restStartMins = bedMins - profile.eveningRest;
                 dayPlan.push({ type: "Routine", title: "🛋️ Evening Rest", start: restStartMins, end: bedMins, display: `${formatMinutesToTime(restStartMins)} - ${profile.bedtime}`, bg: "bg-emerald-50 border-emerald-200", text: "text-emerald-900" });
@@ -515,11 +530,9 @@
                 timelineMap.push({ start: bedMins, end: 1440 });
                 timelineMap.push({ start: 0, end: startWakeMins });
 
-                // 5. Build Smart Day-Specific Subject Pool based on school lessons and homework
                 let smartDailyPool = [];
                 let lessonSubjectsToday = profile.lessons ? profile.lessons.filter(l => l.day === day).map(l => l.subject) : [];
                 
-                // Active Dynamic Homework Allocation
                 homeworkEntriesList.forEach(hw => {
                     if(!hw.completed) {
                         let hwDate = new Date(hw.date);
@@ -529,7 +542,7 @@
                         
                         if(dIdx === targetDayIndex) {
                             let duration = parseInt(hw.duration) || 30;
-                            let scheduled = attemptFitInterval(timelineMap, morningPrepEnd, restStartMins, duration, isWeekend, schoolStartMins, schoolEndMins);
+                            let scheduled = attemptFitInterval(timelineMap, morningPrepEnd, restStartMins, duration);
                             if(scheduled) {
                                 dayPlan.push({ type: "Homework", title: `📝 HW: ${hw.title}`, reason: "Reason: Imminent Deadline", start: scheduled.start, end: scheduled.end, display: `${formatMinutesToTime(scheduled.start)} - ${formatMinutesToTime(scheduled.end)}`, bg: "bg-indigo-50 border-indigo-200 font-bold", text: "text-indigo-900", checkable: true, hwRef: hw.title });
                                 timelineMap.push({ start: scheduled.start, end: scheduled.end });
@@ -538,13 +551,11 @@
                     }
                 });
 
-                // Populate pool: Prioritize today's school lessons for Spaced Repetition
                 profile.subjects.forEach(s => {
                     const weighting = s.priority ? 3 : 1;
                     for(let i=0; i<weighting; i++) {
                         if(lessonSubjectsToday.includes(s.name)) {
-                            smartDailyPool.unshift({ name: s.name, reason: "Reason: Taught in school today (Spaced Repetition)" });
-                            smartDailyPool.unshift({ name: s.name, reason: "Reason: Taught in school today (Spaced Repetition)" });
+                            smartDailyPool.unshift({ name: s.name, reason: `Reason: Studied in today's classes (Spaced Repetition)` });
                         } else {
                             smartDailyPool.push({ name: s.name, reason: "Reason: General priority rotation" });
                         }
@@ -552,10 +563,9 @@
                 });
                 if(smartDailyPool.length === 0) smartDailyPool.push({ name: "General Review", reason: "Maintain study habits" });
 
-                // 6. Pack Revision Slots
                 let quota = isWeekend ? profile.wndCount : profile.wkCount;
                 for(let q=0; q<quota; q++) {
-                    let scheduledSlot = attemptFitInterval(timelineMap, morningPrepEnd, restStartMins, profile.slotLen, isWeekend, schoolStartMins, schoolEndMins);
+                    let scheduledSlot = attemptFitInterval(timelineMap, morningPrepEnd, restStartMins, profile.slotLen);
                     if(scheduledSlot) {
                         let currentSub = smartDailyPool[q % smartDailyPool.length];
                         dayPlan.push({ type: "Revision", title: `📚 Revise: ${currentSub.name}`, reason: currentSub.reason, start: scheduledSlot.start, end: scheduledSlot.end, display: `${formatMinutesToTime(scheduledSlot.start)} - ${formatMinutesToTime(scheduledSlot.end)}`, bg: "bg-white border shadow-xs border-l-4", text: "text-gray-800", checkable: true });
@@ -563,12 +573,10 @@
                     }
                 }
 
-                // Sort chronologically
                 dayPlan.sort((a,b) => a.start - b.start);
                 weekDataMatrix[day] = dayPlan;
             });
 
-            // Grid Render
             const gridBody = document.getElementById('grid-body');
             gridBody.innerHTML = '';
             let maxRowLimit = Math.max(...Object.values(weekDataMatrix).map(arr => arr.length));
@@ -601,13 +609,8 @@
             window.currentWeekDataMatrix = weekDataMatrix;
         }
 
-        // Interval positioning scan algorithm
-        function attemptFitInterval(timeline, searchStart, searchEnd, duration, isWeekend, schoolStart, schoolEnd) {
+        function attemptFitInterval(timeline, searchStart, searchEnd, duration) {
             for(let timeCursor = searchStart; timeCursor <= (searchEnd - duration); timeCursor += 5) {
-                if(!isWeekend && timeCursor >= schoolStart && timeCursor < schoolEnd) {
-                    continue;
-                }
-                
                 let dynamicOverlap = false;
                 for(let b=0; b<timeline.length; b++) {
                     if(timeCursor < timeline[b].end && (timeCursor + duration) > timeline[b].start) {
@@ -636,7 +639,6 @@
             }
         }
 
-        // Daily View UI
         function toggleTimetableView(view) {
             document.getElementById('tt-weekly').classList.toggle('hidden', view !== 'weekly');
             document.getElementById('tt-daily').classList.toggle('hidden', view !== 'daily');
@@ -674,7 +676,6 @@
             document.getElementById('daily-body').innerHTML = html;
         }
 
-        // Homework System Functions
         function openHomeworkModal() { 
             document.getElementById('hw-modal-title').innerText = "Log New Homework";
             document.getElementById('hw-edit-index').value = "-1";
@@ -749,78 +750,4 @@
                                 <span class="text-sm font-bold ${t.completed ? 'line-through text-gray-400' : 'text-gray-900'}">${t.title}</span>
                                 ${statusMarkup}
                             </div>
-                            <span class="text-[11px] font-semibold text-purple-700 bg-purple-50 border border-purple-100 px-2 py-0.5 rounded-md mt-1.5 inline-block">${t.subject} • ${t.duration} Mins Plan</span>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <span class="text-xs font-mono text-gray-500 bg-white border px-2 py-1 rounded-md">Due: ${t.date}</span>
-                            <button onclick="openHomeworkEdit(${i})" class="text-xs bg-white text-gray-600 border px-2 py-1 rounded hover:bg-purple-50 hover:text-purple-700 transition-colors font-medium cursor-pointer">Edit</button>
-                            <button onclick="deleteHomework(${i})" class="text-xs bg-red-50 text-red-600 border border-red-100 px-2 py-1 rounded hover:bg-red-100 transition-colors font-medium cursor-pointer">✕</button>
-                        </div>
-                    </div>`;
-            });
-        }
-
-        function switchTab(id) {
-            document.querySelectorAll('.tab-view').forEach(v => v.classList.add('hidden'));
-            document.querySelectorAll('.tab-btn').forEach(b => b.className = "tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-gray-100 hover:bg-white text-gray-600 cursor-pointer");
-            document.getElementById(`view-${id}`).classList.remove('hidden');
-            document.getElementById(`tab-${id}`).className = "tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-white shadow-sm border dynamic-border dynamic-text cursor-pointer";
-        }
-
-        // --- STABLE PERSISTENT RETENTION CONFIG LOAD ---
-        window.addEventListener('DOMContentLoaded', () => {
-            const saved = localStorage.getItem('acemygcses_v8_data');
-            if(saved) {
-                appUserProfile = JSON.parse(saved);
-                if(appUserProfile.homework) homeworkEntriesList = appUserProfile.homework;
-                globalBase64PFP = appUserProfile.pfp || "";
-                launchDashboard(appUserProfile);
-            } else {
-                appendSubjectRowToSetup("Mathematics", "Edexcel", "7", false);
-                appendSubjectRowToSetup("English Literature", "AQA", "7", false);
-                appendSubjectRowToSetup("English Language", "AQA", "7", false);
-            }
-        });
-
-        document.getElementById('btn-reset').addEventListener('click', () => {
-            if(!appUserProfile) return;
-
-            document.getElementById('input-fname').value = appUserProfile.firstName || '';
-            document.getElementById('input-sname').value = appUserProfile.surname || '';
-            document.getElementById('input-year').value = appUserProfile.year || '11';
-            document.getElementById('input-theme').value = appUserProfile.theme || '#b39ddb';
-            
-            document.getElementById('sleep-wake').value = appUserProfile.wakeTime || '07:00';
-            document.getElementById('morning-ready-len').value = appUserProfile.morningReady || 45;
-            document.getElementById('school-start').value = appUserProfile.schoolStart || '08:30';
-            document.getElementById('school-end').value = appUserProfile.schoolEnd || '15:15';
-            document.getElementById('evening-rest-len').value = appUserProfile.eveningRest || 60;
-            document.getElementById('sleep-bed').value = appUserProfile.bedtime || '22:00';
-            
-            document.getElementById('slot-length').value = appUserProfile.slotLen || 45;
-            document.getElementById('break-length').value = appUserProfile.breakLen || 10;
-            document.getElementById('slots-weekday').value = appUserProfile.wkCount || 3;
-            document.getElementById('slots-weekend').value = appUserProfile.wndCount || 5;
-
-            // Rebuild
-            document.getElementById('clubs-list-input').innerHTML = '';
-            if (appUserProfile.clubs) appUserProfile.clubs.forEach(c => appendClubRowToSetup(c.name, c.day, c.start, c.end));
-
-            document.getElementById('lessons-list-input').innerHTML = '';
-            if (appUserProfile.lessons) appUserProfile.lessons.forEach(l => appendLessonRowToSetup(l.day, l.subject));
-
-            document.getElementById('subjects-dynamic-list-container').innerHTML = '';
-            if (appUserProfile.subjects) {
-                appUserProfile.subjects.forEach(s => appendSubjectRowToSetup(s.name, s.board, s.target, s.priority));
-            }
-
-            if (globalBase64PFP) document.getElementById('setup-pfp-preview').src = globalBase64PFP;
-
-            document.getElementById('dashboard-section').classList.add('hidden');
-            document.getElementById('links-sidebar').style.display = 'none';
-            document.getElementById('onboarding-section').classList.remove('hidden');
-            window.scrollTo(0,0);
-        });
-    </script>
-</body>
-</html>
+                            <span class="text-[11px] font
