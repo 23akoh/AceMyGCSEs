@@ -750,4 +750,76 @@
                                 <span class="text-sm font-bold ${t.completed ? 'line-through text-gray-400' : 'text-gray-900'}">${t.title}</span>
                                 ${statusMarkup}
                             </div>
-                            <span class="text-[11px] font
+                            <span class="text-[11px] font-semibold text-purple-700 bg-purple-50 border border-purple-100 px-2 py-0.5 rounded-md mt-1.5 inline-block">${t.subject} • ${t.duration} Mins Plan</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-xs font-mono text-gray-500 bg-white border px-2 py-1 rounded-md">Due: ${t.date}</span>
+                            <button onclick="openHomeworkEdit(${i})" class="text-xs bg-white text-gray-600 border px-2 py-1 rounded hover:bg-purple-50 hover:text-purple-700 transition-colors font-medium cursor-pointer">Edit</button>
+                            <button onclick="deleteHomework(${i})" class="text-xs bg-red-50 text-red-600 border border-red-100 px-2 py-1 rounded hover:bg-red-100 transition-colors font-medium cursor-pointer">✕</button>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function switchTab(id) {
+            document.querySelectorAll('.tab-view').forEach(v => v.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.className = "tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-gray-100 hover:bg-white text-gray-600 cursor-pointer");
+            document.getElementById(`view-${id}`).classList.remove('hidden');
+            document.getElementById(`tab-${id}`).className = "tab-btn px-4 py-2 font-bold text-sm rounded-lg bg-white shadow-sm border dynamic-border dynamic-text cursor-pointer";
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('acemygcses_v8_data');
+            if(saved) {
+                appUserProfile = JSON.parse(saved);
+                if(appUserProfile.homework) homeworkEntriesList = appUserProfile.homework;
+                globalBase64PFP = appUserProfile.pfp || "";
+                launchDashboard(appUserProfile);
+            } else {
+                appendSubjectRowToSetup("Mathematics", "Edexcel", "7", false);
+                appendSubjectRowToSetup("English Literature", "AQA", "7", false);
+                appendSubjectRowToSetup("English Language", "AQA", "7", false);
+            }
+        });
+
+        document.getElementById('btn-reset').addEventListener('click', () => {
+            if(!appUserProfile) return;
+
+            document.getElementById('input-fname').value = appUserProfile.firstName || '';
+            document.getElementById('input-sname').value = appUserProfile.surname || '';
+            document.getElementById('input-year').value = appUserProfile.year || '11';
+            document.getElementById('input-theme').value = appUserProfile.theme || '#b39ddb';
+            
+            document.getElementById('sleep-wake').value = appUserProfile.wakeTime || '07:00';
+            document.getElementById('morning-ready-len').value = appUserProfile.morningReady || 45;
+            document.getElementById('school-start').value = appUserProfile.schoolStart || '08:30';
+            document.getElementById('school-end').value = appUserProfile.schoolEnd || '15:15';
+            document.getElementById('evening-rest-len').value = appUserProfile.eveningRest || 60;
+            document.getElementById('sleep-bed').value = appUserProfile.bedtime || '22:00';
+            
+            document.getElementById('slot-length').value = appUserProfile.slotLen || 45;
+            document.getElementById('break-length').value = appUserProfile.breakLen || 10;
+            document.getElementById('slots-weekday').value = appUserProfile.wkCount || 3;
+            document.getElementById('slots-weekend').value = appUserProfile.wndCount || 5;
+
+            document.getElementById('clubs-list-input').innerHTML = '';
+            if (appUserProfile.clubs) appUserProfile.clubs.forEach(c => appendClubRowToSetup(c.name, c.day, c.start, c.end));
+
+            document.getElementById('lessons-list-input').innerHTML = '';
+            if (appUserProfile.lessons) appUserProfile.lessons.forEach(l => appendLessonRowToSetup(l.day, l.subject));
+
+            document.getElementById('subjects-dynamic-list-container').innerHTML = '';
+            if (appUserProfile.subjects) {
+                appUserProfile.subjects.forEach(s => appendSubjectRowToSetup(s.name, s.board, s.target, s.priority));
+            }
+
+            if (globalBase64PFP) document.getElementById('setup-pfp-preview').src = globalBase64PFP;
+
+            document.getElementById('dashboard-section').classList.add('hidden');
+            document.getElementById('links-sidebar').style.display = 'none';
+            document.getElementById('onboarding-section').classList.remove('hidden');
+            window.scrollTo(0,0);
+        });
+    </script>
+</body>
+</html>
